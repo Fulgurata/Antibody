@@ -11,8 +11,11 @@ size = Vector2(88, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o7wu"]
 size = Vector2(88, 25)
 
-[node name="door" type="Area2D"]
+[node name="door" type="StaticBody2D"]
+position = Vector2(95, 111)
+disable_mode = 1
 script = ExtResource("1_gny78")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(43, 3)

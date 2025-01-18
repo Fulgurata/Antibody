@@ -79,11 +79,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
-radius = 17.4774
+radius = 16.5575
 height = 42.52
 
-[node name="Player" type="Area2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(-1, 1)
 script = ExtResource("1_3cblq")
+metadata/_edit_group_ = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 rotation = -1.5708
@@ -94,10 +96,10 @@ speed_scale = 1.7
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(2, 0)
+rotation = -1.5708
 scale = Vector2(1.08712, 1.78739)
 shape = SubResource("CapsuleShape2D_3nvn1")
-metadata/_edit_lock_ = true
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("3_35fgo")
@@ -116,3 +118,5 @@ script = ExtResource("7_prutj")
 
 [node name="MeleeAtk" type="Node" parent="."]
 script = ExtResource("8_gawsi")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,5 +1,5 @@
 #player.gd
-extends Area2D
+extends CharacterBody2D
 
 # These are variables that are used in multiple functions 
 var steering_factor := 10.0
@@ -7,8 +7,9 @@ var normal_speed := 600.0
 var boost_speed := 1500.0
 var max_speed := normal_speed
 var friction := 0.5
-var velocity := Vector2 (0,0)
 var current_state
+var rotation_direction = 0
+var rotation_speed = 1.5
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
 func _ready():
