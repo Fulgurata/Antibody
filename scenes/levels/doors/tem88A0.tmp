@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7mw0sw0vki2h"]
+
+[ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="1_qwk37"]
+[ext_resource type="PackedScene" uid="uid://bay05u8gm6vae" path="res://scenes/levels/doors/door.tscn" id="2_7nmdd"]
+[ext_resource type="Texture2D" uid="uid://vyrx0eclg7vp" path="res://scenes/levels/doors/wall.png" id="3_rvdf5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1bwt"]
+size = Vector2(25, 11)
+
+[node name="Node" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_qwk37")]
+position = Vector2(247, 165)
+
+[node name="Door" parent="." instance=ExtResource("2_7nmdd")]
+position = Vector2(115, 60)
+constant_force = Vector2(0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_bottom = 0.222
+offset_left = -40.0
+offset_top = 36.0
+offset_bottom = 36.04
+
+[node name="Hinge" type="StaticBody2D" parent="."]
+position = Vector2(207, 60)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Hinge"]
+scale = Vector2(0.421875, 1)
+texture = ExtResource("3_rvdf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hinge"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_k1bwt")
+disabled = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(192, 60)
+node_a = NodePath("../Hinge")
+node_b = NodePath("../Door")
+bias = 0.01
+softness = 6.05
