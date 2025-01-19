@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c04oqtfpq8k38"]
+
+[ext_resource type="Texture2D" uid="uid://bdw1i0u8ilh2c" path="res://scenes/levels/level_one/point_light_gradient_texture_2d.tres" id="1_px85w"]
+
+[node name="PointLight2D" type="PointLight2D"]
+position = Vector2(213, 228)
+scale = Vector2(4.90858, 4.65221)
+color = Color(0.643137, 1, 1, 1)
+energy = 4.0
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 4.0
+texture = ExtResource("1_px85w")
+texture_scale = 3.0
