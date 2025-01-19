@@ -32,6 +32,3 @@ func handle_input(_delta) -> void:
 	elif Input.is_action_just_pressed("dodge"):
 		player.change_state("Dodging")
 		print("playerMoving_toDodge")
-		
-		
-	

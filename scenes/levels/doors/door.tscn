@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bay05u8gm6vae"]
+
+[ext_resource type="Texture2D" uid="uid://ivyivin7t1vo" path="res://scenes/levels/doors/door_sprite.png" id="1_wf6bs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mr3p"]
+size = Vector2(116, 10)
+
+[node name="Door" type="RigidBody2D"]
+position = Vector2(122, 64)
+collision_layer = 2
+collision_mask = 7
+can_sleep = false
+angular_damp = 25.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(18, 0)
+scale = Vector2(1.84375, 1)
+texture = ExtResource("1_wf6bs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, -1)
+shape = SubResource("RectangleShape2D_0mr3p")
+
+[node name="Hinge" type="PinJoint2D" parent="."]
+node_b = NodePath("..")
