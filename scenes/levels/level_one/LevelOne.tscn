@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cdr35ksr4e2gl"]
+[gd_scene load_steps=7 format=4 uid="uid://cdr35ksr4e2gl"]
 
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="1_8bb22"]
 [ext_resource type="TileSet" uid="uid://evijk4pi73ij" path="res://scenes/levels/level_one/layer_zero_tileset.tres" id="1_g8j6r"]
 [ext_resource type="TileSet" uid="uid://bc0y64j8wml0x" path="res://scenes/levels/level_one/TileSet.tres" id="2_pjygi"]
 [ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="4_6c33g"]
+[ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_f0lre"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofq61"]
 
@@ -61,6 +62,10 @@ position = Vector2(925, 471)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorJam2"]
 position = Vector2(46, -135)
 shape = SubResource("RectangleShape2D_ofq61")
+
+[node name="Drone" parent="." instance=ExtResource("5_f0lre")]
+position = Vector2(115, 189)
+collision_layer = 8
 
 [editable path="Door"]
 [editable path="Door2"]

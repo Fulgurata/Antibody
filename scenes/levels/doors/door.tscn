@@ -4,23 +4,23 @@
 [ext_resource type="OccluderPolygon2D" uid="uid://beixoa1cp8ncf" path="res://scenes/levels/doors/door_occluder_polygon_2d.tres" id="2_oi3ds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mr3p"]
-size = Vector2(62, 11)
+size = Vector2(62, 12)
 
 [node name="Door" type="RigidBody2D"]
 position = Vector2(122, 64)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 15
 can_sleep = false
 angular_damp = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(18, 0)
-scale = Vector2(0.95, 0.8)
+position = Vector2(17.7, 0.500001)
+scale = Vector2(0.959375, 1.07813)
 texture = ExtResource("1_wf6bs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(18, -0.5)
+position = Vector2(18, 0)
 scale = Vector2(0.985742, 1)
 shape = SubResource("RectangleShape2D_0mr3p")
 
