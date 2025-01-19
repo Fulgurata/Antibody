@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=21 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
+[ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
 [ext_resource type="PackedScene" uid="uid://c04oqtfpq8k38" path="res://scenes/characters/player/point_light_2d.tscn" id="2_3q7j2"]
 [ext_resource type="Texture2D" uid="uid://err8c35m47ss" path="res://scenes/characters/player/Player-Walk.png" id="2_v7p1y"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/idle_state.gd" id="3_35fgo"]
@@ -87,6 +88,11 @@ height = 42.52
 position = Vector2(-1, 1)
 script = ExtResource("1_3cblq")
 metadata/_edit_group_ = true
+
+[node name="PointLight2D2" parent="." instance=ExtResource("2_2cr71")]
+position = Vector2(15, -3.8147e-06)
+rotation = 0.759218
+offset = Vector2(60, -60)
 
 [node name="PointLight2D" parent="." instance=ExtResource("2_3q7j2")]
 position = Vector2(-22, 0)
