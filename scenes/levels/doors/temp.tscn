@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7mw0sw0vki2h"]
+[gd_scene load_steps=5 format=3 uid="uid://66mjw06bp8bw"]
 
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="1_qwk37"]
-[ext_resource type="PackedScene" uid="uid://bay05u8gm6vae" path="res://scenes/levels/doors/door.tscn" id="2_7nmdd"]
+[ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="2_7nmdd"]
 [ext_resource type="Texture2D" uid="uid://vyrx0eclg7vp" path="res://scenes/levels/doors/wall.png" id="3_rvdf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1bwt"]
