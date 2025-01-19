@@ -32,7 +32,6 @@ tile_set = ExtResource("2_pjygi")
 position = Vector2(147, 78)
 
 [node name="AntiLight" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 1
 
 [node name="Door" parent="." instance=ExtResource("4_6c33g")]
