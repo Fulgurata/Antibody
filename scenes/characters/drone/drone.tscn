@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://3icltdq3xtfe"]
+[gd_scene load_steps=33 format=3 uid="uid://3icltdq3xtfe"]
 
 [ext_resource type="Script" path="res://scripts/characters/drone_scripts/drone.gd" id="1_3xpjv"]
+[ext_resource type="PackedScene" uid="uid://c04oqtfpq8k38" path="res://scenes/characters/player/point_light_2d.tscn" id="2_2roli"]
 [ext_resource type="Texture2D" uid="uid://ds1sphxcm01uq" path="res://scenes/characters/drone/Drone1-down.png" id="2_ldroc"]
 [ext_resource type="Texture2D" uid="uid://hq2mgyua1s0r" path="res://scenes/characters/drone/Drone1-left.png" id="3_cahwu"]
 [ext_resource type="Texture2D" uid="uid://byhb1fnyllub6" path="res://scenes/characters/drone/Drone1-up.png" id="4_r187i"]
+[ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="6_cb5pj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2d23j"]
 atlas = ExtResource("2_ldroc")
@@ -208,6 +210,10 @@ radius = 18.4391
 light_mask = 16
 script = ExtResource("1_3xpjv")
 
+[node name="PointLight2D" parent="." instance=ExtResource("2_2roli")]
+position = Vector2(0, 0)
+metadata/_edit_lock_ = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = -1.55572
 sprite_frames = SubResource("SpriteFrames_vadck")
@@ -216,3 +222,9 @@ speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ehsxn")
+
+[node name="Flashlight" parent="." instance=ExtResource("6_cb5pj")]
+position = Vector2(9, 8.9407e-08)
+rotation = 0.759218
+offset = Vector2(64, -64)
+metadata/_edit_lock_ = true

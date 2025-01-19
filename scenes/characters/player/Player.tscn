@@ -89,7 +89,8 @@ position = Vector2(-1, 1)
 script = ExtResource("1_3cblq")
 metadata/_edit_group_ = true
 
-[node name="PointLight2D2" parent="." instance=ExtResource("2_2cr71")]
+[node name="Flashlight" parent="." instance=ExtResource("2_2cr71")]
+visible = false
 position = Vector2(15, -3.8147e-06)
 rotation = 0.759218
 offset = Vector2(60, -60)
