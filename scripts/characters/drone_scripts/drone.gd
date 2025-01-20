@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var flare_scene = preload("res://scenes/characters/drone/flare.tscn")
 @export var flare_cooldown: float = 60.0
 
-var SPEED: int = 300
+var SPEED: int = 500
 var _flare_timer: float = 0.0
 var can_spawn_flare: bool = true
 

@@ -208,6 +208,7 @@ radius = 18.4391
 
 [node name="Drone" type="CharacterBody2D" groups=["drone"]]
 light_mask = 16
+collision_layer = 8
 script = ExtResource("1_3xpjv")
 
 [node name="PointLight2D" parent="." instance=ExtResource("2_2roli")]

@@ -2,12 +2,13 @@ extends Node2D
 
 
 @onready var light: PointLight2D = $PointLight2D
+@onready var ambience: AudioStreamPlayer = $Ambience
 
 @export var flash_energy: float = 5.0
 @export var flash_duration: float = 0.7
 @export var base_energy: float = 0.1
-@export var min_time_between_flashes: float = 30.0
-@export var max_time_between_flashes: float = 60.0
+@export var min_time_between_flashes: float = 15.0
+@export var max_time_between_flashes: float = 45.0
 
 var flash_timer: float = 0.0
 var is_flashing: bool = false
@@ -16,7 +17,9 @@ var is_flashing: bool = false
 func _ready() -> void:
 	light.energy = base_energy
 	reset_flash_timer()
-
+	if ambience.stream:
+		ambience.stream.loop = true
+		ambience.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
