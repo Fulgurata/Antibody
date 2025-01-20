@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://ir58otfm4m7h"]
+[gd_scene load_steps=30 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
-[ext_resource type="PackedScene" uid="uid://cxbf0eavml7x2" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
-[ext_resource type="PackedScene" uid="uid://rhaj1ybvhiu6" path="res://scenes/characters/player/point_light_2d.tscn" id="2_3q7j2"]
+[ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
+[ext_resource type="PackedScene" uid="uid://c04oqtfpq8k38" path="res://scenes/characters/player/point_light_2d.tscn" id="2_3q7j2"]
 [ext_resource type="Texture2D" uid="uid://err8c35m47ss" path="res://scenes/characters/player/Player-Walk.png" id="2_v7p1y"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/idle_state.gd" id="3_35fgo"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/moving_state.gd" id="4_vqjxc"]

@@ -28,7 +28,7 @@ func _ready():
 		print("Player not found in parent node!")
 	change_state("Enemy_Idle") # Start in the Idle state
 	$EnemySprite.play("enemy_one_walk") #play animation ((fix this later, we need to play different animations for different states)
-	print("Enemy_Ready_toIdle")
+	#print("Enemy_Ready_toIdle")
 	#all this jazz allows you to adjust the ray count on the fly for max performance, without all the math breaking
 	interest.resize(num_rays)
 	danger.resize(num_rays)
@@ -109,15 +109,15 @@ func set_interest(i: int)-> void:
 		
 		if result.collider.is_in_group("player"):
 			interest[i] = 1.0
-			print("hit_player")
+			#print("hit_player")
 		elif result.collider.is_in_group("drone"):
 			interest[i] = 0.7
-			print("hit_drone")
-		else:
-			print("hit non-player interest")
+			#print("hit_drone")
+		#else:
+			#print("hit non-player interest")
 	else:
 		interest[i] = 0.0
-		print("no_interest")
+		#print("no_interest")
 	#here we could setup a random wander pattern by having it pick a random spot nearby every 30 seconds
 	#just add a random value to current global position and make that your new favorite spot
 
@@ -139,7 +139,7 @@ func set_danger(i: int):
 	var result = space_state_d.intersect_ray(params_d)
 	if result:
 		danger[i] = 0.5
-		print("wall")
+		#print("wall")
 	else:
 		danger[i] = 0.0
-		print("no_danger")
+		#print("no_danger")

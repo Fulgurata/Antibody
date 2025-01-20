@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
-[ext_resource type="PackedScene" uid="uid://cxbf0eavml7x2" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
-[ext_resource type="PackedScene" uid="uid://rhaj1ybvhiu6" path="res://scenes/characters/player/point_light_2d.tscn" id="3_14kfw"]
+[ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
+[ext_resource type="PackedScene" uid="uid://c04oqtfpq8k38" path="res://scenes/characters/player/point_light_2d.tscn" id="3_14kfw"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_idle_state.gd" id="4_rorqp"]
 [ext_resource type="Texture2D" uid="uid://bdrnef7sdkbtu" path="res://scenes/characters/enemy_one/Enemy1-walk.png" id="4_xtrsy"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_moving_state.gd" id="5_wsv0q"]
