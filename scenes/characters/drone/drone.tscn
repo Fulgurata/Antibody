@@ -206,7 +206,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ehsxn"]
 radius = 18.4391
 
-[node name="Drone" type="CharacterBody2D"]
+[node name="Drone" type="CharacterBody2D" groups=["drone"]]
 light_mask = 16
 script = ExtResource("1_3xpjv")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=30 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/idle_state.gd" id="3_35fgo"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/moving_state.gd" id="4_vqjxc"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/knocked_out_state.gd" id="5_k2pvs"]
+[ext_resource type="Texture2D" uid="uid://clpbc0gfdjpwd" path="res://scenes/characters/player/Player-Handgun-Walk_New.png" id="5_x358i"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/shooting_state.gd" id="6_pl56b"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/dodging_state.gd" id="7_prutj"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/melee_atk_state.gd" id="8_gawsi"]
@@ -41,6 +42,38 @@ region = Rect2(432, 0, 72, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpyst"]
 atlas = ExtResource("2_v7p1y")
+region = Rect2(504, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsasc"]
+atlas = ExtResource("5_x358i")
+region = Rect2(0, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6cay"]
+atlas = ExtResource("5_x358i")
+region = Rect2(72, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgy15"]
+atlas = ExtResource("5_x358i")
+region = Rect2(144, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugw47"]
+atlas = ExtResource("5_x358i")
+region = Rect2(216, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eiea4"]
+atlas = ExtResource("5_x358i")
+region = Rect2(288, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50jig"]
+atlas = ExtResource("5_x358i")
+region = Rect2(360, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwara"]
+atlas = ExtResource("5_x358i")
+region = Rect2(432, 0, 72, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bbss"]
+atlas = ExtResource("5_x358i")
 region = Rect2(504, 0, 72, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_npn7e"]
@@ -78,6 +111,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsasc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6cay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgy15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugw47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eiea4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50jig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwara")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bbss")
+}],
+"loop": true,
+"name": &"new_walk_pistol",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
@@ -86,6 +148,8 @@ height = 42.52
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-1, 1)
+collision_layer = 513
+collision_mask = 513
 script = ExtResource("1_3cblq")
 metadata/_edit_group_ = true
 
@@ -99,15 +163,14 @@ offset = Vector2(60, -60)
 position = Vector2(-22, 0)
 metadata/_edit_lock_ = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." groups=["player"]]
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_npn7e")
-animation = &"WalkPistol"
-frame_progress = 0.0622732
+animation = &"new_walk_pistol"
 speed_scale = 1.7
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 visibility_layer = 5
 position = Vector2(2, 0)
 rotation = -1.5708

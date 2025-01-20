@@ -14,8 +14,8 @@ var rotation_speed = 1.5
 
 func _ready():
 	change_state("Idle") # Start in the Idle state
-	$PlayerSprite.play("WalkPistol")
-	print("playerReady_toIdle")
+	$PlayerSprite.play("new_walk_pistol")
+	#print("playerReady_toIdle")
 
 func change_state(new_state_name: String):
 	if current_state:

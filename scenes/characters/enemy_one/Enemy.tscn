@@ -1,0 +1,152 @@
+[gd_scene load_steps=24 format=3 uid="uid://bc2uunwunerp"]
+
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
+[ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
+[ext_resource type="PackedScene" uid="uid://c04oqtfpq8k38" path="res://scenes/characters/player/point_light_2d.tscn" id="3_14kfw"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_idle_state.gd" id="4_rorqp"]
+[ext_resource type="Texture2D" uid="uid://bdrnef7sdkbtu" path="res://scenes/characters/enemy_one/Enemy1-walk.png" id="4_xtrsy"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_moving_state.gd" id="5_wsv0q"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_knocked_out_state.gd" id="6_krth4"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_shooting_state.gd" id="7_c8y6w"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_melee_atk_state.gd" id="9_2jjf7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcjqs"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66uoq"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5bnm"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oego4"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(384, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxy62"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(512, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifdn0"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(640, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjye7"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(768, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uahd"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(896, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab0g8"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(1024, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb2nm"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(1152, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6y0kg"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(1280, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7cjw"]
+atlas = ExtResource("4_xtrsy")
+region = Rect2(1408, 0, 128, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_deqgi"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcjqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66uoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5bnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oego4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxy62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifdn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjye7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uahd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab0g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb2nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6y0kg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7cjw")
+}],
+"loop": true,
+"name": &"enemy_one_walk",
+"speed": 22.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
+radius = 15.9206
+height = 47.2487
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_jbthf")
+metadata/_edit_group_ = true
+
+[node name="Flashlight" parent="." instance=ExtResource("2_yql7k")]
+visible = false
+position = Vector2(15, -3.8147e-06)
+rotation = 0.759218
+offset = Vector2(60, -60)
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_14kfw")]
+position = Vector2(-22, 0)
+metadata/_edit_lock_ = true
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_deqgi")
+animation = &"enemy_one_walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 5
+scale = Vector2(1.50478, 1.05823)
+shape = SubResource("CapsuleShape2D_3nvn1")
+
+[node name="Enemy_Idle" type="Node" parent="."]
+script = ExtResource("4_rorqp")
+
+[node name="Enemy_Moving" type="Node" parent="."]
+script = ExtResource("5_wsv0q")
+
+[node name="Enemy_KnockedOut" type="Node" parent="."]
+script = ExtResource("6_krth4")
+
+[node name="Enemy_Shooting" type="Node" parent="."]
+script = ExtResource("7_c8y6w")
+
+[node name="Enemy_MeleeAtk" type="Node" parent="."]
+script = ExtResource("9_2jjf7")

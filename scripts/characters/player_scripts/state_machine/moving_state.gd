@@ -20,15 +20,15 @@ func get_input() -> Vector2:
 func handle_input(_delta) -> void:
 	var direction = get_input()
 	#get_input()
-	print("playerMoving")
+	#print("playerMoving")
 	if direction.length() > 0:
 		player.move_and_slide()
 	else:
 		player.change_state("Idle")
-		print("playerMoving_toIdle")
+		#print("playerMoving_toIdle")
 	if direction.length() > 0:
 		player.change_state("Moving")
 	
 	elif Input.is_action_just_pressed("dodge"):
 		player.change_state("Dodging")
-		print("playerMoving_toDodge")
+		#print("playerMoving_toDodge")

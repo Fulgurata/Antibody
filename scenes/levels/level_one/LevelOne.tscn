@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cdr35ksr4e2gl"]
+[gd_scene load_steps=9 format=4 uid="uid://cdr35ksr4e2gl"]
 
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="1_8bb22"]
 [ext_resource type="TileSet" uid="uid://evijk4pi73ij" path="res://scenes/levels/level_one/layer_zero_tileset.tres" id="1_g8j6r"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="4_6c33g"]
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_f0lre"]
 [ext_resource type="PackedScene" uid="uid://c1x4mmudn6g1r" path="res://scenes/characters/drone/flare.tscn" id="6_5u8p2"]
+[ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="7_2enb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofq61"]
 
@@ -31,9 +32,10 @@ use_parent_material = true
 tile_set = ExtResource("2_pjygi")
 
 [node name="Player" parent="." instance=ExtResource("1_8bb22")]
-position = Vector2(147, 78)
+position = Vector2(1750, 318)
 
 [node name="AntiLight" type="DirectionalLight2D" parent="."]
+visible = false
 blend_mode = 1
 
 [node name="Door" parent="." instance=ExtResource("4_6c33g")]
@@ -70,6 +72,9 @@ collision_layer = 8
 
 [node name="Flare" parent="." instance=ExtResource("6_5u8p2")]
 position = Vector2(544, 297)
+
+[node name="Enemy" parent="." instance=ExtResource("7_2enb4")]
+position = Vector2(1743, 226)
 
 [editable path="Door"]
 [editable path="Door2"]
