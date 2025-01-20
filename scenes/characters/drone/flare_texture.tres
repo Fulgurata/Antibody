@@ -1,0 +1,9 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://b7kog7pn8nr5n"]
+
+[ext_resource type="Gradient" uid="uid://68s1cwcbsxcb" path="res://scenes/characters/drone/flare_gradient.tres" id="1_mji4g"]
+
+[resource]
+gradient = ExtResource("1_mji4g")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.876147, 0.206422)

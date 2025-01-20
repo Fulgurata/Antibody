@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1x4mmudn6g1r"]
+
+[ext_resource type="Script" path="res://scripts/characters/drone_scripts/flare.gd" id="1_3cbsx"]
+[ext_resource type="Texture2D" uid="uid://cqkwhsx5ow170" path="res://scenes/characters/drone/Flare.png" id="1_ffswy"]
+[ext_resource type="Texture2D" uid="uid://b7kog7pn8nr5n" path="res://scenes/characters/drone/flare_texture.tres" id="2_jbnub"]
+[ext_resource type="AudioStream" uid="uid://bqysxnsll7hdk" path="res://scenes/characters/drone/Flare.mp3" id="4_4kgub"]
+
+[sub_resource type="Gradient" id="Gradient_7gtge"]
+offsets = PackedFloat32Array(0, 0.286667, 0.973333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.313333, 0.313333, 0.313333, 1, 0.693333, 0.693333, 0.693333, 1, 1, 1, 1, 1)
+
+[node name="Flare" type="Node2D"]
+script = ExtResource("1_3cbsx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_ffswy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(6, 0)
+amount = 50
+lifetime = 0.4
+preprocess = 6.06
+randomness = 0.3
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 120.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 88.9
+initial_velocity_max = 129.3
+angular_velocity_max = 43.64
+color = Color(1, 1, 0.968627, 0.498039)
+color_ramp = SubResource("Gradient_7gtge")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 1)
+color = Color(1, 0.152941, 0.133333, 1)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("2_jbnub")
+texture_scale = 7.19
+
+[node name="FlareTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Flare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4kgub")
+volume_db = -22.781
+
+[connection signal="timeout" from="FlareTimer" to="." method="_on_flare_timer_timeout"]
