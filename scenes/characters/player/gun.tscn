@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6bk2bmfhq4rk"]
+
+[ext_resource type="Script" path="res://scripts/characters/player_scripts/gun.gd" id="1_ymkat"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_ymkat")
+
+[node name="muzzle" type="Marker2D" parent="."]
