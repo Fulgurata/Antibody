@@ -113,6 +113,8 @@ height = 47.2487
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_jbthf")
 metadata/_edit_group_ = true
 
