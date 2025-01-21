@@ -27,10 +27,10 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.12, 1)
 colors = PackedColorArray(0.999582, 0.952314, 0.893333, 1, 0.996078, 0.552941, 0, 1, 1, 0.00392157, 0.0470588, 1)
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
 script = ExtResource("1_v12wx")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["bullet"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-2, 2)

@@ -26,6 +26,7 @@ player=""
 enemy=""
 drone=""
 portal=""
+bullet=""
 
 [input]
 

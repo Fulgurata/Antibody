@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bc2uunwunerp"]
+[gd_scene load_steps=25 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
@@ -111,6 +111,8 @@ animations = [{
 radius = 15.9206
 height = 47.2487
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mua6l"]
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 motion_mode = 1
@@ -152,3 +154,11 @@ script = ExtResource("7_c8y6w")
 
 [node name="Enemy_MeleeAtk" type="Node" parent="."]
 script = ExtResource("9_2jjf7")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="HitBox_Collision" type="CollisionShape2D" parent="HitBox"]
+scale = Vector2(2.45, 1.8)
+shape = SubResource("CapsuleShape2D_mua6l")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

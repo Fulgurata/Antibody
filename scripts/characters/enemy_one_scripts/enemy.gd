@@ -2,13 +2,13 @@
 extends CharacterBody2D
 
 # These are variables that are used in multiple functions 
-#we'll need to clean these up at some point, we're not actually using them all I don't think
 var steering_factor := .5 #must be between 0 and 1.0
 var normal_speed := 400.0
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = null
 @export var MIN_DISTANCE: float = 10.0 #how close the enemy will get before stopping
+var health = 2
 
 var vision_range = 800 #how far the enemy can see (does not need light)
 var num_rays = 64 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
@@ -45,17 +45,17 @@ func _ready():
 	#end jazz
 	
 
-#draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)
-	_draw()
-
-func _draw()-> void:
-	#print("Enemy global position:", global_position)
-	for i in range(num_rays):
-		draw_line(to_local(enemy_sprite.global_position), to_local(enemy_sprite.global_position) + ray_directions[i].rotated(rotation) * vision_range, Color.GREEN, 1.0)
-	var distance_to_player = global_position.distance_to(player.global_position)
-	if distance_to_player > MIN_DISTANCE:
-		var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
-		draw_line(enemy_sprite.global_position, desired_velocity, Color.RED, 1.0)
+##draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)
+	#_draw()
+#
+#func _draw()-> void:
+	##print("Enemy global position:", global_position)
+	#for i in range(num_rays):
+		#draw_line(to_local(enemy_sprite.global_position), to_local(enemy_sprite.global_position) + ray_directions[i].rotated(rotation) * vision_range, Color.GREEN, 1.0)
+	#var distance_to_player = global_position.distance_to(player.global_position)
+	#if distance_to_player > MIN_DISTANCE:
+		#var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
+		#draw_line(enemy_sprite.global_position, desired_velocity, Color.RED, 1.0)
 
 
 func change_state(new_state_name: String):
@@ -85,11 +85,11 @@ func _process(delta: float) -> void:
 		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
 		move_and_collide(velocity * delta)
 		chosen_dir = Vector2.ZERO
-		print("after zeroing", chosen_dir)
+		#print("after zeroing", chosen_dir)
 	else:
 		velocity = Vector2.ZERO
 		chosen_dir = Vector2.ZERO
-		print("after zeroing", chosen_dir)
+		#print("after zeroing", chosen_dir)
 
 
 
@@ -109,10 +109,10 @@ func update_context_arrays() -> void:
 			elif count_cycle >= 32: #the maximum number of ray cycles before the count resets and enemy can chase the drone again
 				count_cycle = 0
 		chosen_dir += ray_directions[i] * interest[i]
-		print("after adding ray#: ", i, chosen_dir)
-		print("RAY number: ", i, "   interest: ", interest[i], "   direction: ", ray_directions[i])
+		#print("after adding ray#: ", i, chosen_dir)
+		#print("RAY number: ", i, "   interest: ", interest[i], "   direction: ", ray_directions[i])
 	chosen_dir = chosen_dir.normalized()
-	print("after normalizing post rayZ", chosen_dir)
+	#print("after normalizing post rayZ", chosen_dir)
 
 
 
@@ -122,7 +122,6 @@ func set_interest(i: int)-> void:
 	var params = PhysicsRayQueryParameters2D.new()
 	params.from = enemy_sprite.global_position
 	params.to = enemy_sprite.global_position + ray_directions[i].rotated(rotation) * vision_range
-	#print("Enemy global position:", global_position)
 	params.exclude = [self]
 	#params.collision_mask = 10
 	params.collide_with_areas = false
@@ -130,19 +129,15 @@ func set_interest(i: int)-> void:
 	var result = space_state.intersect_ray(params)
 
 	if result:
-		var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
-		print("Ray number: ", i,"interest_collider:	", result.collider, "		Distance: 	", collision_distance)
+		#var collision_distance = result.position.distance_to(enemy_sprite.global_position)
+		#print("Ray number: ", i,"interest_collider:	", result.collider, "		Distance: 	", collision_distance)
 		
 		if result.collider.is_in_group("player"):
-			#var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
-			print("Player_position_collided: ", result.collider.position)
-			#print("enemy_position", enemy_sprite.global_position)
-			#print("distance", collision_distance)
 			interest[i] = 0.9
 			player_sighted_ray_flag[i] = true
 			#print(result.collider.position)
-		#elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
-			#interest[i] = 0.7
+		elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
+			interest[i] = 0.7
 			#print("hit_drone")
 		else:
 			interest[i] = 0.0
@@ -150,9 +145,7 @@ func set_interest(i: int)-> void:
 	else:
 		interest[i] = 0.0
 		#print("no_interest")
-	print("Ray number: ", i,"		set_interest: 	", interest[i])
-	if interest[i] > 0.0:
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	#print("Ray number: ", i,"		set_interest: 	", interest[i])
 	#here we could setup a random wander pattern by having it pick a random spot nearby every 30 seconds
 	#just add a random value to current global position and make that your new favorite spot
 
@@ -166,19 +159,15 @@ func set_danger(i: int):
 	params_d.from = enemy_sprite.global_position
 	params_d.to = enemy_sprite.global_position + ray_directions[i].rotated(rotation) * vision_range
 	params_d.exclude = [self]
-	#print("Enemy global position:", global_position)
 	#params_d.collision_mask = 10
 	params_d.collide_with_areas = false
 	params_d.collide_with_bodies = true
 	
 	var result = space_state_d.intersect_ray(params_d)
 	if result:
-		var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
-		print("Ray number: ", i,"danger_collider:	", result.collider, result.collider.name, result.collider.name == "Player", "		Distance: 	", collision_distance)
-		#print("position_collided", result.collider.position)
-		#print("enemy_position", enemy_sprite.global_position)
-		#print("distance", collision_distance)
-		var max_wall_care = 200.0 #the distance we want to detect and avoid walls, 50 is very small, 23 is "you're on top of me"
+		var collision_distance = result.position.distance_to(enemy_sprite.global_position)
+		#print("Ray number: ", i,"danger_collider:	", result.collider, result.collider.name, result.collider.name == "Player", "		Distance: 	", collision_distance)
+		var max_wall_care = 35.0 #the distance we want to detect and avoid walls, 50 is very small, 23 is "you're on top of me", 35 seems to be about right for our tilesizes
 		if result and collision_distance < max_wall_care and result.collider.name != "Player":
 			danger[i] = 0.5
 			#print(ratio)
@@ -187,4 +176,14 @@ func set_danger(i: int):
 			#print("no_danger")
 	else:
 		danger[i] = 0.0
-	print("Ray number: ", i,"		set_danger: 	", danger[i])
+	#print("Ray number: ", i,"		set_danger: 	", danger[i])
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("bullet"):
+		health -= 1
+		print("Hit! Health:", health)
+
+	if health <= 0:
+		print("He dead Jim.")
+		queue_free()
