@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://d34khwfegjf6v"]
+
+[ext_resource type="Script" path="res://scripts/boss/boss_slime.gd" id="1_36ilt"]
+[ext_resource type="Texture2D" uid="uid://dlr12lkd5a02b" path="res://scenes/boss/Boss slime.png" id="1_xg7dr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfnid"]
+atlas = ExtResource("1_xg7dr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6glau"]
+atlas = ExtResource("1_xg7dr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq2tg"]
+atlas = ExtResource("1_xg7dr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1ybf"]
+atlas = ExtResource("1_xg7dr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5kdw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfnid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq2tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1ybf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dtaso"]
+radius = 14.0
+
+[node name="BossSlime" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_36ilt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5kdw5")
+frame_progress = 0.520225
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dtaso")

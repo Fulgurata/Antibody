@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv3en8ax6a8lw"]
+
+[ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_kxtdx"]
+[ext_resource type="Texture2D" uid="uid://ds27k3e2mlbst" path="res://scenes/boss/png-transparent-chris-pratt-star-lord-celebrity-actor-face-chris-pratt-celebrities-people-film-thumbnail.png" id="2_64nnl"]
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_kxtdx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_64nnl")
