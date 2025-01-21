@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhh1xlsswdy50"]
+[gd_scene load_steps=9 format=3 uid="uid://dhh1xlsswdy50"]
 
 [ext_resource type="Texture2D" uid="uid://babdgvngystv2" path="res://scenes/characters/player/bullet.png" id="1_qcox8"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/bullet.gd" id="1_v12wx"]
@@ -9,12 +9,26 @@ size = Vector2(8, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib46c"]
 size = Vector2(8, 4)
 
+[sub_resource type="Gradient" id="Gradient_r062i"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a8ako"]
+gradient = SubResource("Gradient_r062i")
+fill = 1
+fill_from = Vector2(0.46789, 0.477064)
+fill_to = Vector2(0.83945, 0.229358)
+
+[sub_resource type="Curve" id="Curve_guxbl"]
+max_value = 4.0
+_data = [Vector2(0, 3.82418), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_g2nsm"]
+offsets = PackedFloat32Array(0, 0.12, 1)
+colors = PackedColorArray(0.999582, 0.952314, 0.893333, 1, 0.996078, 0.552941, 0, 1, 1, 0.00392157, 0.0470588, 1)
+
 [node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_v12wx")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_qcox8")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -26,3 +40,28 @@ shape = SubResource("RectangleShape2D_q60ut")
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_ib46c")
 debug_color = Color(0.945098, 0.121569, 0.12549, 0.419608)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0.686275, 0.72549)
+texture = SubResource("GradientTexture2D_a8ako")
+
+[node name="Spritegroup" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Spritegroup"]
+position = Vector2(-6, 2)
+amount = 100
+preprocess = 0.1
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_guxbl")
+color_ramp = SubResource("Gradient_g2nsm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spritegroup"]
+scale = Vector2(2.1, 2.1)
+texture = ExtResource("1_qcox8")

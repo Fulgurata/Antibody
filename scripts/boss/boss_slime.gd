@@ -11,10 +11,10 @@ func _ready():
 		
 
 func _physics_process(_delta: float) -> void:
-	$AnimatedSprite2D.play()
+	$SpriteGroup/AnimatedSprite2D.play()
 	var direction = Vector2(sin(self.rotation), cos(self.rotation))
-	$CPUParticles2D.gravity = direction * 800
-	$CPUParticles2D.direction = direction.normalized()
+	$SpriteGroup/CPUParticles2D.gravity = direction * 800
+	$SpriteGroup/CPUParticles2D.direction = direction.normalized()
 	if is_instance_valid(player):
 		velocity = (player.global_position - global_position).normalized() * SPEED
 		look_at(player.global_position)
