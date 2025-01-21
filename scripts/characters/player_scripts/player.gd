@@ -30,4 +30,3 @@ func _process(delta: float) -> void:
 	
 	if current_state:
 		current_state.handle_input(delta)
-	

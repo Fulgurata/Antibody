@@ -25,6 +25,7 @@ window/size/viewport_height=540
 player=""
 enemy=""
 drone=""
+portal=""
 
 [input]
 

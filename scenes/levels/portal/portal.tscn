@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://coquo353ecv4x"]
+
+[ext_resource type="Script" path="res://scripts/portal/portal.gd" id="1_kl56m"]
+[ext_resource type="Texture2D" uid="uid://bga3dkg3jkaoo" path="res://scenes/levels/portal/png-clipart-arnold-helga-g-pataki-olga-pataki-rhonda-wellington-lloyd-character-animation-boy-cartoon-thumbnail.png" id="1_nhp1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2ff6"]
+size = Vector2(132, 150)
+
+[node name="portal" type="Area2D"]
+visibility_layer = 5
+position = Vector2(-33, 19)
+script = ExtResource("1_kl56m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.99999, -2)
+scale = Vector2(0.574713, 0.428279)
+texture = ExtResource("1_nhp1x")
+
+[node name="Destnation_Point" type="Marker2D" parent="."]
+visibility_layer = 5
+position = Vector2(354, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_r2ff6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

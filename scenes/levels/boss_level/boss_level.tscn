@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtakbhmjrexki"]
+
+[ext_resource type="PackedScene" uid="uid://coquo353ecv4x" path="res://scenes/levels/portal/portal.tscn" id="1_0bcyg"]
+[ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="2_s4eyj"]
+[ext_resource type="PackedScene" uid="uid://cv3en8ax6a8lw" path="res://scenes/boss/boss.tscn" id="3_nibfc"]
+
+[node name="Boss_Level" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 336.0
+offset_top = 278.0
+offset_right = 930.0
+offset_bottom = 880.0
+color = Color(0.733333, 0.388235, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1091.0
+offset_top = 6.0
+offset_right = 1685.0
+offset_bottom = 608.0
+color = Color(0.733333, 0.388235, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = -1061.0
+offset_top = 1149.0
+offset_right = -467.0
+offset_bottom = 1751.0
+color = Color(0.733333, 0.388235, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = -14.0
+offset_right = 1602.0
+offset_bottom = 588.0
+color = Color(0.733333, 0.388235, 1, 1)
+
+[node name="portal" parent="." instance=ExtResource("1_0bcyg")]
+position = Vector2(587, 573)
+
+[node name="Destnation_Point" parent="portal" index="1"]
+position = Vector2(1274, -146)
+
+[node name="CollisionShape2D" parent="portal" index="2"]
+position = Vector2(-13, -4)
+
+[node name="Player" parent="." instance=ExtResource("2_s4eyj")]
+position = Vector2(811, 542)
+
+[node name="Boss" parent="." instance=ExtResource("3_nibfc")]
+position = Vector2(1182, 1078)
+
+[node name="portal2" parent="." instance=ExtResource("1_0bcyg")]
+position = Vector2(641, 1743)
+
+[node name="Destnation_Point" parent="portal2" index="1"]
+position = Vector2(92, -996)
+
+[node name="portal3" parent="." instance=ExtResource("1_0bcyg")]
+position = Vector2(1716, 1734)
+
+[node name="Destnation_Point" parent="portal3" index="1"]
+position = Vector2(-878, 17)
+
+[node name="portal4" parent="." instance=ExtResource("1_0bcyg")]
+position = Vector2(1692, 621)
+
+[node name="Destnation_Point" parent="portal4" index="1"]
+position = Vector2(31, 906)
+
+[editable path="portal"]
+[editable path="portal2"]
+[editable path="portal3"]
+[editable path="portal4"]
