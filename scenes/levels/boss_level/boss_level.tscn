@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtakbhmjrexki"]
+[gd_scene load_steps=6 format=3 uid="uid://dtakbhmjrexki"]
 
 [ext_resource type="PackedScene" uid="uid://coquo353ecv4x" path="res://scenes/levels/portal/portal.tscn" id="1_0bcyg"]
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="2_s4eyj"]
 [ext_resource type="PackedScene" uid="uid://cv3en8ax6a8lw" path="res://scenes/boss/boss.tscn" id="3_nibfc"]
 [ext_resource type="PackedScene" uid="uid://d34khwfegjf6v" path="res://scenes/boss/boss_slime.tscn" id="4_slnjw"]
+[ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_2njw6"]
 
 [node name="Boss_Level" type="Node2D"]
 
@@ -73,6 +74,9 @@ position = Vector2(31, 906)
 
 [node name="BossSlime" parent="." instance=ExtResource("4_slnjw")]
 position = Vector2(838, 1072)
+
+[node name="Drone" parent="." instance=ExtResource("5_2njw6")]
+position = Vector2(726, 644)
 
 [editable path="portal"]
 [editable path="portal2"]

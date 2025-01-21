@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
 const SPEED: float = 2000.0
