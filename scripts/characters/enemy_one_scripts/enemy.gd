@@ -3,15 +3,15 @@ extends CharacterBody2D
 
 # These are variables that are used in multiple functions 
 #we'll need to clean these up at some point, we're not actually using them all I don't think
-var steering_factor := 0.9 #must be between 0 and 1.0
+var steering_factor := .5 #must be between 0 and 1.0
 var normal_speed := 400.0
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = null
 @export var MIN_DISTANCE: float = 10.0 #how close the enemy will get before stopping
 
-var vision_range = 700 #how far the enemy can see (does not need light)
-var num_rays = 32 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
+var vision_range = 800 #how far the enemy can see (does not need light)
+var num_rays = 64 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
 
 # context array *Basically, these arrays store the directions the thing can go, the bad directions, and the good directions, later we'll do math (good - bad = go that way)
 var ray_directions = []
@@ -45,17 +45,17 @@ func _ready():
 	#end jazz
 	
 
-##draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)
-	#_draw()
-#
-#func _draw()-> void:
-	##print("Enemy global position:", global_position)
-	#for i in range(num_rays):
-		#draw_line(to_local(enemy_sprite.global_position), to_local(enemy_sprite.global_position) + ray_directions[i].rotated(rotation) * vision_range, Color.GREEN, 1.0)
-	#var distance_to_player = global_position.distance_to(player.global_position)
-	#if distance_to_player > MIN_DISTANCE:
-		#var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
-		#draw_line(enemy_sprite.global_position, desired_velocity, Color.RED, 1.0)
+#draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)
+	_draw()
+
+func _draw()-> void:
+	#print("Enemy global position:", global_position)
+	for i in range(num_rays):
+		draw_line(to_local(enemy_sprite.global_position), to_local(enemy_sprite.global_position) + ray_directions[i].rotated(rotation) * vision_range, Color.GREEN, 1.0)
+	var distance_to_player = global_position.distance_to(player.global_position)
+	if distance_to_player > MIN_DISTANCE:
+		var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
+		draw_line(enemy_sprite.global_position, desired_velocity, Color.RED, 1.0)
 
 
 func change_state(new_state_name: String):
@@ -65,6 +65,8 @@ func change_state(new_state_name: String):
 
 	if current_state: #Ensure the new state exists
 		current_state.enter_state(self) # Enter the new state
+
+
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -80,27 +82,39 @@ func _process(delta: float) -> void:
 		var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
 		velocity = velocity.lerp(desired_velocity, steering_factor) #linear_interpolate is now "lerp"
 		rotation = velocity.angle() #(get rotated bro)
+		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
 		move_and_collide(velocity * delta)
+		chosen_dir = Vector2.ZERO
+		print("after zeroing", chosen_dir)
 	else:
 		velocity = Vector2.ZERO
+		chosen_dir = Vector2.ZERO
+		print("after zeroing", chosen_dir)
+
+
 
 func update_context_arrays() -> void:
 	for i in range(num_rays):
 		set_interest(i)
 		set_danger(i)
-		if danger[i] > 0.0 or interest[i] > 0.0:
+		if danger[i] > 0.0:# or interest[i] > 0.0:
 			interest[i] -= danger[i]
 			#interest[i] = max(0, interest[i])
 		if i == 0:
-			chosen_dir = Vector2.ZERO
+			#chosen_dir = Vector2.ZERO#I don't remember why we were doing this...
+			#this little block lets the enemy remember the player for a second (maybe, I don't know, how long is a delta?
 			count_cycle += 1
 			if count_cycle >= 30:
 				player_sighted_ray_flag[i] = false
 			elif count_cycle >= 32: #the maximum number of ray cycles before the count resets and enemy can chase the drone again
 				count_cycle = 0
 		chosen_dir += ray_directions[i] * interest[i]
-		#print("direction", ray_directions[i], "   interest", interest[i])
+		print("after adding ray#: ", i, chosen_dir)
+		print("RAY number: ", i, "   interest: ", interest[i], "   direction: ", ray_directions[i])
 	chosen_dir = chosen_dir.normalized()
+	print("after normalizing post rayZ", chosen_dir)
+
+
 
 #Cast rays to find good directions (currently only includes "toward the player")
 func set_interest(i: int)-> void:
@@ -116,19 +130,29 @@ func set_interest(i: int)-> void:
 	var result = space_state.intersect_ray(params)
 
 	if result:
+		var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
+		print("Ray number: ", i,"interest_collider:	", result.collider, "		Distance: 	", collision_distance)
 		
 		if result.collider.is_in_group("player"):
+			#var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
+			print("Player_position_collided: ", result.collider.position)
+			#print("enemy_position", enemy_sprite.global_position)
+			#print("distance", collision_distance)
 			interest[i] = 0.9
 			player_sighted_ray_flag[i] = true
 			#print(result.collider.position)
-		elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
-			interest[i] = 0.7
+		#elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
+			#interest[i] = 0.7
 			#print("hit_drone")
-		#else:
+		else:
+			interest[i] = 0.0
 			#print("hit non-player interest")
 	else:
 		interest[i] = 0.0
 		#print("no_interest")
+	print("Ray number: ", i,"		set_interest: 	", interest[i])
+	if interest[i] > 0.0:
+		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	#here we could setup a random wander pattern by having it pick a random spot nearby every 30 seconds
 	#just add a random value to current global position and make that your new favorite spot
 
@@ -141,27 +165,26 @@ func set_danger(i: int):
 	var params_d = PhysicsRayQueryParameters2D.new()
 	params_d.from = enemy_sprite.global_position
 	params_d.to = enemy_sprite.global_position + ray_directions[i].rotated(rotation) * vision_range
-	params_d.exclude = [self,player.get_rid()]
+	params_d.exclude = [self]
 	#print("Enemy global position:", global_position)
 	#params_d.collision_mask = 10
-	params_d.collide_with_areas = true
+	params_d.collide_with_areas = false
 	params_d.collide_with_bodies = true
 	
 	var result = space_state_d.intersect_ray(params_d)
 	if result:
-		var collision_distance = to_local(result.collider.position).distance_to(to_local(enemy_sprite.global_position))
-		print("position_collided", to_local(result.collider.position))
-		print("enemy_position", to_local(enemy_sprite.global_position))
-		print("distance", collision_distance)
-		var max_wall_care = 0.5 #the distance we want to detect and avoid walls
-		var how_much_care = 0.1 #.5 is the default for walls, right now player is set to 0.9 as max priority (full 1.0 is reserved for lethal obstacles), drone is set to .7 as secondary objective
-		var ratio = 1.0 #default 1 for reset
-		if collision_distance < max_wall_care and player_sighted_ray_flag.has(true) and collision_distance > 0.0:
-			ratio = (collision_distance / max_wall_care) / (1 / how_much_care)
-			print("ratio", ratio)
-		if result and ratio < 1.0:
-			danger[i] = ratio
+		var collision_distance = result.collider.position.distance_to(enemy_sprite.global_position)
+		print("Ray number: ", i,"danger_collider:	", result.collider, result.collider.name, result.collider.name == "Player", "		Distance: 	", collision_distance)
+		#print("position_collided", result.collider.position)
+		#print("enemy_position", enemy_sprite.global_position)
+		#print("distance", collision_distance)
+		var max_wall_care = 200.0 #the distance we want to detect and avoid walls, 50 is very small, 23 is "you're on top of me"
+		if result and collision_distance < max_wall_care and result.collider.name != "Player":
+			danger[i] = 0.5
 			#print(ratio)
 		else:
 			danger[i] = 0.0
 			#print("no_danger")
+	else:
+		danger[i] = 0.0
+	print("Ray number: ", i,"		set_danger: 	", danger[i])
