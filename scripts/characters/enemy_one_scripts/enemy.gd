@@ -8,10 +8,10 @@ var normal_speed := 400.0
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = null
-@export var MIN_DISTANCE: float = 0.0
+@export var MIN_DISTANCE: float = 10.0 #how close the enemy will get before stopping
 
-var vision_range = 700
-var num_rays = 32
+var vision_range = 700 #how far the enemy can see (does not need light)
+var num_rays = 32 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
 
 # context array *Basically, these arrays store the directions the thing can go, the bad directions, and the good directions, later we'll do math (good - bad = go that way)
 var ray_directions = []
@@ -19,6 +19,8 @@ var interest = []
 var danger = []
 var chosen_dir = Vector2.ZERO
 
+var player_sighted_ray_flag = []#if it sees the player, store that direction so we can ignore the drone
+var count_cycle = 0 #count how many times we've gone around the circle of rays
 
 func _ready():
 	#await get_tree().process_frame
@@ -33,11 +35,13 @@ func _ready():
 	interest.resize(num_rays)
 	danger.resize(num_rays)
 	ray_directions.resize(num_rays)
+	player_sighted_ray_flag.resize(num_rays)
 	for i in range(num_rays):
 			var angle = i * 2 * PI / num_rays
 			ray_directions[i] = Vector2.RIGHT.rotated(angle)
 			interest[i] = 0.0
 			danger[i] = 0.0
+			player_sighted_ray_flag[i] = false
 	#end jazz
 	
 
@@ -84,12 +88,18 @@ func update_context_arrays() -> void:
 	for i in range(num_rays):
 		set_interest(i)
 		set_danger(i)
-		if danger[i] > 0.0 and interest[i] > 0.0:
+		if danger[i] > 0.0 or interest[i] > 0.0:
 			interest[i] -= danger[i]
-			interest[i] = max(0, interest[i])
+			#interest[i] = max(0, interest[i])
 		if i == 0:
 			chosen_dir = Vector2.ZERO
+			count_cycle += 1
+			if count_cycle >= 30:
+				player_sighted_ray_flag[i] = false
+			elif count_cycle >= 32: #the maximum number of ray cycles before the count resets and enemy can chase the drone again
+				count_cycle = 0
 		chosen_dir += ray_directions[i] * interest[i]
+		#print("direction", ray_directions[i], "   interest", interest[i])
 	chosen_dir = chosen_dir.normalized()
 
 #Cast rays to find good directions (currently only includes "toward the player")
@@ -108,9 +118,10 @@ func set_interest(i: int)-> void:
 	if result:
 		
 		if result.collider.is_in_group("player"):
-			interest[i] = 1.0
-			#print("hit_player")
-		elif result.collider.is_in_group("drone"):
+			interest[i] = 0.9
+			player_sighted_ray_flag[i] = true
+			#print(result.collider.position)
+		elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
 			interest[i] = 0.7
 			#print("hit_drone")
 		#else:
@@ -138,8 +149,19 @@ func set_danger(i: int):
 	
 	var result = space_state_d.intersect_ray(params_d)
 	if result:
-		danger[i] = 0.5
-		#print("wall")
-	else:
-		danger[i] = 0.0
-		#print("no_danger")
+		var collision_distance = to_local(result.collider.position).distance_to(to_local(enemy_sprite.global_position))
+		print("position_collided", to_local(result.collider.position))
+		print("enemy_position", to_local(enemy_sprite.global_position))
+		print("distance", collision_distance)
+		var max_wall_care = 0.5 #the distance we want to detect and avoid walls
+		var how_much_care = 0.1 #.5 is the default for walls, right now player is set to 0.9 as max priority (full 1.0 is reserved for lethal obstacles), drone is set to .7 as secondary objective
+		var ratio = 1.0 #default 1 for reset
+		if collision_distance < max_wall_care and player_sighted_ray_flag.has(true) and collision_distance > 0.0:
+			ratio = (collision_distance / max_wall_care) / (1 / how_much_care)
+			print("ratio", ratio)
+		if result and ratio < 1.0:
+			danger[i] = ratio
+			#print(ratio)
+		else:
+			danger[i] = 0.0
+			#print("no_danger")
