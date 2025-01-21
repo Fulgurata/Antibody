@@ -8,3 +8,9 @@ script = ExtResource("1_kxtdx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_64nnl")
+
+[node name="Shoot_Timer" type="Timer" parent="."]
+
+[node name="Rotater" type="Node2D" parent="."]
+
+[connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]

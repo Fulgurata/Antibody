@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dp7xlc5af26sc"]
+[gd_scene load_steps=18 format=4 uid="uid://dp7xlc5af26sc"]
 
 [ext_resource type="Texture2D" uid="uid://cla74kj6p5cyy" path="res://scenes/levels/top_side_level/Ocean-Sheet.png" id="1_s8k7t"]
 [ext_resource type="Script" path="res://scripts/top_side_level.gd" id="1_wqupl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_otqk6"]
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="6_ve5vp"]
 [ext_resource type="AudioStream" uid="uid://dxvea4uwscgqh" path="res://scenes/levels/Audio/Lvl!ogg.ogg" id="8_j6apj"]
+[ext_resource type="PackedScene" uid="uid://d34khwfegjf6v" path="res://scenes/boss/boss_slime.tscn" id="9_g8ham"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ar5u"]
 texture = ExtResource("1_s8k7t")
@@ -226,3 +227,6 @@ position = Vector2(476, 775)
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_j6apj")
 autoplay = true
+
+[node name="BossSlime" parent="." instance=ExtResource("9_g8ham")]
+position = Vector2(478, 1408)
