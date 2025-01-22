@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://clmbbc4ckr475"]
+
+[ext_resource type="Texture2D" uid="uid://mqjyunubllpd" path="res://scenes/boss/png-clipart-suit-business-navy-blue-clothing-patrick-stewart-blue-navy-blue-thumbnail.png" id="1_gh7pl"]
+[ext_resource type="Script" path="res://scripts/boss/tentacle.gd" id="1_momuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dv3y"]
+size = Vector2(136, 303)
+
+[node name="Tentacle" type="Area2D"]
+script = ExtResource("1_momuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.25, 2.75)
+scale = Vector2(0.406609, 0.423554)
+texture = ExtResource("1_gh7pl")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3.5)
+shape = SubResource("RectangleShape2D_6dv3y")

@@ -10,8 +10,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		global_position += direction * SPEED * delta
-	#position += transform.x * SPEED * delta
-	#rotation = (get_global_mouse_position() - position).angle()
+
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):

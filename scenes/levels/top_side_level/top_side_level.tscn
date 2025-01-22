@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dp7xlc5af26sc"]
+[gd_scene load_steps=19 format=4 uid="uid://dp7xlc5af26sc"]
 
 [ext_resource type="Texture2D" uid="uid://cla74kj6p5cyy" path="res://scenes/levels/top_side_level/Ocean-Sheet.png" id="1_s8k7t"]
 [ext_resource type="Script" path="res://scripts/top_side_level.gd" id="1_wqupl"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="6_ve5vp"]
 [ext_resource type="AudioStream" uid="uid://dxvea4uwscgqh" path="res://scenes/levels/Audio/Lvl!ogg.ogg" id="8_j6apj"]
 [ext_resource type="PackedScene" uid="uid://d34khwfegjf6v" path="res://scenes/boss/boss_slime.tscn" id="9_g8ham"]
+[ext_resource type="PackedScene" uid="uid://cxbeb64jwlcbb" path="res://scenes/pickups/ammo_pickup.tscn" id="10_fqrkr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ar5u"]
 texture = ExtResource("1_s8k7t")
@@ -242,3 +243,10 @@ position = Vector2(467, 1566)
 
 [node name="Enemy5" parent="." instance=ExtResource("6_ve5vp")]
 position = Vector2(2119, 1466)
+
+[node name="Area2D" parent="." instance=ExtResource("10_fqrkr")]
+position = Vector2(483, 582)
+
+[node name="Area2D2" parent="." instance=ExtResource("10_fqrkr")]
+position = Vector2(842, 1049)
+ammo_type = "shotgun"

@@ -7,7 +7,7 @@ var normal_speed := 400.0
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = null
-@export var MIN_DISTANCE: float = 10.0 #how close the enemy will get before stopping
+@export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping
 var health = 2
 
 var vision_range = 800 #how far the enemy can see (does not need light)
