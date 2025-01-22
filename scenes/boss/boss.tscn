@@ -13,4 +13,8 @@ texture = ExtResource("2_64nnl")
 
 [node name="Rotater" type="Node2D" parent="."]
 
+[node name="debug" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]
