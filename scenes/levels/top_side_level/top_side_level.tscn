@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dp7xlc5af26sc"]
+[gd_scene load_steps=21 format=4 uid="uid://dp7xlc5af26sc"]
 
 [ext_resource type="Texture2D" uid="uid://cla74kj6p5cyy" path="res://scenes/levels/top_side_level/Ocean-Sheet.png" id="1_s8k7t"]
 [ext_resource type="Script" path="res://scripts/top_side_level.gd" id="1_wqupl"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="6_ve5vp"]
 [ext_resource type="AudioStream" uid="uid://dxvea4uwscgqh" path="res://scenes/levels/Audio/Lvl!ogg.ogg" id="8_j6apj"]
 [ext_resource type="PackedScene" uid="uid://d34khwfegjf6v" path="res://scenes/boss/boss_slime.tscn" id="9_g8ham"]
-[ext_resource type="PackedScene" uid="uid://cxbeb64jwlcbb" path="res://scenes/pickups/ammo_pickup.tscn" id="10_fqrkr"]
+[ext_resource type="PackedScene" uid="uid://jghdy6j7wkn3" path="res://scenes/pickups/pistol_ammo_pickup.tscn" id="10_5ikdf"]
+[ext_resource type="PackedScene" uid="uid://c6mtvg7bxahma" path="res://scenes/pickups/rifle_ammo_pickup.tscn" id="11_2g1mp"]
+[ext_resource type="PackedScene" uid="uid://d0gjul4q40b6x" path="res://scenes/pickups/shotgun_ammo_pickup.tscn" id="12_owyj1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ar5u"]
 texture = ExtResource("1_s8k7t")
@@ -244,9 +246,11 @@ position = Vector2(467, 1566)
 [node name="Enemy5" parent="." instance=ExtResource("6_ve5vp")]
 position = Vector2(2119, 1466)
 
-[node name="Area2D" parent="." instance=ExtResource("10_fqrkr")]
-position = Vector2(483, 582)
+[node name="pistol_ammo" parent="." instance=ExtResource("10_5ikdf")]
+position = Vector2(1424, 529)
 
-[node name="Area2D2" parent="." instance=ExtResource("10_fqrkr")]
-position = Vector2(842, 1049)
-ammo_type = "shotgun"
+[node name="Area2D" parent="." instance=ExtResource("11_2g1mp")]
+position = Vector2(1652, 527)
+
+[node name="shotgun_ammo" parent="." instance=ExtResource("12_owyj1")]
+position = Vector2(1930, 523)
