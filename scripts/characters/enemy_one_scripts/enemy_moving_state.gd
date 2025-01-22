@@ -4,7 +4,7 @@ extends EnemyState
 func enter_state(enemy_node) -> void:
 	super(enemy_node) #call parent class method (player_state.gd class "PlayerState")
 	enemy.enemy_sprite.play("enemy_one_walk")
-	print("enemy_one_moving")
+	#print("enemy_one_moving")
 
 func exit_state() -> void:
 	pass #placeholderin base
@@ -22,15 +22,15 @@ func process(delta: float) -> void:
 		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
 		enemy.move_and_collide(enemy.velocity * delta)
 		enemy.chosen_dir = Vector2.ZERO
-		print("Moving_to_Moving")
+		#print("Moving_to_Moving")
 		enemy.change_state("Enemy_Moving")
 		#print("after zeroing", chosen_dir)
 	elif distance_to_player <= enemy.MIN_DISTANCE:
-		print("Moving_to_Melee_ATK")
+		#print("Moving_to_Melee_ATK")
 		enemy.change_state("Enemy_MeleeAtk")
 	else:
 		enemy.velocity = Vector2.ZERO
 		enemy.chosen_dir = Vector2.ZERO
-		print("EnemyMoving_toIdle")
+		#print("EnemyMoving_toIdle")
 		enemy.change_state("Enemy_Idle")
 		#print("after zeroing", enemy.chosen_dir)

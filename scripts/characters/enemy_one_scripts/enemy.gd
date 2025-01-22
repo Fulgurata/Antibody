@@ -1,15 +1,20 @@
 #player.gd
 extends CharacterBody2D
 
-# These are variables that are used in multiple functions 
+#misc variables
 var steering_factor := .5 #must be between 0 and 1.0
 var normal_speed := 400.0
+var health = 2
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = null
-@export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping
-var health = 2
+@export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping and melee attacking
 
+#Jumping variables, more variables for the variable throne!!!
+#var Jump_Distance: float = 250.0 #how close the enemy needs to be before jumping
+#var Jump_Likely: float = 0.5 #how likely I am to leap at the player, value between 0 and 1
+
+#context mapping settings
 var vision_range = 800 #how far the enemy can see (does not need light)
 var num_rays = 64 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
 
@@ -29,7 +34,7 @@ func _ready():
 	if not player:
 		print("Player not found in parent node!")
 	change_state("Enemy_Idle") # Start in the Idle state
-	print("Enemy_Ready_toIdle")
+	#print("Enemy_Ready_toIdle")
 	#all this jazz allows you to adjust the ray count on the fly for max performance, without all the math breaking
 	interest.resize(num_rays)
 	danger.resize(num_rays)
@@ -174,6 +179,9 @@ func set_danger(i: int):
 		if result and collision_distance < max_wall_care and result.collider.name != "Player":
 			danger[i] = 0.5
 			#print(ratio)
+		elif result and result.collider.is_in_group("enemy") and collision_distance < max_wall_care:
+			danger[i] = 0.5
+			#print("avoid other enemies")
 		else:
 			danger[i] = 0.0
 			#print("no_danger")
