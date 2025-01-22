@@ -3,17 +3,11 @@ extends EnemyState
 
 func enter_state(enemy_node) -> void:
 	super(enemy_node) #call parent class method (player_state.gd class "PlayerState")
-	#player.velocity.x = 0
-	#player.velocity.y = 0
+	enemy.enemy_sprite.play("enemy_one_idle")
+	print("enemy_one_idle")
 
-func handle_input(_delta) -> void:
-	#get your input
-	var direction := Vector2(0, 0)
-	#print("enemy_Idle")
-	
-	if direction.length() > 1.0:
-		direction = direction.normalized()
-	
-	if direction.length() > 0:
+func process(_delta) -> void:
+	enemy.update_context_arrays()
+	if enemy.chosen_dir.length() > 0:
+		print("enemy_Idle_toMoving")
 		enemy.change_state("Enemy_Moving")
-		#print("enemy_Idle_toMoving")

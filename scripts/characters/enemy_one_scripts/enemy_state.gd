@@ -11,5 +11,5 @@ func enter_state(enemy_node) -> void:
 func exit_state() -> void:
 	pass #placeholderin base
 
-func handle_input(_delta) -> void:
+func process(_delta) -> void:
 	pass #no input handling in base state

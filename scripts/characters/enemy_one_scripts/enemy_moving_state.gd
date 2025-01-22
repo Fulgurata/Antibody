@@ -1,31 +1,36 @@
 #moving_state.gd
 extends EnemyState
 
-func enter_state(player_node) -> void:
-	super(player_node) #call parent class method (player_state.gd class "PlayerState")
+func enter_state(enemy_node) -> void:
+	super(enemy_node) #call parent class method (player_state.gd class "PlayerState")
+	enemy.enemy_sprite.play("enemy_one_walk")
+	print("enemy_one_moving")
 
 func exit_state() -> void:
 	pass #placeholderin base
 
-
-#func get_input() -> Vector2:
-	#var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	#enemy.look_at(enemy.get_global_mouse_position())
-	#enemy.velocity = direction * enemy.max_speed
-	#if direction.length() > 1.0:
-		#direction = direction.normalized()
-	#return direction
-
-
-#func handle_input(_delta) -> void:
-	#var direction = get_input()
-	##get_input()
-	#print("enemy_Moving")
-	#if direction.length() > 0:
-		#enemy.move_and_slide()
-	#else:
-		#enemy.change_state("Enemy_Idle")
-		#print("enemy_Moving_toIdle")
-	#if direction.length() > 0:
-		#enemy.change_state("Enemy_Moving")
+func process(delta: float) -> void:
+	#populate context arrays
+	enemy.update_context_arrays()
 	
+	#move the dude
+	var distance_to_player = enemy.global_position.distance_to(enemy.player.global_position)
+	if distance_to_player > enemy.MIN_DISTANCE:
+		var desired_velocity = enemy.chosen_dir.rotated(enemy.rotation) * enemy.normal_speed
+		enemy.velocity = enemy.velocity.lerp(desired_velocity, enemy.steering_factor) #linear_interpolate is now "lerp"
+		enemy.rotation = enemy.velocity.angle() #(get rotated bro)
+		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
+		enemy.move_and_collide(enemy.velocity * delta)
+		enemy.chosen_dir = Vector2.ZERO
+		print("Moving_to_Moving")
+		enemy.change_state("Enemy_Moving")
+		#print("after zeroing", chosen_dir)
+	elif distance_to_player <= enemy.MIN_DISTANCE:
+		print("Moving_to_Melee_ATK")
+		enemy.change_state("Enemy_MeleeAtk")
+	else:
+		enemy.velocity = Vector2.ZERO
+		enemy.chosen_dir = Vector2.ZERO
+		print("EnemyMoving_toIdle")
+		enemy.change_state("Enemy_Idle")
+		#print("after zeroing", enemy.chosen_dir)
