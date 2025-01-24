@@ -28,6 +28,7 @@ offsets = PackedFloat32Array(0, 0.12, 1)
 colors = PackedColorArray(0.999582, 0.952314, 0.893333, 1, 0.996078, 0.552941, 0, 1, 1, 0.00392157, 0.0470588, 1)
 
 [node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
+collision_mask = 33
 script = ExtResource("1_v12wx")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["bullet"]]
@@ -65,3 +66,5 @@ color_ramp = SubResource("Gradient_g2nsm")
 [node name="Sprite2D" type="Sprite2D" parent="Spritegroup"]
 scale = Vector2(2.1, 2.1)
 texture = ExtResource("1_qcox8")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
