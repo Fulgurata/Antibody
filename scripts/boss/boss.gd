@@ -1,36 +1,43 @@
-extends Node2D
+extends CharacterBody2D
 
-const bullet_scene = preload("res://scenes/boss/boss_bullet.tscn")
-@onready var shoot_timer = $Shoot_Timer
-@onready var rotater = $Rotater
+@onready var ray_cast = $RayCast2D
+@onready var player = get_parent().find_child("Player")
+@onready var progress_bar = $ProgressBar
+@export var MIN_DISTANCE: float = 500.0
+@export var max_health: int = 100
 
-const rotate_speed := 100
-const shooter_timer_wait_time = 0.2
-const spawn_point_count = 4
-const radius = 100
-
-
-
+var current_state: Boss_State
+var health: int = max_health:
+	set(value):
+		health = max(value, 0)
+		progress_bar.value = value
+ 
+var direction = Vector2.RIGHT
+var speed  = 150.0
+ 
 func _ready():
-	var step = 2 * PI / spawn_point_count
-	
-	for i in range(spawn_point_count):
-		var spawn_point = Node2D.new()
-		var pos = Vector2(radius, 0).rotated(step * i)
-		spawn_point.position = pos
-		spawn_point.rotation = pos.angle()
-		rotater.add_child(spawn_point)
-	shoot_timer.wait_time = shooter_timer_wait_time
-	shoot_timer.start()
-	
+	set_physics_process(false)
+	progress_bar.max_value = max_health
+	progress_bar.value = max_health
+ 
+func _process(_delta):
+	direction = (player.position - global_position).normalized()
+	ray_cast.target_position = direction * 400
+ 
+func _physics_process(_delta):
+	velocity = direction * speed
+	move_and_slide()
+ 
 
-func _process(delta: float) -> void:
-	var new_rotation = rotater.rotation_degrees + rotate_speed * delta
-	rotater.rotation_degrees = fmod(new_rotation, 360)
 
-func _on_shoot_timer_timeout() -> void:
-	for s in rotater.get_children():
-		var bullet = bullet_scene.instantiate()
-		get_tree().root.add_child(bullet)
-		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation
+func die():
+	print("Boss has been defeated.")
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("bullet"):
+			health -= 1
+			if health <= 0:
+				die()
+	else:
+		print("Can't be stopped!")

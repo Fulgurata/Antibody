@@ -41,3 +41,7 @@ func spawn_flare() -> void:
 	get_tree().get_current_scene().add_child(flare)
 	can_spawn_flare = false
 	_flare_timer = flare_cooldown
+
+func move_towards(target: Vector2, speed: float, delta: float) -> void:
+	if position.distance_to(target) > 5:  # 5 is the tolerance
+		position += (target - position).normalized() * speed * delta

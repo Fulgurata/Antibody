@@ -32,5 +32,5 @@ func _on_fade_timer_timeout() -> void:
 	if button_type == "quit" :
 		get_tree().quit()
 
-	#if button_type == "options" :
-		#get_tree().change_scene_to_file("res://scenes/levels/level_one/LevelOne.tscn")
+	if button_type == "options" :
+		get_tree().change_scene_to_file("res://scenes/menus/main_menu/options_menu.tscn")

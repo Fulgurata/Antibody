@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4mmco8qqy2k2"]
+
+[ext_resource type="Script" path="res://scripts/boss/laser.gd" id="1_2jq53"]
+
+[node name="laser" type="Node2D"]
+script = ExtResource("1_2jq53")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(30, 0, 0, 0)
+width = 4.0

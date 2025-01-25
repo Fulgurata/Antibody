@@ -1,20 +1,114 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv3en8ax6a8lw"]
+[gd_scene load_steps=14 format=3 uid="uid://cv3en8ax6a8lw"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_kxtdx"]
 [ext_resource type="Texture2D" uid="uid://ds27k3e2mlbst" path="res://scenes/boss/png-transparent-chris-pratt-star-lord-celebrity-actor-face-chris-pratt-celebrities-people-film-thumbnail.png" id="2_64nnl"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/finite_state_machine.gd" id="3_5bl5q"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/boss_idle.gd" id="4_uc2hf"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/boss_shoot.gd" id="5_4c310"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/follow.gd" id="6_akitd"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/dash.gd" id="7_goav1"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/bullet_hell.gd" id="8_7arly"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/vulnerable.gd" id="9_5knk0"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/boss_laser.gd" id="9_melrt"]
 
-[node name="Boss" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3samn"]
+radius = 63.5059
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0n1d"]
+radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b73uo"]
+radius = 74.5453
+
+[node name="Boss" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 32
 script = ExtResource("1_kxtdx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 1.99998)
+scale = Vector2(0.419444, 0.411111)
 texture = ExtResource("2_64nnl")
 
-[node name="Shoot_Timer" type="Timer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+light_mask = 32
+shape = SubResource("CircleShape2D_3samn")
+disabled = true
 
-[node name="Rotater" type="Node2D" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = 83.0
+offset_right = 101.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
 
 [node name="debug" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -21.0
+offset_top = -96.0
+offset_right = 19.0
+offset_bottom = -73.0
+text = "test"
 
-[connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 4
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("3_5bl5q")
+
+[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_uc2hf")
+
+[node name="Shoot" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("5_4c310")
+
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Shoot"]
+
+[node name="Follow" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("6_akitd")
+
+[node name="Dash" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("7_goav1")
+
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Dash"]
+wait_time = 2.0
+
+[node name="BulletHell" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("8_7arly")
+
+[node name="Rotater" type="Node2D" parent="FiniteStateMachine/BulletHell"]
+
+[node name="Area2D" type="Area2D" parent="FiniteStateMachine/BulletHell/Rotater"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FiniteStateMachine/BulletHell/Rotater/Area2D"]
+shape = SubResource("CircleShape2D_p0n1d")
+disabled = true
+
+[node name="Timer" type="Timer" parent="FiniteStateMachine/BulletHell"]
+wait_time = 0.5
+
+[node name="Vulnerable" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("9_5knk0")
+
+[node name="Laser" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("9_melrt")
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+light_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_b73uo")
+
+[connection signal="timeout" from="FiniteStateMachine/Shoot/Timer" to="FiniteStateMachine/Shoot" method="_on_timer_timeout"]
+[connection signal="timeout" from="FiniteStateMachine/Dash/Timer" to="FiniteStateMachine/Dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="FiniteStateMachine/BulletHell/Timer" to="FiniteStateMachine/BulletHell" method="_on_timer_timeout"]
+[connection signal="timeout" from="CoolDown" to="FiniteStateMachine/BulletHell" method="_on_cool_down_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
