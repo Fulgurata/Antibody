@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cv3en8ax6a8lw"]
+[gd_scene load_steps=15 format=3 uid="uid://cv3en8ax6a8lw"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_kxtdx"]
 [ext_resource type="Texture2D" uid="uid://ds27k3e2mlbst" path="res://scenes/boss/png-transparent-chris-pratt-star-lord-celebrity-actor-face-chris-pratt-celebrities-people-film-thumbnail.png" id="2_64nnl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/boss/state_machine/bullet_hell.gd" id="8_7arly"]
 [ext_resource type="Script" path="res://scripts/boss/state_machine/vulnerable.gd" id="9_5knk0"]
 [ext_resource type="Script" path="res://scripts/boss/state_machine/boss_laser.gd" id="9_melrt"]
+[ext_resource type="Script" path="res://scripts/boss/state_machine/dead.gd" id="11_5gwcj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3samn"]
 radius = 63.5059
@@ -97,6 +98,9 @@ script = ExtResource("9_5knk0")
 
 [node name="Laser" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("9_melrt")
+
+[node name="Dead" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("11_5gwcj")
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 5.0

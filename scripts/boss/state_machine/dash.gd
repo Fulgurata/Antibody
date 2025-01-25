@@ -6,8 +6,10 @@ class_name DashState
 var times_up = false
 
 func transition():
-	if ray_cast.is_colliding() and times_up == true:
+	if ray_cast.is_colliding() and times_up == true and owner.death == false:
 		get_parent().change_state("BulletHell")
+	elif  owner.death == true:
+		get_parent().change_state("Dead")
  
 func dash():
 	var tween = get_tree().create_tween()

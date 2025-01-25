@@ -12,8 +12,10 @@ var shot_laser = false
 
 func transition():
 	print("Transition function called. shot_laser =", shot_laser)
-	if shot_laser:
+	if shot_laser and owner.death == false:
 		get_parent().change_state("Follow")
+	elif  owner.death == true:
+		get_parent().change_state("Dead")
  
 func enter():
 	print("entering laser state")

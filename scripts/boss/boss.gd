@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var MIN_DISTANCE: float = 500.0
 @export var max_health: int = 100
 
+var death = false
 var current_state: Boss_State
 var health: int = max_health:
 	set(value):
@@ -32,6 +33,7 @@ func _physics_process(_delta):
 
 func die():
 	print("Boss has been defeated.")
+	death = true
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
