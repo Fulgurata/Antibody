@@ -13,11 +13,10 @@ var current_state
 #Jumping variables, more variables for the variable throne!!!
 var jump_recharge: bool = true
 var is_jumping: bool = false
-var Jump_Distance: float = 300.0 #how close the enemy needs to be before jumping
-var jump_height = Jump_Distance * 0.5
-var Jump_Likely: float = 0.5 #how likely the enemy is to leap at the player, value between 0 and 1
-var Jump_Factor: float = 2.9 #how fast he moves while "jumping", multiplies normal speed
-var airtime = 7.4 # how long he jumps for
+var jump_distance: float = 300.0 #how close the enemy needs to be before jumping
+var jump_likely: float = 0.5 #how likely the enemy is to leap at the player, value between 0 and 1
+var jump_factor: float = 3.0 #how fast he moves while "jumping", multiplies normal speed
+var airtime = .3 # how long he jumps for
 
 #context mapping settings
 var vision_range = 800 #how far the enemy can see (does not need light)
