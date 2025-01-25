@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://fq3wolu7mpu2"]
+[gd_scene load_steps=5 format=3 uid="uid://fq3wolu7mpu2"]
 
 [ext_resource type="Script" path="res://scripts/menus/options_menu.gd" id="1_nqm5v"]
 [ext_resource type="Script" path="res://scripts/menus/audio_options.gd" id="2_cu0tj"]
 [ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="3_dajmm"]
+[ext_resource type="FontFile" uid="uid://nrp40rj57pir" path="res://scenes/menus/main_menu/RubikDistressed-Regular.ttf" id="4_qayrm"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -29,6 +30,8 @@ theme = ExtResource("3_dajmm")
 [node name="MasterLabel" type="Label" parent="AudioOptions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("3_dajmm")
+theme_override_fonts/font = ExtResource("4_qayrm")
 text = "Master
 "
 
@@ -41,6 +44,8 @@ step = 0.05
 [node name="SFXLabel" type="Label" parent="AudioOptions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("3_dajmm")
+theme_override_fonts/font = ExtResource("4_qayrm")
 text = "SFX"
 
 [node name="SFXSlider" type="HSlider" parent="AudioOptions/VBoxContainer"]
@@ -52,6 +57,8 @@ step = 0.05
 [node name="MusicLabel" type="Label" parent="AudioOptions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("3_dajmm")
+theme_override_fonts/font = ExtResource("4_qayrm")
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="AudioOptions/VBoxContainer"]

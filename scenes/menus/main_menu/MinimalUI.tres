@@ -1,12 +1,6 @@
-[gd_resource type="Theme" load_steps=52 format=3 uid="uid://r0arfda4w37d"]
+[gd_resource type="Theme" load_steps=53 format=3 uid="uid://r0arfda4w37d"]
 
-[sub_resource type="FontFile" id="21"]
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+[ext_resource type="FontFile" uid="uid://nrp40rj57pir" path="res://scenes/menus/main_menu/RubikDistressed-Regular.ttf" id="1_2g2ni"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0)
@@ -37,6 +31,14 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="FontFile" id="21"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="AtlasTexture" id="22"]
 region = Rect2(37, 111, 18, 18)
@@ -339,7 +341,7 @@ Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_hover_color = Color(0.94, 0.94, 0.94, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 2
-Button/fonts/font = SubResource("21")
+Button/fonts/font = ExtResource("1_2g2ni")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("2")
 Button/styles/hover = SubResource("3")

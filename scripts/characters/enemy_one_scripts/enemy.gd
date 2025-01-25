@@ -20,7 +20,7 @@ var airtime = .3 # how long he jumps for
 
 #context mapping settings
 var vision_range = 800 #how far the enemy can see (does not need light)
-var num_rays = 64 #the fidelity of the enemies vision, may need to decrease for performance if lagging occurs
+var num_rays = 32 #the fidelity of the enemies vision, may need to decrease for performances if lagging occurs
 
 # context array *Basically, these arrays store the directions the thing can go, the bad directions, and the good directions, later we'll do math (good - bad = go that way)
 var ray_directions = []
