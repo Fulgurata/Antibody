@@ -5,9 +5,11 @@ const boss_slime = preload("res://scenes/boss/boss_slime.tscn")
 @onready var timer = $Timer
  
 func transition():
-	if not ray_cast.is_colliding():
+	if not ray_cast.is_colliding() and owner.death == false:
 		var next_state = "Follow" if randi() % 2 == 0 else "Dash"
 		get_parent().change_state(next_state)
+	elif  owner.death == true:
+		get_parent().change_state("Dead")
  
 func enter():
 	super.enter()

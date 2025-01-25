@@ -15,11 +15,13 @@ var times_up = false
 
 func transition():
 	var distance_to_player = owner.global_position.distance_to(player.global_position)
-	if times_up == true:
+	if times_up == true and owner.death == false:
 		if distance_to_player < owner.MIN_DISTANCE:
 			get_parent().change_state("Laser")
 		elif distance_to_player > owner.MIN_DISTANCE: 
 			get_parent().change_state("Dash")
+	elif  owner.death == true:
+		get_parent().change_state("Dead")
 
 func enter():
 	super.enter()
