@@ -95,6 +95,7 @@ func get_fire_rate() -> float:
 	return 0.5
 
 func fire_gun() -> void:
+	$PistolFire.play()
 	var bullet_instance = BULLET.instantiate()
 	bullet_instance.global_position = muzzle.global_position
 	var deviation = randf_range(-gun_deviation, gun_deviation)
@@ -104,6 +105,7 @@ func fire_gun() -> void:
 
 func fire_shotgun() -> void:
 	#print("firing shotgun")
+	$ShotgunFire.play()
 	var num_bullets = 4
 	var spread_angle = deg_to_rad(10)
 	var angle_step = spread_angle / (num_bullets - 1)
@@ -127,6 +129,7 @@ func fire_shotgun() -> void:
 		apply_recoil()
 
 func fire_assault_rifle() -> void:
+	$RilfeFire.play()
 	var bullet_instance = BULLET.instantiate()
 	bullet_instance.global_position = muzzle.global_position
 	var deviation = randf_range(-assault_rifle_deviation, assault_rifle_deviation)
