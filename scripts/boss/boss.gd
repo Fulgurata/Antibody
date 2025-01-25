@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var player = get_parent().find_child("Player")
 @onready var progress_bar = $ProgressBar
 @export var MIN_DISTANCE: float = 500.0
-@export var max_health: int = 10
+@export var max_health: int = 100
 
 var current_state: Boss_State
 var health: int = max_health:
@@ -13,10 +13,12 @@ var health: int = max_health:
 		progress_bar.value = value
  
 var direction = Vector2.RIGHT
-var speed  = 75.0
+var speed  = 150.0
  
 func _ready():
 	set_physics_process(false)
+	progress_bar.max_value = max_health
+	progress_bar.value = max_health
  
 func _process(_delta):
 	direction = (player.position - global_position).normalized()
@@ -33,8 +35,9 @@ func die():
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if current_state == VulnerableState:
-		if body.is_in_group("bullet"):
+	if body.is_in_group("bullet"):
 			health -= 1
+			if health <= 0:
+				die()
 	else:
 		print("Can't be stopped!")

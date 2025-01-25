@@ -13,12 +13,11 @@ var shot_laser = false
 func transition():
 	print("Transition function called. shot_laser =", shot_laser)
 	if shot_laser:
-		get_parent().change_state("Vulnerable")
+		get_parent().change_state("Follow")
  
 func enter():
-	shot_laser = false
-	super.enter()
 	print("entering laser state")
+	shot_laser = false
 	calculate_laser_positions()
 	spawn_lasers()
 	timer = Timer.new()
@@ -27,15 +26,20 @@ func enter():
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 	timer.start()
+	super.enter()
 	
 
 func exit():
+	owner.set_physics_process(false)
 	print("hello world")
 	if timer:
-		super.exit()
 		timer.stop()
-	
- 
+		timer.queue_free()
+		timer = null
+	for laser in get_tree().get_nodes_in_group("lasers"):
+		laser.queue_free()
+	super.exit()
+
 func _on_timer_timeout():
 	print("Timer finished. Cleaning up lasers and setting up transition.")
 	for laser in get_tree().get_nodes_in_group("lasers"):
@@ -55,7 +59,6 @@ func calculate_laser_positions():
 			laser_positions.append(pos)
 
 func spawn_lasers():
-	shot_laser = false
 	for pos in laser_positions:
 		var laser = laser_scene.instantiate()
 		laser.position = global_position + pos - grid_size / 2 * laser_spacing

@@ -11,8 +11,14 @@ func _ready():
 
 
 func change_state(state):
-	current_state = find_child(state) as Boss_State
-	current_state.enter()
-	
-	previous_state.exit()
+	print("Changing state to:", Boss_State)
+	var new_state = find_child(state) as Boss_State
+	if not new_state:
+		print("State not found")
+		return
+	if current_state:
+		current_state.exit()
 	previous_state = current_state
+	current_state = new_state
+	print("New current state:", current_state)
+	current_state.enter()

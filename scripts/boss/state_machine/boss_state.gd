@@ -19,4 +19,7 @@ func transition():
 
 func _physics_process(_delta):
 	transition()
-	debug.text = name
+	if debug:
+		debug.text = name  # Update the debug text with the name of the current state
+	else:
+		print("Error: 'debug' node not found or not properly assigned.")

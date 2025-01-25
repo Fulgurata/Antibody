@@ -6,10 +6,8 @@ const boss_slime = preload("res://scenes/boss/boss_slime.tscn")
  
 func transition():
 	if not ray_cast.is_colliding():
-		if owner.health == 10:
-			get_parent().change_state("Follow")
-		else:
-			get_parent().change_state("Dash")
+		var next_state = "Follow" if randi() % 2 == 0 else "Dash"
+		get_parent().change_state(next_state)
  
 func enter():
 	super.enter()
