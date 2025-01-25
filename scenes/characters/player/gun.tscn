@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://6bk2bmfhq4rk"]
+[gd_scene load_steps=6 format=3 uid="uid://6bk2bmfhq4rk"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/gun.gd" id="1_ymkat"]
 [ext_resource type="AudioStream" uid="uid://kgip0q3exxk4" path="res://scenes/characters/player/player_audio/762x54r Single WAV.wav" id="2_ylkdk"]
-[ext_resource type="AudioStream" uid="uid://dcc3wxvcvded5" path="res://scenes/characters/player/player_audio/shotgunfire.ogg" id="3_kdd52"]
+[ext_resource type="AudioStream" uid="uid://w6j6xoovhr7m" path="res://scenes/characters/player/player_audio/shotgunfirev1.ogg" id="3_po30k"]
 [ext_resource type="AudioStream" uid="uid://br8srukwer7d5" path="res://scenes/characters/player/player_audio/9mm Single.wav" id="4_ui8fi"]
+[ext_resource type="AudioStream" uid="uid://c7l1i4525nt5h" path="res://scenes/characters/player/player_audio/Pump Reload Part 2 WAV.wav" id="5_elm5o"]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_ymkat")
@@ -12,13 +13,19 @@ script = ExtResource("1_ymkat")
 
 [node name="RilfeFire" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ylkdk")
+volume_db = -16.0
 bus = &"SFX"
 
 [node name="ShotgunFire" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_kdd52")
-volume_db = -4.952
+stream = ExtResource("3_po30k")
+volume_db = -2.0
+panning_strength = 10.0
 bus = &"SFX"
 
 [node name="PistolFire" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ui8fi")
+volume_db = -16.0
 bus = &"SFX"
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_elm5o")

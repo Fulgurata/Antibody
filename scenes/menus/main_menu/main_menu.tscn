@@ -1,46 +1,268 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4gaxc6ht1myh"]
+[gd_scene load_steps=35 format=3 uid="uid://b4gaxc6ht1myh"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_qincm"]
+[ext_resource type="Texture2D" uid="uid://cj1imljt1ovv7" path="res://scenes/menus/main_menu/Title1.31.png" id="2_l5txl"]
 [ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="2_ns5pc"]
+[ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="3_4b2a0"]
+[ext_resource type="AudioStream" uid="uid://cfiueghlyr0hy" path="res://scenes/menus/main_menu/Mian_menu.ogg" id="3_idm5w"]
+[ext_resource type="PackedScene" uid="uid://fq3wolu7mpu2" path="res://scenes/menus/main_menu/options_menu.tscn" id="5_iue8a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17be1"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiagb"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al2vu"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a06g"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggqwh"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ip7y"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12edh"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mroqd"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6gag"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ome18"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1tsg"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(6400, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1qsj"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(7040, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnfo6"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(7680, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s047r"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(8320, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2leko"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(8960, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8otv"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(9600, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyqdi"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(10240, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuyew"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(10880, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pems"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(11520, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwdtd"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(12160, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsfjc"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(12800, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m14xm"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(13440, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dkf4"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(14080, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yknyv"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(14720, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4exly"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(15360, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01kxm"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(16000, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlo8f"]
+atlas = ExtResource("2_l5txl")
+region = Rect2(16640, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iofyk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17be1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiagb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al2vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a06g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggqwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ip7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12edh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mroqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6gag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ome18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1tsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1qsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnfo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s047r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2leko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8otv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyqdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuyew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pems")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwdtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsfjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m14xm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dkf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yknyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4exly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01kxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlo8f")
+}],
+"loop": true,
+"name": &"Title_Screen",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_qincm")
 
 [node name="Main_Background" type="ColorRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 958.0
+offset_bottom = 536.0
 mouse_filter = 2
 color = Color(0.156863, 0.156863, 0.168627, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(481.5, 267)
+scale = Vector2(1.49531, 1.48889)
+sprite_frames = SubResource("SpriteFrames_iofyk")
+animation = &"Title_Screen"
+frame_progress = 0.89097
+speed_scale = 2.0
 
 [node name="Main_Button_Container" type="VBoxContainer" parent="."]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = 30.0
-offset_right = 70.0
-offset_bottom = 131.0
+offset_left = 1.0
+offset_top = 233.0
+offset_right = 557.0
+offset_bottom = 534.0
 grow_vertical = 2
+theme = ExtResource("3_4b2a0")
 
 [node name="Start" type="Button" parent="Main_Button_Container"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Start"
 
 [node name="Options" type="Button" parent="Main_Button_Container"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Options"
 
 [node name="Quit" type="Button" parent="Main_Button_Container"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Quit"
 
 [node name="Fade_Transition" parent="." instance=ExtResource("2_ns5pc")]
 visible = false
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 958.0
+offset_bottom = 533.0
 scale = Vector2(1, 1)
 mouse_filter = 2
 
 [node name="Fade_Timer" type="Timer" parent="Fade_Transition"]
+
+[node name="Main_Menu_Theme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_idm5w")
+bus = &"Music"
+parameters/looping = true
+
+[node name="OptionsMenu" parent="." instance=ExtResource("5_iue8a")]
+visible = false
 
 [connection signal="pressed" from="Main_Button_Container/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Main_Button_Container/Options" to="." method="_on_options_pressed"]

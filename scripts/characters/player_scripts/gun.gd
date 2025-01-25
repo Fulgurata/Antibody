@@ -147,6 +147,7 @@ func stop_assault_rifle_slowdown() -> void:
 		player.max_speed = player.normal_speed
 
 func reload_weapon() -> void:
+	$Reload.play()
 	is_reloading = true
 	reload_time_remaining = reload_times[weapons[current_weapon_index]]
 	
