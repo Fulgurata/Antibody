@@ -16,10 +16,10 @@ func process(_delta: float) -> void:
 		enemy.change_state("Enemy_MeleeAtk")
 		#print("Enemy_Melee_ATK")
 		#print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!You're dead!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-	elif distance_to_player > enemy.MIN_DISTANCE:
+	elif distance_to_player > enemy.MIN_DISTANCE and enemy.is_jumping == false:
 		#print("Melee_ATK_to_Moving")
 		enemy.change_state("Enemy_Moving")
-	else:
+	elif enemy.is_jumping == false:
 		#print("EnemyMelee_ATK_toIdle")
 		enemy.change_state("Enemy_Idle")
 		#print("after zeroing", enemy.chosen_dir)

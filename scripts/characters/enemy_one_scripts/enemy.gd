@@ -3,16 +3,21 @@ extends CharacterBody2D
 
 #misc variables
 var steering_factor := .5 #must be between 0 and 1.0
-var normal_speed := 400.0
+var normal_speed := 200.0
 var health = 2
 var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
-@onready var player = null
+@onready var player = get_tree().get_current_scene().find_child("Player")
 @export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping and melee attacking
 
 #Jumping variables, more variables for the variable throne!!!
-#var Jump_Distance: float = 250.0 #how close the enemy needs to be before jumping
-#var Jump_Likely: float = 0.5 #how likely I am to leap at the player, value between 0 and 1
+var jump_recharge: bool = true
+var is_jumping: bool = false
+var Jump_Distance: float = 300.0 #how close the enemy needs to be before jumping
+var jump_height = Jump_Distance * 0.5
+var Jump_Likely: float = 0.5 #how likely the enemy is to leap at the player, value between 0 and 1
+var Jump_Factor: float = 2.9 #how fast he moves while "jumping", multiplies normal speed
+var airtime = 7.4 # how long he jumps for
 
 #context mapping settings
 var vision_range = 800 #how far the enemy can see (does not need light)
@@ -30,11 +35,10 @@ var count_cycle = 0 #count how many times we've gone around the circle of rays
 
 func _ready():
 	#await owner.ready
-	player = get_tree().get_current_scene().find_child("Player")
 	if not player:
 		print("Player not found in parent node!")
 	change_state("Enemy_Idle") # Start in the Idle state
-	#print("Enemy_Ready_toIdle")
+	print("Enemy_Ready_toIdle")
 	#all this jazz allows you to adjust the ray count on the fly for max performance, without all the math breaking
 	interest.resize(num_rays)
 	danger.resize(num_rays)
@@ -82,26 +86,6 @@ func change_state(new_state_name: String):
 func _process(delta: float) -> void:
 	if current_state:
 		current_state.process(delta)
-	
-	#populate context arrays
-	#update_context_arrays()
-	#
-	##move the dude (move this to movement state asap)
-	#var distance_to_player = global_position.distance_to(player.global_position)
-	#if distance_to_player > MIN_DISTANCE:
-		#var desired_velocity = chosen_dir.rotated(rotation) * normal_speed
-		#velocity = velocity.lerp(desired_velocity, steering_factor) #linear_interpolate is now "lerp"
-		#rotation = velocity.angle() #(get rotated bro)
-		##velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
-		#move_and_collide(velocity * delta)
-		#chosen_dir = Vector2.ZERO
-		##print("after zeroing", chosen_dir)
-	#else:
-		#velocity = Vector2.ZERO
-		#chosen_dir = Vector2.ZERO
-		##print("after zeroing", chosen_dir)
-
-
 
 func update_context_arrays() -> void:
 	for i in range(num_rays):
@@ -198,3 +182,8 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if health <= 0:
 		#print("He dead Jim.")
 		queue_free()
+
+
+func _on_jump_timer_timeout() -> void:
+	jump_recharge = true
+	print("recharged!")

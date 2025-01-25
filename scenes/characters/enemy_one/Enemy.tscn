@@ -530,4 +530,9 @@ metadata/_edit_lock_ = true
 scale = Vector2(2.45, 1.8)
 shape = SubResource("CapsuleShape2D_mua6l")
 
+[node name="Jump_Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
