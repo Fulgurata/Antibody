@@ -9,6 +9,10 @@ var current_state
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = get_tree().get_current_scene().find_child("Player")
 @export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping and melee attacking
+@onready var scream_1: AudioStreamPlayer2D = $Scream1
+@onready var scream_2: AudioStreamPlayer2D = $Scream2
+@onready var scream_3: AudioStreamPlayer2D = $Scream3
+
 
 #Jumping variables, more variables for the variable throne!!!
 var jump_recharge: bool = true
@@ -17,6 +21,7 @@ var jump_distance: float = 400.0 #how close the enemy needs to be before jumping
 var jump_likely: float = 0.5 #how likely the enemy is to leap at the player, value between 0 and 1
 var jump_factor: float = 2.0 #how fast he moves while "jumping", multiplies normal speed
 var airtime = .3 # how long he jumps for
+var crab_screams := [1 , 2, 3]
 
 #context mapping settings
 var vision_range = 400 #how far the enemy can see (does not need light)
