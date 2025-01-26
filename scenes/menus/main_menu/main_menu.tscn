@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://b4gaxc6ht1myh"]
+[gd_scene load_steps=36 format=3 uid="uid://b4gaxc6ht1myh"]
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_qincm"]
 [ext_resource type="Texture2D" uid="uid://cj1imljt1ovv7" path="res://scenes/menus/main_menu/Title1.31.png" id="2_l5txl"]
 [ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="2_ns5pc"]
 [ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="3_4b2a0"]
+[ext_resource type="PackedScene" uid="uid://borm6r7lfyy1i" path="res://scenes/menus/main_menu/menu_animation.tscn" id="3_42w61"]
 [ext_resource type="AudioStream" uid="uid://cfiueghlyr0hy" path="res://scenes/menus/main_menu/Mian_menu.ogg" id="3_idm5w"]
 [ext_resource type="PackedScene" uid="uid://fq3wolu7mpu2" path="res://scenes/menus/main_menu/options_menu.tscn" id="5_iue8a"]
 
@@ -208,19 +209,21 @@ animations = [{
 script = ExtResource("1_qincm")
 
 [node name="Main_Background" type="ColorRect" parent="."]
-visible = false
 offset_right = 958.0
 offset_bottom = 536.0
 mouse_filter = 2
-color = Color(0.156863, 0.156863, 0.168627, 1)
+color = Color(0.0313726, 0.0313726, 0.0941176, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(481.5, 267)
 scale = Vector2(1.49531, 1.48889)
 sprite_frames = SubResource("SpriteFrames_iofyk")
 animation = &"Title_Screen"
 frame_progress = 0.89097
 speed_scale = 2.0
+
+[node name="MenuRect" parent="." instance=ExtResource("3_42w61")]
 
 [node name="Main_Button_Container" type="VBoxContainer" parent="."]
 anchors_preset = 4
