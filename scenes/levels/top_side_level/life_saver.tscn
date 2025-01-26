@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://jr1rucs5pe6p"]
+
+[ext_resource type="Texture2D" uid="uid://codu78i4j325l" path="res://scenes/levels/top_side_level/Top_side_items.png" id="1_sr1rh"]
+
+[node name="Life_saver" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sr1rh")
+hframes = 4
+vframes = 4
+frame = 4

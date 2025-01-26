@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce6kgyloy07i7"]
+
+[ext_resource type="Texture2D" uid="uid://codu78i4j325l" path="res://scenes/levels/top_side_level/Top_side_items.png" id="1_a1y34"]
+
+[node name="BloodyHat" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a1y34")
+hframes = 4
+vframes = 4

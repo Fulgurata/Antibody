@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcc4b08n8r41e"]
+
+[ext_resource type="Texture2D" uid="uid://codu78i4j325l" path="res://scenes/levels/top_side_level/Top_side_items.png" id="1_mc3fr"]
+[ext_resource type="AudioStream" uid="uid://dl8vrdvb5x6up" path="res://scenes/levels/top_side_level/crabradio.ogg" id="2_11ivt"]
+
+[node name="Radio" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mc3fr")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_11ivt")
+autoplay = true
+max_distance = 500.0
+bus = &"SFX"
+parameters/looping = true

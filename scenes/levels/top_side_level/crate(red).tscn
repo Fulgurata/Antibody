@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0uw52enpbo11"]
+
+[ext_resource type="Texture2D" uid="uid://codu78i4j325l" path="res://scenes/levels/top_side_level/Top_side_items.png" id="1_o8pwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30wy2"]
+size = Vector2(52, 53)
+
+[node name="Crate(red)" type="StaticBody2D"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_30wy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o8pwv")
+hframes = 4
+vframes = 4
+frame = 2
