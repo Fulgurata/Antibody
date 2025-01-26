@@ -6,6 +6,7 @@ var button_type = null
 func _ready():
 	$OptionsMenu.visible = false
 	$Main_Menu_Theme.play()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _on_options_pressed() -> void:
@@ -34,6 +35,7 @@ func _on_fade_timer_timeout() -> void:
 	if button_type == "TryAgain" :
 		var last_path = GameState.last_scene_path
 		if last_path != "": #just to be safe
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 			get_tree().change_scene_to_file(last_path)
 		else:
 		#Fallback

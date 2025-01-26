@@ -5,6 +5,7 @@ var button_type = null
 func _ready():
 	$OptionsMenu.visible = false
 	$Main_Menu_Theme.play()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_start_pressed() -> void:
 	button_type = "start"
@@ -31,6 +32,7 @@ func _on_options_pressed() -> void:
 func _on_fade_timer_timeout() -> void:
 	if button_type == "start" :
 		get_tree().change_scene_to_file("res://scenes/levels/top_side_level/top_side_level.tscn")
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 	if button_type == "quit" :
 		get_tree().quit()
