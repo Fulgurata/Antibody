@@ -20,7 +20,7 @@ var airtime = .3 # how long he jumps for
 
 #context mapping settings
 var vision_range = 800 #how far the enemy can see (does not need light)
-var num_rays = 32 #the fidelity of the enemies vision, may need to decrease for performances if lagging occurs
+var num_rays = 64 #the fidelity of the enemies vision, may need to decrease for performances if lagging occurs
 
 # context array *Basically, these arrays store the directions the thing can go, the bad directions, and the good directions, later we'll do math (good - bad = go that way)
 var ray_directions = []
@@ -128,7 +128,7 @@ func set_interest(i: int)-> void:
 			player_sighted_ray_flag[i] = true
 			#print(result.collider.position)
 		elif result.collider.is_in_group("drone") and player_sighted_ray_flag.has(true):
-			interest[i] = 0.7
+			interest[i] = 0.5
 			#print("hit_drone")
 		else:
 			interest[i] = 0.0
