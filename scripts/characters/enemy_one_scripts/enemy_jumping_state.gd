@@ -46,6 +46,7 @@ func animate_jump() -> void:
 	add_child(timer)
 	timer.wait_time = enemy.airtime
 	timer.one_shot = true
+	enemy.enemy_sprite.play("enemy_one_windup", 5)
 	enemy.enemy_sprite.play("enemy_one_jump", 1 / enemy.airtime)
 	print("enemy_one_jumping_animation")
 	timer.timeout.connect(_on_timer_timeout)

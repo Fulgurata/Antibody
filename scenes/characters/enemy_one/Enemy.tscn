@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bc2uunwunerp"]
+[gd_scene load_steps=88 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://3ydg0bt2syni" path="res://scenes/characters/enemy_one/enemy_one_slash.png" id="7_xo5th"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_melee_atk_state.gd" id="9_2jjf7"]
 [ext_resource type="Texture2D" uid="uid://uftwtc5kdcs5" path="res://scenes/characters/enemy_one/enemy_one_windup.png" id="9_w172v"]
+[ext_resource type="Texture2D" uid="uid://wgixu2lg8g3a" path="res://scenes/characters/enemy_one/enemy_one_gore_death_sheet.png" id="10_wl44f"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_jumping_state.gd" id="12_ayc0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkpr7"]
@@ -252,6 +253,42 @@ region = Rect2(1920, 0, 128, 96)
 atlas = ExtResource("9_w172v")
 region = Rect2(2048, 0, 128, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxrcc"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgpwi"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5erag"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx6hr"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(384, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wsjv"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(512, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uykt5"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(640, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfr0o"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(768, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76gxb"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(896, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsbm7"]
+atlas = ExtResource("10_wl44f")
+region = Rect2(1024, 0, 128, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_deqgi"]
 animations = [{
 "frames": [],
@@ -287,7 +324,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ym4fd")
 }],
-"loop": true,
+"loop": false,
 "name": &"enemy_one_death",
 "speed": 9.0
 }, {
@@ -465,6 +502,38 @@ animations = [{
 "loop": true,
 "name": &"enemy_one_windup",
 "speed": 17.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxrcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgpwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5erag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx6hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wsjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uykt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfr0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76gxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsbm7")
+}],
+"loop": false,
+"name": &"gory_death",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
@@ -494,7 +563,7 @@ metadata/_edit_lock_ = true
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_deqgi")
-animation = &"enemy_one_death"
+animation = &"gory_death"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
