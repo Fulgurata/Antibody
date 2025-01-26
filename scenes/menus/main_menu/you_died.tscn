@@ -20,10 +20,11 @@ color = Color(0.0313726, 0.0313726, 0.0941176, 1)
 
 [node name="Main_Button_Container" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 408.139
-offset_top = 359.865
-offset_right = 499.139
-offset_bottom = 430.865
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 491.0
+offset_bottom = 371.0
+scale = Vector2(1.825, 1.825)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("3_xk04v")
