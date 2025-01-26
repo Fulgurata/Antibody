@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://t8fuv6440oat"]
+
+[ext_resource type="Script" path="res://scripts/pickups/crab_tank_light.gd" id="1_1cfb2"]
+
+[sub_resource type="Gradient" id="Gradient_7c0jf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lri53"]
+gradient = SubResource("Gradient_7c0jf")
+fill = 1
+fill_from = Vector2(0.522936, 0.53211)
+fill_to = Vector2(0.857798, 0.142202)
+
+[node name="Crab_tank_light" type="Node2D"]
+script = ExtResource("1_1cfb2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 0.724736, 0.0581055, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_lri53")

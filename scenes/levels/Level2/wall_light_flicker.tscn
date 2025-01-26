@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ew2b3n20hnyu"]
+
+[ext_resource type="Script" path="res://scripts/pickups/wall_light_flicker.gd" id="1_tgf4b"]
+
+[sub_resource type="Gradient" id="Gradient_nk1c4"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_el616"]
+gradient = SubResource("Gradient_nk1c4")
+fill = 1
+fill_from = Vector2(0.518349, 0.490826)
+fill_to = Vector2(0.87156, 0.119266)
+
+[node name="wall_light_flicker" type="Node2D"]
+script = ExtResource("1_tgf4b")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_el616")
+texture_scale = 7.67

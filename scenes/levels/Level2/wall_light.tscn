@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dng3i0fcwqijc"]
+
+[sub_resource type="Gradient" id="Gradient_srkxy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r36xm"]
+gradient = SubResource("Gradient_srkxy")
+fill = 1
+fill_from = Vector2(0.481651, 0.481651)
+fill_to = Vector2(0.816514, 0.119266)
+
+[node name="WallLight" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3.93362, 10.1353)
+scale = Vector2(1.05833, 1.08524)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_r36xm")
+texture_scale = 6.58
