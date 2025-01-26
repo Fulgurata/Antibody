@@ -5,7 +5,6 @@ var button_type = null
 func _ready():
 	$OptionsMenu.visible = false
 	$Main_Menu_Theme.play()
-	$AnimatedSprite2D.play()
 
 func _on_start_pressed() -> void:
 	button_type = "start"
