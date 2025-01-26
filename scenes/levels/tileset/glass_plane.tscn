@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://gekbx0x3b5h1" path="res://scenes/levels/tileset/glass_break.ogg" id="4_0piay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h677"]
-size = Vector2(9, 64)
+size = Vector2(10, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chrub"]
 atlas = ExtResource("2_jis2u")
@@ -85,7 +85,6 @@ size = Vector2(2, 64)
 script = ExtResource("1_a3hbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_2h677")
 
 [node name="unbroken" type="Sprite2D" parent="."]

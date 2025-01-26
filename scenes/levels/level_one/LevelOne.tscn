@@ -26,6 +26,9 @@ tile_set = ExtResource("2_pjygi")
 use_parent_material = true
 tile_set = ExtResource("2_pjygi")
 
+[node name="Enemy" parent="." instance=ExtResource("7_2enb4")]
+position = Vector2(1743, 226)
+
 [node name="Player" parent="." instance=ExtResource("1_8bb22")]
 position = Vector2(1750, 318)
 
@@ -66,9 +69,6 @@ position = Vector2(39, 205)
 
 [node name="Flare" parent="." instance=ExtResource("6_5u8p2")]
 position = Vector2(544, 297)
-
-[node name="Enemy" parent="." instance=ExtResource("7_2enb4")]
-position = Vector2(1743, 226)
 
 [editable path="Door"]
 [editable path="Door2"]
