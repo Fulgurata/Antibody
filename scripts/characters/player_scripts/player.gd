@@ -10,7 +10,11 @@ var friction := 0.5
 var current_state
 var rotation_direction = 0
 var rotation_speed = 1.5
+var health = 3
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var fader = get_tree().get_current_scene().find_child("Fade_Transition")
+@onready var faderanim = get_tree().get_current_scene().find_child("AnimationPlayer")
+@onready var fadetimer = get_tree().get_current_scene().find_child("Fade_Timer")
 
 func _ready():
 	change_state("Idle") # Start in the Idle state
@@ -30,3 +34,15 @@ func _process(delta: float) -> void:
 	
 	if current_state:
 		current_state.handle_input(delta)
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("hit")
+	if area.is_in_group("bullet") or area.is_in_group("enemyarea") or area.is_in_group("enemy"):
+		health -= 1
+		#print("Hit! Health:", health)
+
+	if health <= 0:
+		#print("He dead Jim.")
+		fader.show()
+		fadetimer.start()
+		faderanim.play("fade_out")
