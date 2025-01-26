@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bc2uunwunerp"]
+[gd_scene load_steps=91 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://uftwtc5kdcs5" path="res://scenes/characters/enemy_one/enemy_one_windup.png" id="9_w172v"]
 [ext_resource type="Texture2D" uid="uid://wgixu2lg8g3a" path="res://scenes/characters/enemy_one/enemy_one_gore_death_sheet.png" id="10_wl44f"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_jumping_state.gd" id="12_ayc0n"]
+[ext_resource type="AudioStream" uid="uid://x5pmfweua7gv" path="res://scenes/characters/enemy_one/audio/monster_scream1ogg.ogg" id="17_vmpkl"]
+[ext_resource type="AudioStream" uid="uid://bofl7g0ixl50l" path="res://scenes/characters/enemy_one/audio/monster_scream2.ogg" id="18_8h5ac"]
+[ext_resource type="AudioStream" uid="uid://cyex6adivncux" path="res://scenes/characters/enemy_one/audio/monster_scream3.ogg" id="19_2q8lt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkpr7"]
 atlas = ExtResource("4_6qg2w")
@@ -602,6 +605,21 @@ shape = SubResource("CapsuleShape2D_mua6l")
 [node name="Jump_Timer" type="Timer" parent="."]
 wait_time = 7.0
 autostart = true
+
+[node name="Scream1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_vmpkl")
+volume_db = -8.944
+bus = &"SFX"
+
+[node name="Scream2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_8h5ac")
+volume_db = -8.914
+bus = &"SFX"
+
+[node name="Scream3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_2q8lt")
+volume_db = -6.934
+bus = &"SFX"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
