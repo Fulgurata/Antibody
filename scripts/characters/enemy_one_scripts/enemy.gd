@@ -12,6 +12,7 @@ var current_state
 @onready var scream_1: AudioStreamPlayer2D = $Scream1
 @onready var scream_2: AudioStreamPlayer2D = $Scream2
 @onready var scream_3: AudioStreamPlayer2D = $Scream3
+@onready var hit_box: Area2D = $HitBox
 
 
 #Jumping variables, more variables for the variable throne!!!

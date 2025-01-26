@@ -267,6 +267,21 @@ position = Vector2(1652, 527)
 [node name="shotgun_ammo" parent="." instance=ExtResource("12_owyj1")]
 position = Vector2(1930, 523)
 
+[node name="Enemy2" parent="." instance=ExtResource("6_ve5vp")]
+position = Vector2(1232, 1080)
+
+[node name="Enemy3" parent="." instance=ExtResource("6_ve5vp")]
+position = Vector2(1613, 374)
+
+[node name="Enemy4" parent="." instance=ExtResource("6_ve5vp")]
+position = Vector2(455, 1565)
+
+[node name="Enemy5" parent="." instance=ExtResource("6_ve5vp")]
+position = Vector2(2119, 1466)
+
+[node name="Enemy" parent="." instance=ExtResource("6_ve5vp")]
+position = Vector2(2065, 1577)
+
 [node name="Player" parent="." instance=ExtResource("2_xdqjg")]
 position = Vector2(453, 410)
 
@@ -298,24 +313,9 @@ texture_scale = 8.76
 [node name="Drone" parent="." instance=ExtResource("5_otqk6")]
 position = Vector2(430, 348)
 
-[node name="Enemy" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(2065, 1577)
-
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_j6apj")
 autoplay = true
-
-[node name="Enemy2" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(1232, 1080)
-
-[node name="Enemy3" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(1613, 374)
-
-[node name="Enemy4" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(455, 1565)
-
-[node name="Enemy5" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(2119, 1466)
 
 [node name="Radio" parent="." instance=ExtResource("16_4hur3")]
 position = Vector2(2573, 698)
