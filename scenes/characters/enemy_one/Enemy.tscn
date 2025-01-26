@@ -560,13 +560,13 @@ offset = Vector2(60, -60)
 position = Vector2(-22, 0)
 metadata/_edit_lock_ = true
 
-[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+[node name="EnemySprite" type="AnimatedSprite2D" parent="." groups=["enemyarea"]]
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_deqgi")
 animation = &"gory_death"
 speed_scale = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemyarea"]]
 visibility_layer = 5
 position = Vector2(4, 0)
 scale = Vector2(1.50478, 1.05823)
@@ -591,11 +591,11 @@ script = ExtResource("7_c8y6w")
 [node name="Enemy_MeleeAtk" type="Node" parent="."]
 script = ExtResource("9_2jjf7")
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["enemyarea"]]
 position = Vector2(4, 0)
 metadata/_edit_lock_ = true
 
-[node name="HitBox_Collision" type="CollisionShape2D" parent="HitBox"]
+[node name="HitBox_Collision" type="CollisionShape2D" parent="HitBox" groups=["enemyarea"]]
 scale = Vector2(2.45, 1.8)
 shape = SubResource("CapsuleShape2D_mua6l")
 

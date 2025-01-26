@@ -66,3 +66,5 @@ visible = false
 [connection signal="pressed" from="Main_Button_Container/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Main_Button_Container/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Fade_Transition/Fade_Timer" to="." method="_on_fade_timer_timeout"]
+
+[editable path="Fade_Transition"]

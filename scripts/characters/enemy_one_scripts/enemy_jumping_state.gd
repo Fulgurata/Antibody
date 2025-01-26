@@ -8,11 +8,12 @@ func enter_state(enemy_node) -> void:
 	enemy.is_jumping = true
 	enemy.update_context_arrays()
 	animate_jump()
-	print("entered_Jump")
+	#print("entered_Jump")
 
 func exit_state() -> void:
+	pass
 	#enemy.velocity = Vector2.ZERO
-	print("left_Jump")
+	#print("left_Jump")
 #
 func process(delta: float) -> void:
 	#populate context arrays
@@ -25,19 +26,19 @@ func process(delta: float) -> void:
 		enemy.rotation = enemy.velocity.angle() #(get rotated bro)
 		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
 		enemy.move_and_collide(enemy.velocity * delta)
-		print("Jumping_to_Jumping")
+		#print("Jumping_to_Jumping")
 		enemy.change_state("Enemy_Jumping")
 	elif distance_to_player > enemy.MIN_DISTANCE and enemy.is_jumping == false:
-		print("Jumping_to_Moving")
+		#print("Jumping_to_Moving")
 		enemy.change_state("Enemy_Moving")
 		##print("after zeroing", chosen_dir)
 	elif distance_to_player <= enemy.MIN_DISTANCE and enemy.is_jumping == false:
-		print("Moving_to_Melee_ATK")
+		#print("Moving_to_Melee_ATK")
 		enemy.change_state("Enemy_MeleeAtk")
 	elif enemy.is_jumping == false:
 		enemy.velocity = Vector2.ZERO
 		enemy.chosen_dir = Vector2.ZERO
-		print("EnemyMoving_toIdle")
+		#print("EnemyMoving_toIdle")
 	#enemy.change_state("Enemy_Idle")
 	#print("after zeroing", enemy.chosen_dir)
 
@@ -48,7 +49,7 @@ func animate_jump() -> void:
 	timer.one_shot = true
 	enemy.enemy_sprite.play("enemy_one_windup", 5)
 	enemy.enemy_sprite.play("enemy_one_jump", 1 / enemy.airtime)
-	print("enemy_one_jumping_animation")
+	#print("enemy_one_jumping_animation")
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 

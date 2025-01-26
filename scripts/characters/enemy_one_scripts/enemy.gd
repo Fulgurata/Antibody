@@ -221,15 +221,14 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 	if health <= 0:
 		#print("He dead Jim.")
-		print("Moving_to_Enemy_Jumping")
 		change_state("Enemy_KnockedOut")
 
 
 func _on_jump_timer_timeout() -> void:
 	jump_recharge = true
-	print("recharged!")
+	#print("recharged!")
 	random_dir = hare_off(ray_directions).rotated(rotation)
-	print("chose random direction", random_dir)
+	#print("chose random direction", random_dir)
 
 func hare_off(vectors: Array[Vector2]) -> Vector2:
 	var rngH = RandomNumberGenerator.new()

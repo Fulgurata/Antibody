@@ -18,10 +18,10 @@ func process(delta: float) -> void:
 	var rng = RandomNumberGenerator.new()
 	
 	if distance_to_player > (enemy.jump_distance - 10) and distance_to_player < (enemy.jump_distance + 10) and enemy.jump_likely > rng.randf_range(0.0, 1.0) and enemy.jump_recharge == true:
-		print("Moving_to_Enemy_Jumping")
+		#print("Moving_to_Enemy_Jumping")
 		enemy.change_state("Enemy_Jumping")
 	elif distance_to_player <= enemy.MIN_DISTANCE and enemy.is_jumping == false:
-		print("Moving_to_Melee_ATK")
+		#print("Moving_to_Melee_ATK")
 		enemy.change_state("Enemy_MeleeAtk")
 	elif distance_to_player > enemy.MIN_DISTANCE and enemy.is_jumping == false:
 		var desired_velocity = enemy.chosen_dir.rotated(enemy.rotation) * enemy.normal_speed
@@ -30,12 +30,12 @@ func process(delta: float) -> void:
 		#velocity = Vector2.ZERO#activate to make him stop moving for testing purposes
 		enemy.move_and_collide(enemy.velocity * delta)
 		#enemy.chosen_dir = Vector2.ZERO
-		print("Moving_to_Moving")
+		#print("Moving_to_Moving")
 		enemy.change_state("Enemy_Moving")
 		#print("after zeroing", chosen_dir)
 	elif enemy.is_jumping == false:
 		enemy.velocity = Vector2.ZERO
 		enemy.chosen_dir = Vector2.ZERO
-		print("EnemyMoving_toIdle")
+		#print("EnemyMoving_toIdle")
 		enemy.change_state("Enemy_Idle")
 		#print("after zeroing", enemy.chosen_dir)

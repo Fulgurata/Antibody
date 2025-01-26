@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://c43fg3lqtny2o"]
+
+[ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_praj7"]
+[ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="3_xk04v"]
+[ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="4_bbn68"]
+[ext_resource type="AudioStream" uid="uid://cfiueghlyr0hy" path="res://scenes/menus/main_menu/Mian_menu.ogg" id="5_ck0b8"]
+[ext_resource type="PackedScene" uid="uid://fq3wolu7mpu2" path="res://scenes/menus/main_menu/options_menu.tscn" id="6_6v0ij"]
+
+[node name="YouDied" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_praj7")
+
+[node name="Main_Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.0313726, 0.0313726, 0.0941176, 1)
+
+[node name="Main_Button_Container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 408.139
+offset_top = 359.865
+offset_right = 499.139
+offset_bottom = 430.865
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_xk04v")
+
+[node name="Start" type="Button" parent="Main_Button_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Try Again"
+
+[node name="Options" type="Button" parent="Main_Button_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+
+[node name="Quit" type="Button" parent="Main_Button_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Menu"
+
+[node name="Fade_Transition" parent="." instance=ExtResource("4_bbn68")]
+visible = false
+offset_right = 958.0
+offset_bottom = 533.0
+scale = Vector2(1, 1)
+mouse_filter = 2
+
+[node name="Fade_Timer" type="Timer" parent="Fade_Transition"]
+
+[node name="Main_Menu_Theme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ck0b8")
+bus = &"Music"
+parameters/looping = true
+
+[node name="OptionsMenu" parent="." instance=ExtResource("6_6v0ij")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Main_Button_Container/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main_Button_Container/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main_Button_Container/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Fade_Transition/Fade_Timer" to="." method="_on_fade_timer_timeout"]
+
+[editable path="Fade_Transition"]
