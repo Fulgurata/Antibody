@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://css2xxwtnf1ga"]
+
+[ext_resource type="Script" path="res://scenes/levels/tileset/glass_plane.gd" id="1_a3hbi"]
+[ext_resource type="Texture2D" uid="uid://pk7k26ojl2da" path="res://scenes/levels/tileset/glass_break-Sheet.png" id="2_jis2u"]
+[ext_resource type="AudioStream" uid="uid://gekbx0x3b5h1" path="res://scenes/levels/tileset/glass_break.ogg" id="4_0piay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h677"]
+size = Vector2(9, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chrub"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4quoj"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8q7y"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcgug"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njlvi"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx81c"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejmsg"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dax32"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oni4w"]
+atlas = ExtResource("2_jis2u")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aek68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chrub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4quoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8q7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcgug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njlvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx81c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejmsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dax32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oni4w")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kiql"]
+size = Vector2(2, 64)
+
+[node name="Glass Plane" type="Area2D"]
+script = ExtResource("1_a3hbi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_2h677")
+
+[node name="unbroken" type="Sprite2D" parent="."]
+texture = ExtResource("2_jis2u")
+hframes = 9
+
+[node name="breaking" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_aek68")
+frame = 8
+frame_progress = 1.0
+
+[node name="broken" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_jis2u")
+hframes = 9
+frame = 8
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_4kiql")
+debug_color = Color(0.927697, 0.195046, 0.470051, 0.42)
+
+[node name="glass_break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0piay")
+pitch_scale = 0.73
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
