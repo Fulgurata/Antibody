@@ -24,7 +24,10 @@ func _physics_process(_delta: float) -> void:
 		var distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player > MIN_DISTANCE:
 			velocity = (player.global_position - global_position).normalized() * SPEED
+		else:
+			velocity = Vector2.ZERO
 		look_at(get_global_mouse_position())
+		
 	else:
 		velocity = Vector2.ZERO
 	

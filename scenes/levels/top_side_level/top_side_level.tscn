@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dp7xlc5af26sc"]
+[gd_scene load_steps=26 format=4 uid="uid://dp7xlc5af26sc"]
 
 [ext_resource type="Texture2D" uid="uid://cla74kj6p5cyy" path="res://scenes/levels/top_side_level/Ocean-Sheet.png" id="1_s8k7t"]
 [ext_resource type="Script" path="res://scripts/top_side_level.gd" id="1_wqupl"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_otqk6"]
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="6_ve5vp"]
 [ext_resource type="AudioStream" uid="uid://dxvea4uwscgqh" path="res://scenes/levels/Audio/Lvl!ogg.ogg" id="8_j6apj"]
-[ext_resource type="PackedScene" uid="uid://d34khwfegjf6v" path="res://scenes/boss/boss_slime.tscn" id="9_g8ham"]
 [ext_resource type="PackedScene" uid="uid://jghdy6j7wkn3" path="res://scenes/pickups/pistol_ammo_pickup.tscn" id="10_5ikdf"]
 [ext_resource type="PackedScene" uid="uid://c6mtvg7bxahma" path="res://scenes/pickups/rifle_ammo_pickup.tscn" id="11_2g1mp"]
 [ext_resource type="PackedScene" uid="uid://d0gjul4q40b6x" path="res://scenes/pickups/shotgun_ammo_pickup.tscn" id="12_owyj1"]
@@ -302,9 +301,6 @@ position = Vector2(2065, 1577)
 stream = ExtResource("8_j6apj")
 autoplay = true
 
-[node name="BossSlime" parent="." instance=ExtResource("9_g8ham")]
-position = Vector2(478, 1408)
-
 [node name="Enemy2" parent="." instance=ExtResource("6_ve5vp")]
 position = Vector2(1232, 1080)
 
@@ -312,7 +308,7 @@ position = Vector2(1232, 1080)
 position = Vector2(1613, 374)
 
 [node name="Enemy4" parent="." instance=ExtResource("6_ve5vp")]
-position = Vector2(454, 1568)
+position = Vector2(455, 1565)
 
 [node name="Enemy5" parent="." instance=ExtResource("6_ve5vp")]
 position = Vector2(2119, 1466)
