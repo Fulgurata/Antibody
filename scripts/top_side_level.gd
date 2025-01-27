@@ -46,4 +46,5 @@ func reset_flash_timer() -> void:
 	flash_timer = randf_range(min_time_between_flashes, max_time_between_flashes)
 
 func _on_fade_timer_timeout() -> void:
+	print("you died menu incoming")
 	get_tree().change_scene_to_file("res://scenes/menus/you_died/you_died.tscn")

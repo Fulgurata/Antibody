@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dp7xlc5af26sc"]
+[gd_scene load_steps=28 format=4 uid="uid://dp7xlc5af26sc"]
 
 [ext_resource type="Texture2D" uid="uid://cla74kj6p5cyy" path="res://scenes/levels/top_side_level/Ocean-Sheet.png" id="1_s8k7t"]
 [ext_resource type="Script" path="res://scripts/top_side_level.gd" id="1_wqupl"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcc4b08n8r41e" path="res://scenes/levels/top_side_level/radio.tscn" id="16_4hur3"]
 [ext_resource type="Texture2D" uid="uid://bi205ha44bhdc" path="res://scenes/levels/top_side_level/LabCoat.png" id="17_17x1l"]
 [ext_resource type="PackedScene" uid="uid://ce6kgyloy07i7" path="res://scenes/levels/top_side_level/bloody_hat.tscn" id="18_hnb5r"]
+[ext_resource type="PackedScene" uid="uid://ca4w3fwgrfghh" path="res://globals/EndLevel.tscn" id="19_tx1vt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ar5u"]
 texture = ExtResource("1_s8k7t")
@@ -181,9 +182,6 @@ fill_to = Vector2(0.899563, 0.20524)
 [node name="TopSideLevel" type="Node2D"]
 script = ExtResource("1_wqupl")
 
-[node name="Fade_Transition" parent="." instance=ExtResource("2_0tsnc")]
-visible = false
-
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -844.0
 offset_top = -979.0
@@ -324,6 +322,21 @@ position = Vector2(2573, 698)
 position = Vector2(2594, 658)
 
 [node name="Fade_Timer" type="Timer" parent="."]
+
+[node name="EndLevel" parent="." instance=ExtResource("19_tx1vt")]
+position = Vector2(2573, 2252)
+scale = Vector2(0.921165, 0.585647)
+
+[node name="Fade_Transition" parent="." instance=ExtResource("2_0tsnc")]
+visible = false
+offset_left = -1172.0
+offset_top = -664.0
+offset_right = -1069.0
+offset_bottom = -563.0
+scale = Vector2(54.4174, 34.8479)
+
+[node name="AnimationPlayer" parent="Fade_Transition" index="0"]
+speed_scale = 1.0
 
 [connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]
 

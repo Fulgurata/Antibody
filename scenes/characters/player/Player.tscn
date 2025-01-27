@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=114 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
@@ -22,8 +22,11 @@
 [ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="15_4r2vn"]
 [ext_resource type="FontFile" uid="uid://nrp40rj57pir" path="res://scenes/menus/main_menu/RubikDistressed-Regular.ttf" id="16_t5hpi"]
 [ext_resource type="AudioStream" uid="uid://c0m6o7g4jo42l" path="res://scenes/characters/player/player_audio/player_walkogg.ogg" id="22_gijml"]
+[ext_resource type="Script" path="res://scripts/characters/player_scripts/pause_menu.gd" id="22_hleqg"]
 [ext_resource type="AudioStream" uid="uid://cmyrj7ca8wbyb" path="res://scenes/characters/player/player_audio/swap_sounds/pistolswap.ogg" id="23_m6pik"]
+[ext_resource type="PackedScene" uid="uid://bye3384rwtun2" path="res://scenes/menus/main_menu/pause_options_menu.tscn" id="23_xmde4"]
 [ext_resource type="AudioStream" uid="uid://d0qte8yvqsyhh" path="res://scenes/characters/player/player_audio/swap_sounds/shotgunswapogg.ogg" id="24_iuviu"]
+[ext_resource type="Script" path="res://scripts/menus/pause_options_menu.gd" id="24_pajfu"]
 [ext_resource type="AudioStream" uid="uid://b6hkgepxaymsu" path="res://scenes/characters/player/player_audio/swap_sounds/rilfeswap.ogg" id="25_1cx7t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3ty1"]
@@ -904,7 +907,7 @@ shape = SubResource("RectangleShape2D_50qrt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="AmmoUI" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -912,29 +915,69 @@ offset_top = -153.0
 offset_right = 197.0
 grow_vertical = 0
 
-[node name="RifleAmmo" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
+[node name="RifleAmmo" type="Sprite2D" parent="CanvasLayer/AmmoUI"]
 position = Vector2(23, 88)
 texture = ExtResource("12_vsdbr")
 
-[node name="PistolAmmo" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
+[node name="PistolAmmo" type="Sprite2D" parent="CanvasLayer/AmmoUI"]
 position = Vector2(26, 86)
 texture = ExtResource("13_0bwlm")
 
-[node name="ShotgunAmmo" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
+[node name="ShotgunAmmo" type="Sprite2D" parent="CanvasLayer/AmmoUI"]
 position = Vector2(25, 84)
 texture = ExtResource("14_q6reb")
 
-[node name="current_ammo" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="current_ammo" type="Label" parent="CanvasLayer/AmmoUI"]
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("15_4r2vn")
 text = "current ammo"
 
-[node name="Total_ammo" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="Total_ammo" type="Label" parent="CanvasLayer/AmmoUI"]
 layout_mode = 2
 theme = SubResource("Theme_2y6hn")
 text = "/ total ammo"
 label_settings = SubResource("LabelSettings_qyimx")
+
+[node name="PauseMenu" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 491.0
+offset_bottom = 371.0
+scale = Vector2(1.825, 1.825)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("15_4r2vn")
+script = ExtResource("22_hleqg")
+
+[node name="TryAgain" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Restart"
+
+[node name="Options" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Menu"
+
+[node name="PauseFadeTimer" type="Timer" parent="CanvasLayer/PauseMenu"]
+
+[node name="PauseOptionsMenu" parent="CanvasLayer" instance=ExtResource("23_xmde4")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 90.0
+offset_bottom = 2.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("24_pajfu")
 
 [node name="audio_master" type="Node2D" parent="."]
 
@@ -959,3 +1002,7 @@ bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/TryAgain" to="CanvasLayer/PauseMenu" method="_on_try_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Options" to="CanvasLayer/PauseMenu" method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MainMenu" to="CanvasLayer/PauseMenu" method="_on_main_menu_pressed"]
+[connection signal="timeout" from="CanvasLayer/PauseMenu/PauseFadeTimer" to="CanvasLayer/PauseMenu" method="_on_pause_fade_timer_timeout"]

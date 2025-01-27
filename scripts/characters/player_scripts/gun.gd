@@ -2,12 +2,12 @@
 extends Node2D
 
 @onready var player: CharacterBody2D = $".."
-@onready var h_box_container: HBoxContainer = $"../CanvasLayer/HBoxContainer"
-@onready var rifle_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/RifleAmmo"
-@onready var pistol_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/PistolAmmo"
-@onready var shotgun_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/ShotgunAmmo"
-@onready var current_ammo: Label = $"../CanvasLayer/HBoxContainer/current_ammo"
-@onready var total_ammo: Label = $"../CanvasLayer/HBoxContainer/Total_ammo"
+@onready var h_box_container: HBoxContainer = get_tree().get_current_scene().find_child("AmmoUI")
+@onready var rifle_ammo: Sprite2D = get_tree().get_current_scene().find_child("RifleAmmo")
+@onready var pistol_ammo: Sprite2D = get_tree().get_current_scene().find_child("PistolAmmo")
+@onready var shotgun_ammo: Sprite2D = get_tree().get_current_scene().find_child("ShotgunAmmo")
+@onready var current_ammo: Label = get_tree().get_current_scene().find_child("current_ammo")
+@onready var total_ammo: Label = get_tree().get_current_scene().find_child("Total_ammo")
 @onready var top_player_sprite: AnimatedSprite2D = $"../TopPlayerSprite"
 @onready var pistolswap: AudioStreamPlayer2D = $"../audio_master/pistolswap"
 @onready var shotgunswap: AudioStreamPlayer2D = $"../audio_master/shotgunswap"
@@ -65,7 +65,7 @@ func play_weapon_sound() -> void:
 			shotgunswap.play()
 		"assault_rifle":
 			rifleswap.play()
-	
+
 func update_gun_sprite() -> void:
 	rifle_ammo.visible = false
 	pistol_ammo.visible = false

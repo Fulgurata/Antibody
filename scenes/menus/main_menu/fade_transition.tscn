@@ -62,3 +62,4 @@ color = Color(0, 0, 0, 0.992157)
 libraries = {
 "": SubResource("AnimationLibrary_i8f84")
 }
+speed_scale = 2.0

@@ -15,6 +15,8 @@ var health = 3
 @onready var fader = get_tree().get_current_scene().find_child("Fade_Transition")
 @onready var faderanim = get_tree().get_current_scene().find_child("AnimationPlayer")
 @onready var fadetimer = get_tree().get_current_scene().find_child("Fade_Timer")
+@onready var pausemenu = get_tree().get_current_scene().find_child("PauseMenu")
+var paused: bool = false
 
 func _ready():
 	change_state("Idle") # Start in the Idle state
@@ -31,6 +33,18 @@ func change_state(new_state_name: String):
 func _process(delta: float) -> void:
 	rotation = (get_global_mouse_position() - position).angle()#velocity.angle()
 	
+	if Input.is_action_just_pressed("pause"):
+		if paused == false:
+			print("pausing")
+			paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			pausemenu.show()
+		elif paused == true:
+			print("unpausing")
+			paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			pausemenu.hide()
+	
 	if current_state:
 		current_state.handle_input(delta)
 
@@ -44,6 +58,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#print("He dead Jim.")
 		var current_path: String = get_tree().get_current_scene().scene_file_path
 		GameState.last_scene_path = current_path
+		change_state("KnockedOut")
 		fader.show()
-		fadetimer.start()
 		faderanim.play("fade_out")
+		fadetimer.start()
