@@ -53,6 +53,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet") or area.is_in_group("enemyarea") or area.is_in_group("enemy"):
 		health -= 1
 		print("Hit! Health:", health)
+		$Camera2D.add_trauma(0.5)
 
 	if health <= 0:
 		#print("He dead Jim.")

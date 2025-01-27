@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dif6f7qoy78ck"]
 
-[ext_resource type="Texture2D" uid="uid://ivyivin7t1vo" path="res://scenes/levels/doors/door_sprite.png" id="1_wf6bs"]
+[ext_resource type="Texture2D" uid="uid://bpcxfdy2dci71" path="res://scenes/levels/doors/door.png" id="1_ywph6"]
 [ext_resource type="OccluderPolygon2D" uid="uid://beixoa1cp8ncf" path="res://scenes/levels/doors/door_occluder_polygon_2d.tres" id="2_oi3ds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mr3p"]
@@ -17,7 +17,7 @@ angular_damp = 25.0
 texture_filter = 1
 position = Vector2(17.7, 0.500001)
 scale = Vector2(0.959375, 1.07813)
-texture = ExtResource("1_wf6bs")
+texture = ExtResource("1_ywph6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(18, 0)
