@@ -3,6 +3,7 @@ extends PlayerState
 
 func enter_state(player_node) -> void:
 	super(player_node) #call parent class method (player_state.gd class "PlayerState")
+	$"../PlayerSprite".play("leg")
 	#player.velocity.x = 0
 	#player.velocity.y = 0
 

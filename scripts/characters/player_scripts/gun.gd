@@ -2,6 +2,15 @@
 extends Node2D
 
 @onready var player: CharacterBody2D = $".."
+@onready var h_box_container: HBoxContainer = $"../CanvasLayer/HBoxContainer"
+@onready var rifle_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/RifleAmmo"
+@onready var pistol_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/PistolAmmo"
+@onready var shotgun_ammo: Sprite2D = $"../CanvasLayer/HBoxContainer/ShotgunAmmo"
+@onready var current_ammo: Label = $"../CanvasLayer/HBoxContainer/current_ammo"
+@onready var total_ammo: Label = $"../CanvasLayer/HBoxContainer/Total_ammo"
+@onready var top_player_sprite: AnimatedSprite2D = $"../TopPlayerSprite"
+
+
 
 var BULLET = preload("res://scenes/characters/player/bullet.tscn")
 
@@ -35,10 +44,38 @@ var recoil_time_remaining: float = 0.0
 var recoil_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	update_gun_sprite()
+	update_ammo_display()
+	
 	if player.has_signal("ammo_pickup"):
 		player.connect("ammo_pickup", Callable(self, "_on_ammo_pickup"))
 
+
+
+func update_gun_sprite() -> void:
+	rifle_ammo.visible = false
+	pistol_ammo.visible = false
+	shotgun_ammo.visible = false
+	
+	match weapons[current_weapon_index]:
+		"gun":
+			pistol_ammo.visible = true
+			$"../TopPlayerSprite".play("Handgun")
+		"shotgun":
+			shotgun_ammo.visible = true
+			$"../TopPlayerSprite".play("shotgun")
+		"assault_rifle":
+			rifle_ammo.visible = true
+			$"../TopPlayerSprite".play("Rifle")
+			
+func update_ammo_display() -> void:
+	var current_weapon = weapons[current_weapon_index]
+	current_ammo.text = str(magazine_ammo[current_weapon])
+	total_ammo.text = str(reserve_ammo[current_weapon])
+
 func _process(delta: float) -> void:
+	update_ammo_display()
+	update_gun_sprite()
 	if is_reloading:
 		reload_time_remaining -= delta
 		if reload_time_remaining <= 0:
@@ -54,9 +91,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("next_weapon"):
 		current_weapon_index = (current_weapon_index + 1) % weapons.size()
 		reset_fire_rate()
+		update_ammo_display()
 	elif Input.is_action_just_pressed("previous_weapon"):
 		current_weapon_index = (current_weapon_index - 1 + weapons.size()) % weapons.size()
 		reset_fire_rate()
+		update_ammo_display()
 
 	if not is_reloading and (Input.is_action_just_pressed("shooting") or (weapons[current_weapon_index] == "assault_rifle" and Input.is_action_pressed("shooting"))):
 		var current_time = Time.get_ticks_msec() / 1000.0
@@ -102,6 +141,7 @@ func fire_gun() -> void:
 	var facing_direction = Vector2(cos(player.rotation + deviation), sin(player.rotation + deviation))
 	bullet_instance.direction = facing_direction.normalized()
 	get_tree().root.add_child(bullet_instance)
+	update_ammo_display()
 
 func fire_shotgun() -> void:
 	#print("firing shotgun")
@@ -127,6 +167,7 @@ func fire_shotgun() -> void:
 
 		recoil_time_remaining = 0.1  # Apply recoil for 0.1 seconds
 		apply_recoil()
+		update_ammo_display()
 
 func fire_assault_rifle() -> void:
 	$RilfeFire.play()
@@ -136,7 +177,8 @@ func fire_assault_rifle() -> void:
 	var facing_direction = Vector2(cos(player.rotation + deviation), sin(player.rotation + deviation))
 	bullet_instance.direction = facing_direction.normalized()
 	get_tree().root.add_child(bullet_instance)
-
+	update_ammo_display()
+	
 	if not assault_rifle_firing:
 		assault_rifle_firing = true
 		player.max_speed *= assault_rifle_slow_factor
@@ -157,6 +199,7 @@ func finish_reload() -> void:
 	var ammo_to_reload = min(missing_ammo, reserve_ammo[current_weapon])
 	magazine_ammo[current_weapon] += ammo_to_reload
 	reserve_ammo[current_weapon] -= ammo_to_reload
+	update_ammo_display()
 	
 func give_ammo_dev() -> void:
 	var current_weapon = weapons[current_weapon_index]
@@ -166,6 +209,7 @@ func _on_ammo_pickup(ammo_type: String, ammo_amount: int) -> void:
 	if ammo_type in reserve_ammo:
 		reserve_ammo[ammo_type] += ammo_amount
 		print("Picked up", ammo_amount, "ammo for", ammo_type)
+		update_ammo_display()
 
 func apply_recoil() -> void:
 	player.velocity += recoil_direction  # Apply immediate recoil force
