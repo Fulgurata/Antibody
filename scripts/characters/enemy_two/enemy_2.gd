@@ -21,6 +21,7 @@ func _ready():
 func _process(_delta):
 	direction = (player.position - global_position).normalized()
 	ray_cast.target_position = direction * 400
+	
  
 func _physics_process(_delta):
 	velocity = direction * speed
