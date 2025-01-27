@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=115 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://doshbbw5w6knx" path="res://scenes/pickups/pistol_ammo.png" id="13_0bwlm"]
 [ext_resource type="Texture2D" uid="uid://qrdiatc128ry" path="res://scenes/pickups/shotgun_ammo.png" id="14_q6reb"]
 [ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="15_4r2vn"]
+[ext_resource type="Script" path="res://scripts/characters/player_scripts/camera_2d.gd" id="16_2swrc"]
 [ext_resource type="FontFile" uid="uid://nrp40rj57pir" path="res://scenes/menus/main_menu/RubikDistressed-Regular.ttf" id="16_t5hpi"]
 [ext_resource type="AudioStream" uid="uid://c0m6o7g4jo42l" path="res://scenes/characters/player/player_audio/player_walkogg.ogg" id="22_gijml"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/pause_menu.gd" id="22_hleqg"]
@@ -895,6 +896,7 @@ script = ExtResource("7_prutj")
 script = ExtResource("8_gawsi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("16_2swrc")
 
 [node name="Gun" parent="." instance=ExtResource("12_pt774")]
 position = Vector2(39, 5)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=4 uid="uid://142qan8vvj0v"]
+[gd_scene load_steps=34 format=4 uid="uid://142qan8vvj0v"]
 
+[ext_resource type="Script" path="res://scripts/levels/level_2.gd" id="1_kwtji"]
 [ext_resource type="Texture2D" uid="uid://d1sq5ml4n6me5" path="res://scenes/levels/Level2/Main_Tile_Set.png" id="1_wltm3"]
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="2_vqmrr"]
 [ext_resource type="PackedScene" uid="uid://c0uw52enpbo11" path="res://scenes/levels/top_side_level/crate(red).tscn" id="3_ee3se"]
@@ -12,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://d3a0wsnope5c5" path="res://scenes/levels/Level2/underwaterbaseambienceogg.ogg" id="10_y484k"]
 [ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="11_pitbt"]
 [ext_resource type="PackedScene" uid="uid://dg1e0kf1rmqgd" path="res://scenes/levels/traps/lightning_trap.tscn" id="12_udrg2"]
+[ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="13_6k24h"]
+[ext_resource type="PackedScene" uid="uid://ca4w3fwgrfghh" path="res://globals/EndLevel.tscn" id="15_7y6ww"]
+[ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="16_uo4rp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wf084"]
 polygon = PackedVector2Array(-27.5, -32, -24, -32, -23.5, 32, -27, 32)
@@ -173,6 +177,7 @@ fill_to = Vector2(0.807339, 0.16055)
 size = Vector2(14, 20)
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_kwtji")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1220.0
@@ -456,9 +461,68 @@ position = Vector2(-7, 1916)
 position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_nklbf")
 
+[node name="Fade_Transition" parent="." instance=ExtResource("13_6k24h")]
+visible = false
+offset_left = -2129.0
+offset_top = -838.0
+offset_right = -2026.0
+offset_bottom = -737.0
+scale = Vector2(65.585, 49.5785)
+
 [node name="lightning_trap" parent="." instance=ExtResource("12_udrg2")]
 position = Vector2(226, 2011.5)
 scale = Vector2(1, 1.11064)
+
+[node name="EndLevel" parent="." instance=ExtResource("15_7y6ww")]
+position = Vector2(-208, 1946)
+
+[node name="Fade_Timer" type="Timer" parent="."]
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(984, 949)
+
+[node name="Enemy2" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(1787, 1898)
+
+[node name="Enemy3" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(1441, 2365)
+
+[node name="Enemy4" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(1044, 1517)
+
+[node name="Enemy5" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(819, 1486)
+
+[node name="Enemy6" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(508, 188)
+
+[node name="Enemy7" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(448, 1147)
+
+[node name="Enemy8" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(1458, 1157)
+
+[node name="Enemy9" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(-88, 1725)
+
+[node name="Enemy10" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(188, 1662)
+
+[node name="Enemy11" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(105, 1732)
+
+[node name="Enemy12" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(216, 1805)
+
+[node name="Enemy13" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(683, 2008)
+
+[node name="Enemy14" parent="enemies" instance=ExtResource("16_uo4rp")]
+position = Vector2(1070, 2062)
+
+[connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]
 
 [editable path="lights/wall_light_flicker_red"]
 [editable path="lights/WallLight2"]
@@ -474,3 +538,5 @@ scale = Vector2(1, 1.11064)
 [editable path="doors/Door10"]
 [editable path="doors/Door11"]
 [editable path="doors/Door12"]
+[editable path="Fade_Transition"]
+[editable path="EndLevel"]

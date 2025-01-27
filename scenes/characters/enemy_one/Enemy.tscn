@@ -560,6 +560,7 @@ rotation = 0.759218
 offset = Vector2(60, -60)
 
 [node name="PointLight2D" parent="." instance=ExtResource("3_14kfw")]
+visible = false
 position = Vector2(-22, 0)
 metadata/_edit_lock_ = true
 

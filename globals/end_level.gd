@@ -12,9 +12,10 @@ func _on_end_level_timer_timeout() -> void:
 	get_tree().change_scene_to_file(NextLevel)
 	
 
-func _on_transition_area_area_entered(_area: Area2D) -> void:
-	var current_path: String = get_tree().get_current_scene().scene_file_path
-	GameState.last_scene_path = current_path
-	fader.show()
-	faderanim.play("fade_out")
-	fadetimer.start()
+func _on_transition_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		var current_path: String = get_tree().get_current_scene().scene_file_path
+		GameState.last_scene_path = current_path
+		fader.show()
+		faderanim.play("fade_out")
+		fadetimer.start()
