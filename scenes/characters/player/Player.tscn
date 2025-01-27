@@ -933,11 +933,13 @@ texture = ExtResource("14_q6reb")
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("15_4r2vn")
+theme_override_fonts/font = ExtResource("16_t5hpi")
 text = "current ammo"
 
 [node name="Total_ammo" type="Label" parent="CanvasLayer/AmmoUI"]
 layout_mode = 2
 theme = SubResource("Theme_2y6hn")
+theme_override_fonts/font = ExtResource("16_t5hpi")
 text = "/ total ammo"
 label_settings = SubResource("LabelSettings_qyimx")
 
