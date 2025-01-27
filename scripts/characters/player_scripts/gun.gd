@@ -9,6 +9,9 @@ extends Node2D
 @onready var current_ammo: Label = $"../CanvasLayer/HBoxContainer/current_ammo"
 @onready var total_ammo: Label = $"../CanvasLayer/HBoxContainer/Total_ammo"
 @onready var top_player_sprite: AnimatedSprite2D = $"../TopPlayerSprite"
+@onready var pistolswap: AudioStreamPlayer2D = $"../audio_master/pistolswap"
+@onready var shotgunswap: AudioStreamPlayer2D = $"../audio_master/shotgunswap"
+@onready var rifleswap: AudioStreamPlayer2D = $"../audio_master/rifleswap"
 
 
 
@@ -50,8 +53,19 @@ func _ready() -> void:
 	if player.has_signal("ammo_pickup"):
 		player.connect("ammo_pickup", Callable(self, "_on_ammo_pickup"))
 
-
-
+func play_weapon_sound() -> void:
+	pistolswap.stop()
+	shotgunswap.stop()
+	rifleswap.stop()
+	
+	match weapons[current_weapon_index]:
+		"gun":
+			pistolswap.play()
+		"shotgun":
+			shotgunswap.play()
+		"assault_rifle":
+			rifleswap.play()
+	
 func update_gun_sprite() -> void:
 	rifle_ammo.visible = false
 	pistol_ammo.visible = false
@@ -92,10 +106,12 @@ func _process(delta: float) -> void:
 		current_weapon_index = (current_weapon_index + 1) % weapons.size()
 		reset_fire_rate()
 		update_ammo_display()
+		play_weapon_sound() 
 	elif Input.is_action_just_pressed("previous_weapon"):
 		current_weapon_index = (current_weapon_index - 1 + weapons.size()) % weapons.size()
 		reset_fire_rate()
 		update_ammo_display()
+		play_weapon_sound()
 
 	if not is_reloading and (Input.is_action_just_pressed("shooting") or (weapons[current_weapon_index] == "assault_rifle" and Input.is_action_pressed("shooting"))):
 		var current_time = Time.get_ticks_msec() / 1000.0
