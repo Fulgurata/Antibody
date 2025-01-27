@@ -23,4 +23,6 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	var collision = move_and_collide(velocity * _delta)
 	if collision:
-		queue_free()
+		var collided_body = collision.get_collider()
+		if not collided_body.is_in_group("enemy"):
+			queue_free()

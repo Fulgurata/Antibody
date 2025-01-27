@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d34khwfegjf6v"]
+[gd_scene load_steps=13 format=3 uid="uid://d34khwfegjf6v"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss_slime.gd" id="1_36ilt"]
 [ext_resource type="Texture2D" uid="uid://dlr12lkd5a02b" path="res://scenes/boss/Boss slime.png" id="1_xg7dr"]
@@ -56,8 +56,11 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pa4s3"]
+radius = 26.0192
+
 [node name="BossSlime" type="CharacterBody2D"]
-collision_mask = 13
+collision_mask = 12
 script = ExtResource("1_36ilt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -85,3 +88,8 @@ color = Color(0.223529, 1, 0.388235, 0.6)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteGroup"]
 sprite_frames = SubResource("SpriteFrames_5kdw5")
 frame_progress = 0.520225
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemyarea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pa4s3")

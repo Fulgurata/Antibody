@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://142qan8vvj0v"]
+[gd_scene load_steps=35 format=4 uid="uid://142qan8vvj0v"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_2.gd" id="1_kwtji"]
 [ext_resource type="Texture2D" uid="uid://d1sq5ml4n6me5" path="res://scenes/levels/Level2/Main_Tile_Set.png" id="1_wltm3"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="13_6k24h"]
 [ext_resource type="PackedScene" uid="uid://ca4w3fwgrfghh" path="res://globals/EndLevel.tscn" id="15_7y6ww"]
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="16_uo4rp"]
+[ext_resource type="PackedScene" uid="uid://duabef7l8v60w" path="res://scripts/characters/enemy_two/enemy_2.tscn" id="17_dj0rg"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wf084"]
 polygon = PackedVector2Array(-27.5, -32, -24, -32, -23.5, 32, -27, 32)
@@ -240,14 +241,8 @@ rotation = 0.411984
 position = Vector2(1710, 1851)
 rotation = 0.648784
 
-[node name="Player" parent="." instance=ExtResource("2_vqmrr")]
-position = Vector2(922, 260)
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
-
-[node name="Drone" parent="." instance=ExtResource("5_2nwd0")]
-position = Vector2(884, 326)
 
 [node name="lights" type="Node2D" parent="."]
 
@@ -498,9 +493,6 @@ position = Vector2(819, 1486)
 [node name="Enemy6" parent="enemies" instance=ExtResource("16_uo4rp")]
 position = Vector2(508, 188)
 
-[node name="Enemy7" parent="enemies" instance=ExtResource("16_uo4rp")]
-position = Vector2(448, 1147)
-
 [node name="Enemy8" parent="enemies" instance=ExtResource("16_uo4rp")]
 position = Vector2(1458, 1157)
 
@@ -516,11 +508,17 @@ position = Vector2(105, 1732)
 [node name="Enemy12" parent="enemies" instance=ExtResource("16_uo4rp")]
 position = Vector2(216, 1805)
 
-[node name="Enemy13" parent="enemies" instance=ExtResource("16_uo4rp")]
-position = Vector2(683, 2008)
-
 [node name="Enemy14" parent="enemies" instance=ExtResource("16_uo4rp")]
 position = Vector2(1070, 2062)
+
+[node name="Enemy2" parent="." instance=ExtResource("17_dj0rg")]
+position = Vector2(439, 1473)
+
+[node name="Drone" parent="." instance=ExtResource("5_2nwd0")]
+position = Vector2(884, 326)
+
+[node name="Player" parent="." instance=ExtResource("2_vqmrr")]
+position = Vector2(922, 260)
 
 [connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]
 
