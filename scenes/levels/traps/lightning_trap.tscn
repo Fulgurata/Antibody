@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://dg1e0kf1rmqgd"]
+
+[ext_resource type="Script" path="res://scripts/portal/lightning_trap.gd" id="1_lafs5"]
+[ext_resource type="Texture2D" uid="uid://cvoiqq5spndve" path="res://scenes/levels/traps/lightningsheet.png" id="2_0g0kk"]
+[ext_resource type="AudioStream" uid="uid://dw0yngud7rtd0" path="res://scenes/levels/traps/arczapogg.ogg" id="3_no7ih"]
+
+[sub_resource type="Gradient" id="Gradient_r4frx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s7of2"]
+gradient = SubResource("Gradient_r4frx")
+fill = 1
+fill_from = Vector2(0.509174, 0.5)
+fill_to = Vector2(0.889908, 0.169725)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ny3q"]
+size = Vector2(94, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr2eg"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gihbl"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfakg"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sb4g"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xt1p"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjoh"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utajm"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t571y"]
+atlas = ExtResource("2_0g0kk")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q086u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr2eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gihbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfakg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sb4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xt1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utajm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t571y")
+}],
+"loop": true,
+"name": &"lightning",
+"speed": 8.0
+}]
+
+[node name="lightning_trap" type="PointLight2D"]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_s7of2")
+texture_scale = 7.5
+script = ExtResource("1_lafs5")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemyarea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, 4)
+shape = SubResource("RectangleShape2D_7ny3q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(1, 1.8125)
+sprite_frames = SubResource("SpriteFrames_q086u")
+animation = &"lightning"
+frame_progress = 0.280644
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_no7ih")
+autoplay = true
+max_distance = 600.0
+bus = &"SFX"
+parameters/looping = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
