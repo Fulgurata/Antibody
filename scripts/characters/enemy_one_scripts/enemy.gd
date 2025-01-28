@@ -224,6 +224,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("bullet"):
 		health -= 1
 		#print("Hit! Health:", health)
+	
 
 	if health <= 0:
 		#print("He dead Jim.")
