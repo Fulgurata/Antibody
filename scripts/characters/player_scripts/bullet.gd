@@ -10,11 +10,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
-		global_position += direction * SPEED * delta
+		#global_position += direction * SPEED * delta
+		velocity = direction * SPEED
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			var collided_body = collision.get_collider()
+			if not collided_body.is_in_group("player") and not collided_body.is_in_group("bullet"):
+				queue_free()
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		if "take_damage" in area:
-			area.take_damage(damage)
 	

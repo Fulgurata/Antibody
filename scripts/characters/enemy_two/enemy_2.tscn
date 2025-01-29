@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://duabef7l8v60w"]
+[gd_scene load_steps=74 format=3 uid="uid://duabef7l8v60w"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_two/enemy_2.gd" id="1_tlfst"]
 [ext_resource type="Texture2D" uid="uid://c8pa67smwlifg" path="res://scenes/characters/enemy_two/sprites/Enemy2-death.png" id="1_wi3qr"]
@@ -453,10 +453,15 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_32e3k"]
+radius = 30.5941
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn13j"]
 radius = 19.105
 
 [node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 32
+collision_mask = 257
 script = ExtResource("1_tlfst")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -469,6 +474,7 @@ autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_32e3k")
 
 [node name="debug" type="Label" parent="."]
 offset_left = 7.0
@@ -502,6 +508,8 @@ script = ExtResource("11_b38hs")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-31, 0)
+collision_layer = 32
+collision_mask = 257
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(32, 1)

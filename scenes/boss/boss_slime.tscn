@@ -59,11 +59,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pa4s3"]
 radius = 26.0192
 
-[node name="BossSlime" type="CharacterBody2D"]
-collision_mask = 12
+[node name="BossSlime" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 1024
+collision_mask = 265
 script = ExtResource("1_36ilt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+light_mask = 0
+visibility_layer = 264
 shape = SubResource("CircleShape2D_dtaso")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -90,6 +93,12 @@ sprite_frames = SubResource("SpriteFrames_5kdw5")
 frame_progress = 0.520225
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemyarea"]]
+collision_layer = 1024
+collision_mask = 268
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 0
+visibility_layer = 264
 shape = SubResource("CircleShape2D_pa4s3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

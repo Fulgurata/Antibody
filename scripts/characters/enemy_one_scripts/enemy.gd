@@ -25,7 +25,7 @@ var airtime = .3 # how long he jumps for
 var crab_screams := [1 , 2, 3]
 
 #context mapping settings
-var vision_range = 400 #how far the enemy can see (does not need light)
+var vision_range = 700 #how far the enemy can see (does not need light)
 var num_rays: int = 64 #the fidelity of the enemies vision, may need to decrease for performances if lagging occurs
 
 # context array *Basically, these arrays store the directions the thing can go, the bad directions, and the good directions, later we'll do math (good - bad = go that way)
@@ -224,7 +224,8 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("bullet"):
 		health -= 1
 		#print("Hit! Health:", health)
-	
+	elif body.is_in_group("knife"):
+		change_state("Enemy_Fallen")
 
 	if health <= 0:
 		#print("He dead Jim.")

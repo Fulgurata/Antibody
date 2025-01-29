@@ -31,7 +31,8 @@ func _on_timer_timeout():
 func shoot():
 	sprite.play("Windup")
 	await sprite.animation_finished
-	var bullet = boss_slime.instantiate()
-	get_tree().root.add_child(bullet)
-	bullet.position = global_position
-	bullet.rotation = global_rotation
+	if owner.death == false:
+		var bullet = boss_slime.instantiate()
+		get_tree().root.add_child(bullet)
+		bullet.position = global_position
+		bullet.rotation = global_rotation

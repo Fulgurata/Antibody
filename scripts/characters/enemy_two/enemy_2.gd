@@ -12,30 +12,42 @@ var health: int = max_health:
 	set(value):
 		health = max(value, 0)
  
-var direction = Vector2.RIGHT
+var direction = Vector2.ZERO
 var speed  = 150.0
  
 func _ready():
 	set_physics_process(false)
  
 func _process(_delta):
-	direction = (player.position - global_position).normalized()
-	ray_cast.target_position = direction * 400
+	if death == false:
+		direction = (player.position - global_position).normalized()
+		ray_cast.target_position = direction * 400
+		
+		$AnimatedSprite2D.look_at(player.position)
+		$AnimatedSprite2D.rotate(deg_to_rad(-90))
 	
  
 func _physics_process(_delta):
-	velocity = direction * speed
-	move_and_slide()
+	if death == false:
+		velocity = direction * speed
+		move_and_slide()
  
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("bullet"):
-			health -= 1
-			if health <= 0:
-				die()
-	else:
-		print("Can't be stopped!")
+	if death == false:
+		if body.is_in_group("bullet"):
+				health -= 1
+				if health <= 0:
+					die()
+		else:
+			print("Can't be stopped!")
 
 func die():
 	sprite.play("Death")
 	print("Boss has been defeated.")
 	death = true
+	for shape in self.get_children():
+		if shape is Area2D:
+			shape.queue_free()
+	for shape in self.get_children():
+		if shape is CollisionShape2D:
+			shape.queue_free()

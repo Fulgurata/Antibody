@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://bc2uunwunerp"]
+[gd_scene load_steps=109 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://x5pmfweua7gv" path="res://scenes/characters/enemy_one/audio/monster_scream1ogg.ogg" id="17_vmpkl"]
 [ext_resource type="AudioStream" uid="uid://bofl7g0ixl50l" path="res://scenes/characters/enemy_one/audio/monster_scream2.ogg" id="18_8h5ac"]
 [ext_resource type="AudioStream" uid="uid://cyex6adivncux" path="res://scenes/characters/enemy_one/audio/monster_scream3.ogg" id="19_2q8lt"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_fallen.gd" id="19_8d8ml"]
 [ext_resource type="PackedScene" uid="uid://fovowdcuit5b" path="res://scenes/interaction/interaction_area/interaction_area.tscn" id="22_ago3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkpr7"]
@@ -649,12 +650,13 @@ height = 47.2487
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mua6l"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5gn8r"]
-radius = 55.0818
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tjv2b"]
+radius = 29.0117
+height = 92.0152
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 20
-collision_mask = 17
+collision_layer = 52
+collision_mask = 273
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_jbthf")
@@ -675,8 +677,6 @@ metadata/_edit_lock_ = true
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_deqgi")
 animation = &"enemy_one_stomp"
-frame = 9
-frame_progress = 1.0
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemyarea"]]
@@ -704,10 +704,13 @@ script = ExtResource("7_c8y6w")
 [node name="Enemy_MeleeAtk" type="Node" parent="."]
 script = ExtResource("9_2jjf7")
 
-[node name="Enemy_fallen" type="Node" parent="."]
+[node name="Enemy_Fallen" type="Node" parent="."]
+script = ExtResource("19_8d8ml")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemyarea"]]
 position = Vector2(4, 0)
+collision_layer = 33
+collision_mask = 257
 metadata/_edit_lock_ = true
 
 [node name="HitBox_Collision" type="CollisionShape2D" parent="HitBox" groups=["enemyarea"]]
@@ -734,11 +737,12 @@ volume_db = -6.934
 bus = &"SFX"
 
 [node name="interaction_area" parent="." instance=ExtResource("22_ago3p")]
-action_name = "Kill"
+action_name = "kill"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
-shape = SubResource("CircleShape2D_5gn8r")
-debug_color = Color(0.933084, 0.153232, 0.523102, 0.42)
+rotation = -1.56683
+shape = SubResource("CapsuleShape2D_tjv2b")
+debug_color = Color(0.89776, 0.258145, 0.468102, 0.42)
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

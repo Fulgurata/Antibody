@@ -15,7 +15,7 @@ func _ready():
 	
 	
 func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("bullet"):
+	if body.is_in_group("bullet") and is_broken == false:
 		is_broken = true
 		unbroken.visible = false
 		breaking.visible = true

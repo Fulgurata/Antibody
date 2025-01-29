@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cdr35ksr4e2gl"]
+[gd_scene load_steps=13 format=4 uid="uid://cdr35ksr4e2gl"]
 
 [ext_resource type="PackedScene" uid="uid://b8kirn5rew743" path="res://scenes/characters/player/Player.tscn" id="1_8bb22"]
 [ext_resource type="TileSet" uid="uid://evijk4pi73ij" path="res://scenes/levels/level_one/layer_zero_tileset.tres" id="1_g8j6r"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="5_f0lre"]
 [ext_resource type="PackedScene" uid="uid://c1x4mmudn6g1r" path="res://scenes/characters/drone/flare.tscn" id="6_5u8p2"]
 [ext_resource type="PackedScene" uid="uid://duabef7l8v60w" path="res://scripts/characters/enemy_two/enemy_2.tscn" id="7_bgpif"]
+[ext_resource type="PackedScene" uid="uid://dstfy4av14cm6" path="res://scenes/pickups/assualt_rifle_pickup.tscn" id="8_kl62t"]
+[ext_resource type="PackedScene" uid="uid://c6mtvg7bxahma" path="res://scenes/pickups/rifle_ammo_pickup.tscn" id="9_5y2hl"]
+[ext_resource type="PackedScene" uid="uid://8bdqdmvwfiu4" path="res://scenes/pickups/shotgun_pickup.tscn" id="10_artry"]
+[ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="10_jihbs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofq61"]
 
@@ -26,8 +30,8 @@ tile_set = ExtResource("2_pjygi")
 use_parent_material = true
 tile_set = ExtResource("2_pjygi")
 
-[node name="Enemy2" parent="." instance=ExtResource("7_bgpif")]
-position = Vector2(1615, 32)
+[node name="Enemy" parent="." instance=ExtResource("10_jihbs")]
+position = Vector2(1588, 47)
 
 [node name="Player" parent="." instance=ExtResource("1_8bb22")]
 position = Vector2(1750, 318)
@@ -69,6 +73,18 @@ position = Vector2(39, 205)
 
 [node name="Flare" parent="." instance=ExtResource("6_5u8p2")]
 position = Vector2(544, 297)
+
+[node name="AssualtRiflePickup" parent="." instance=ExtResource("8_kl62t")]
+position = Vector2(1935, 287)
+
+[node name="rilfe_ammo" parent="." instance=ExtResource("9_5y2hl")]
+position = Vector2(1788, 169)
+
+[node name="Shotgun_pickup" parent="." instance=ExtResource("10_artry")]
+position = Vector2(2128, 491)
+
+[node name="Enemy2" parent="." instance=ExtResource("7_bgpif")]
+position = Vector2(1982, 86)
 
 [editable path="Door"]
 [editable path="Door2"]

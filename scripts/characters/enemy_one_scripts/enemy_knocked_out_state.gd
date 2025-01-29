@@ -10,6 +10,9 @@ func enter_state(enemy_node) -> void:
 	for shape in enemy.get_children():
 		if shape is Area2D:
 			shape.queue_free()
+	for shape in enemy.get_children():
+		if shape is CollisionShape2D:
+			shape.queue_free()
 	#print("enemy_one_dead")
 
 func process(_delta) -> void:

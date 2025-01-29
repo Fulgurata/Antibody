@@ -10,7 +10,7 @@ var friction := 0.5
 var current_state
 var rotation_direction = 0
 var rotation_speed = 1.5
-var health = 3
+var health = 10000
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var fader = get_tree().get_current_scene().find_child("Fade_Transition")
 @onready var faderanim = get_tree().get_current_scene().find_child("AnimationPlayer")

@@ -20,7 +20,7 @@ var BULLET = preload("res://scenes/characters/player/bullet.tscn")
 @onready var muzzle: Marker2D = $muzzle
 #@onready var camera: Camera2D = $Camera2D
 
-var weapons = ["gun", "shotgun", "assault_rifle"]
+var weapons = ["gun"]
 var current_weapon_index: int = 0
 
 var gun_fire_rate: float = 0.3
@@ -30,14 +30,14 @@ var last_fire_time: float = 0
 
 var magazine_ammo = {"gun": 15, "shotgun": 6, "assault_rifle": 30}
 var max_magazine_ammo = {"gun": 15, "shotgun": 6, "assault_rifle": 30}
-var reserve_ammo = {"gun": 7, "shotgun": 4, "assault_rifle": 30}
+var reserve_ammo = {"gun": 7, "shotgun": 0, "assault_rifle": 0}
 var reload_times = {"gun": 1.5, "shotgun": 2.5, "assault_rifle": 2.0}
 var is_reloading: bool = false
 var reload_time_remaining: float = 0.0
 #Add a deviation factor for bullet inaccuracy
 var gun_deviation: float = deg_to_rad(5)
 var assault_rifle_deviation: float = deg_to_rad(1.5)
-var shotgun_pellet_deviation: float = deg_to_rad(2)
+var shotgun_pellet_deviation: float = deg_to_rad(.5)
 #Recoil Adjustments
 var assault_rifle_slow_factor: float = 0.3  # Increased slowdown factor for assault rifle
 var shotgun_recoil_force: float = 400.0  # Increased recoil force for shotgun
@@ -170,9 +170,15 @@ func fire_shotgun() -> void:
 		var bullet_instance = BULLET.instantiate()
 		bullet_instance.global_position = muzzle.global_position
 		var base_rotation = player.rotation - (spread_angle / 2) + (i * angle_step)
+		print(player.rotation)
 		var deviation = randf_range(-shotgun_pellet_deviation, shotgun_pellet_deviation)
 		var bullet_rotation = base_rotation + deviation
 		var bullet_direction = Vector2(cos(bullet_rotation), sin(bullet_rotation))
+		#if cos(bullet_rotation) < 0:
+			#bullet_direction = Vector2(cos(bullet_rotation), sin(bullet_rotation))
+		#else:
+			#bullet_direction = Vector2(cos(bullet_rotation) * -1, sin(bullet_rotation))
+			#print(cos(bullet_rotation), sin(bullet_rotation))
 		bullet_instance.direction = bullet_direction
 		get_tree().root.add_child(bullet_instance)
 #Detect current movement direction and invert it
@@ -229,3 +235,9 @@ func _on_ammo_pickup(ammo_type: String, ammo_amount: int) -> void:
 
 func apply_recoil() -> void:
 	player.velocity += recoil_direction  # Apply immediate recoil force
+	
+func _on_weapon_pickup(weapon_type: String, starting_ammo: int) -> void:
+	if weapon_type not in weapons:
+		weapons.append(weapon_type)
+		magazine_ammo[weapon_type] = starting_ammo
+		emit_signal("show_status_message", "Picked up a " + weapon_type + "!")
