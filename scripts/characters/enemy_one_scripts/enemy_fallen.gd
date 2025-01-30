@@ -16,7 +16,7 @@ func enter_state(enemy_node) -> void:
 			shape.queue_free()
 	
 	if enemy.current_path == "res://scenes/levels/top_side_level/top_side_level.tscn":
-		GameState.KillCount += 1
+		GameState.Level1KillCount += 1
 	elif enemy.current_path == "res://scenes/levels/Level2/level_2.tscn":
 		GameState.Level2KillCount += 1
 	elif enemy.current_path == "res://scenes/levels/level_4/level_4.tscn":

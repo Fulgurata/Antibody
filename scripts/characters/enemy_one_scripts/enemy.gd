@@ -13,7 +13,7 @@ var current_state
 @onready var scream_2: AudioStreamPlayer2D = $Scream2
 @onready var scream_3: AudioStreamPlayer2D = $Scream3
 @onready var hit_box: Area2D = $HitBox
-
+@onready var current_path: String = ""
 
 #Jumping variables, more variables for the variable throne!!!
 var jump_recharge: bool = true
@@ -62,14 +62,15 @@ func _ready():
 	# Create an array to hold all the RIDs
 	enemy_rids.resize(num_enemies)
 	# Populate the array with each enemy's RID
-	var index = 0
+	var ind = 0
 	for e in enemies:
 		if not e is CollisionShape2D: 
-			enemy_rids[index] = e.get_rid()
-			index += 1
-	enemy_rids.resize(index)
-	#for i in range(num_enemies):
-		#enemy_rids[i] = enemies[i].get_rid()
+			enemy_rids[ind] = e.get_rid()
+			ind += 1
+	enemy_rids.resize(ind)
+
+	random_dir = hare_off(ray_directions).rotated(rotation) #pick a random interesting direction
+	current_path = get_tree().get_current_scene().scene_file_path #figure out what level you're in
 
 #Don't delete this stuff, I needz it
 #draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)
@@ -107,7 +108,7 @@ func update_context_arrays() -> void:
 			interest[i] -= danger[i]
 		elif danger[i] > 0.0 and interest[i] > 0.0:
 			interest[i] = 0.0
-			interest[(i + floor(num_rays/4)) % num_rays] = max(0.9, interest[(i + floor(num_rays/4)) % num_rays])
+			interest[(i + floor(num_rays/4)) % num_rays] = max(0.9, interest[(i + floor(num_rays/4)) % num_rays])#if he sees something between him and the player that he doesn't like, go around, + dodge bullets!
 		if i == 0:
 			#this little block lets the enemy remember the player for a second (maybe, I don't know, how long is a delta?)
 			count_cycle += 1

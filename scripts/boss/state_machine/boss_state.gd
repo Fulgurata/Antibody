@@ -19,4 +19,4 @@ func transition():
 
 func _physics_process(_delta):
 	transition()
-	print("Error: 'debug' node not found or not properly assigned.")
+	#print("Error: 'debug' node not found or not properly assigned.")

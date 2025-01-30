@@ -16,7 +16,6 @@ func enter_state(enemy_node) -> void:
 	
 	if enemy.current_path == "res://scenes/levels/top_side_level/top_side_level.tscn":
 		GameState.Level1KillCount += 1
-		print(GameState.Level1KillCount)
 	elif enemy.current_path == "res://scenes/levels/Level2/level_2.tscn":
 		GameState.Level2KillCount += 1
 	elif enemy.current_path == "res://scenes/levels/level_4/level_4.tscn":
