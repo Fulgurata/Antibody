@@ -1,0 +1,137 @@
+[gd_scene load_steps=19 format=3 uid="uid://csbkpsb3cpgee"]
+
+[ext_resource type="Script" path="res://scripts/knife/knife.gd" id="1_y630t"]
+[ext_resource type="Texture2D" uid="uid://b4o3es0t844bf" path="res://scenes/knife/knifethrow.png" id="2_sblt2"]
+[ext_resource type="Texture2D" uid="uid://dhgwmu7hvg71" path="res://scenes/knife/knife.png" id="3_xpbma"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atde6"]
+radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ju5y"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y65dn"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_booxq"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juims"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uvwh"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbh6w"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lxrp"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7bw0"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2brvf"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prblk"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaaxc"]
+atlas = ExtResource("2_sblt2")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xuc40"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ju5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y65dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_booxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juims")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uvwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbh6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lxrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7bw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2brvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prblk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaaxc")
+}],
+"loop": true,
+"name": &"knife_thrown",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmvkn"]
+size = Vector2(29, 33)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8csn"]
+radius = 12.0
+
+[node name="knife" type="CharacterBody2D" groups=["knife"]]
+collision_layer = 256
+motion_mode = 1
+script = ExtResource("1_y630t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_atde6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xuc40")
+animation = &"knife_thrown"
+frame_progress = 0.177203
+speed_scale = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("3_xpbma")
+
+[node name="knife_pickup" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knife_pickup"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_cmvkn")
+debug_color = Color(0.962072, 1.44392e-06, 0.506698, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="." groups=["bullet", "knife"]]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_u8csn")
+
+[connection signal="area_entered" from="knife_pickup" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="knife_pickup" to="." method="_on_knife_pickup_area_exited"]

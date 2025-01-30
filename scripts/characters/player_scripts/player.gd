@@ -11,12 +11,15 @@ var current_state
 var rotation_direction = 0
 var rotation_speed = 1.5
 var health = 10000
+var has_knife = true
+const KNIFE = preload("res://scenes/knife/knife.tscn")
 @onready var current_path: String = ""
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var fader = get_tree().get_current_scene().find_child("Fade_Transition")
 @onready var faderanim = get_tree().get_current_scene().find_child("AnimationPlayer")
 @onready var fadetimer = get_tree().get_current_scene().find_child("Fade_Timer")
 @onready var pausemenu = get_tree().get_current_scene().find_child("PauseMenu")
+@onready var top_player_sprite: AnimatedSprite2D = $TopPlayerSprite
 
 @onready var scoreUI: HBoxContainer = get_tree().get_current_scene().find_child("scoreUI")
 @onready var current_time: Label = get_tree().get_current_scene().find_child("current_time")
@@ -39,9 +42,22 @@ func change_state(new_state_name: String):
 	if current_state: #Ensure the new state exists
 		current_state.enter_state(self) # Enter the new state
 
+
+
 func _process(delta: float) -> void:
 	rotation = (get_global_mouse_position() - position).angle()#velocity.angle()
 	update_score_display()
+	
+	if Input.is_action_just_pressed("throw_knife") and has_knife == true:
+		$TopPlayerSprite.play("Knife_throw")
+		has_knife = false
+		var knife= KNIFE.instantiate()
+		var facing_direction = Vector2(cos(self.rotation), sin(self.rotation))
+		knife.direction = facing_direction.normalized()
+		get_tree().root.add_child(knife)
+		knife.position = global_position
+		knife.rotation = global_rotation
+	
 	
 	if Input.is_action_just_pressed("pause"):
 		if paused == false:
@@ -63,7 +79,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet") or area.is_in_group("enemyarea") or area.is_in_group("enemy"):
 		health -= 1
 		print("Hit! Health:", health)
-		$Camera2D.add_trauma(0.5)
+		$Camera2D.add_trauma(0.1)
 
 	if health <= 0:
 		#print("He dead Jim.")
@@ -100,3 +116,6 @@ func update_score_display() -> void:
 		GameState.Level3TimeScore = (jump_timer.time_left)
 		current_time.text = str(GameState.Level3TimeScore)
 		current_kills.text = str(GameState.Level3KillCount)
+
+func has_knife_fo_real() -> void:
+	has_knife = true

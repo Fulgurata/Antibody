@@ -7,7 +7,7 @@ extends Camera2D
 @export var follow_node : Node2D # Node to follow (assign this to your player)
 
 var trauma : float = 0.0 # Current shake strength
-var trauma_power : int = 2 # Trauma exponent. Increase for more extreme shaking
+var trauma_power : int = 1 # Trauma exponent. Increase for more extreme shaking
 
 func _ready() -> void:
 	#? Randomize the game seed

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6mtvg7bxahma"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup_gun.gd" id="1_wf484"]
+[ext_resource type="Script" path="res://scripts/pickups/rifle_ammo_pickup.gd" id="1_nctp5"]
 [ext_resource type="Texture2D" uid="uid://chlmc6l3ru3y4" path="res://scenes/pickups/rifle_ammo_pickup.png" id="2_yjy35"]
 [ext_resource type="AudioStream" uid="uid://daud5nyr6oqgg" path="res://scenes/pickups/ammo_pick_sound.ogg" id="3_n80dv"]
 
@@ -9,8 +9,7 @@ radius = 18.2483
 
 [node name="rilfe_ammo" type="Area2D"]
 visibility_layer = 5
-script = ExtResource("1_wf484")
-ammo_type = "assault_rifle"
+script = ExtResource("1_nctp5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 1)

@@ -240,4 +240,4 @@ func _on_weapon_pickup(weapon_type: String, starting_ammo: int) -> void:
 	if weapon_type not in weapons:
 		weapons.append(weapon_type)
 		magazine_ammo[weapon_type] = starting_ammo
-		emit_signal("show_status_message", "Picked up a " + weapon_type + "!")
+		#emit_signal("show_status_message", "Picked up a " + weapon_type + "!")

@@ -8,6 +8,8 @@
 script = ExtResource("1_ft524")
 
 [node name="TransitionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="TransitionCollision" type="CollisionShape2D" parent="TransitionArea"]
 position = Vector2(90.2781, 87.0599)

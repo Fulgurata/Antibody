@@ -3,7 +3,9 @@ extends EnemyState
 @onready var interaction_area: InteractionArea = $"../interaction_area"
 
 
+
 func enter_state(enemy_node) -> void:
+	interaction_area.collision_mask = 3
 	InteractionManager.can_interact = true
 	interaction_area.visible = true
 	super(enemy_node) #call parent class method (player_state.gd class "PlayerState")
@@ -28,6 +30,7 @@ func _ready():
 
 func _on_interact():
 	print("i'm working")
+	InteractionManager.unregister_area(interaction_area)
 	enemy.enemy_sprite.play("enemy_one_stomp")
 	for shape in enemy.get_children():
 		if shape is Area2D:

@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var MIN_DISTANCE: float = 500.0
 @export var max_health: int = 2
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var current_path: String = get_tree().get_current_scene().scene_file_path
+
+
 
 var death = false
 var current_state: Boss_State
@@ -45,6 +48,12 @@ func die():
 	sprite.play("Death")
 	print("Boss has been defeated.")
 	death = true
+	if current_path == "res://scenes/levels/top_side_level/top_side_level.tscn":
+		GameState.Level1KillCount += 1
+	elif current_path == "res://scenes/levels/Level2/level_2.tscn":
+		GameState.Level2KillCount += 1
+	elif current_path == "res://scenes/levels/level_4/level_4.tscn":
+		GameState.Level3KillCount += 1
 	for shape in self.get_children():
 		if shape is Area2D:
 			shape.queue_free()

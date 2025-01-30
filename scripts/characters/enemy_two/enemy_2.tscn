@@ -469,8 +469,10 @@ position = Vector2(1, 2)
 rotation = -1.5708
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_7vlbv")
-animation = &"Idle"
+animation = &"Windup"
 autoplay = "Idle"
+frame = 26
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 0)

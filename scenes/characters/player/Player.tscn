@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=122 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/shooting_state.gd" id="6_pl56b"]
 [ext_resource type="Texture2D" uid="uid://bpskldhrfpk0u" path="res://scenes/characters/player/player_sprites/handgunplayer.png" id="7_34kgv"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/dodging_state.gd" id="7_prutj"]
+[ext_resource type="Texture2D" uid="uid://dcveepobrhyek" path="res://scenes/knife/player_throw.png" id="8_4hs3y"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/state_machine/melee_atk_state.gd" id="8_gawsi"]
 [ext_resource type="Texture2D" uid="uid://814a3odbw3o" path="res://scenes/characters/player/player_sprites/Player-RifleWalk.png" id="8_iw8u2"]
 [ext_resource type="Texture2D" uid="uid://b504ew7falbs7" path="res://scenes/characters/player/player_sprites/Player-ShotgunWalk.png" id="9_ftp26"]
@@ -235,9 +236,29 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
+radius = 16.5575
+height = 42.52
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_baew0"]
 atlas = ExtResource("7_34kgv")
 region = Rect2(0, 0, 65, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5mt5"]
+atlas = ExtResource("8_4hs3y")
+region = Rect2(0, 0, 81, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20avi"]
+atlas = ExtResource("8_4hs3y")
+region = Rect2(81, 0, 81, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny7sa"]
+atlas = ExtResource("8_4hs3y")
+region = Rect2(162, 0, 81, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txdc"]
+atlas = ExtResource("8_4hs3y")
+region = Rect2(243, 0, 81, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_350jp"]
 atlas = ExtResource("8_iw8u2")
@@ -259,6 +280,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m5mt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20avi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny7sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txdc")
+}],
+"loop": false,
+"name": &"Knife_throw",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_350jp")
 }],
 "loop": true,
@@ -273,10 +311,6 @@ animations = [{
 "name": &"shotgun",
 "speed": 8.0
 }]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nvn1"]
-radius = 16.5575
-height = 42.52
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50qrt"]
 size = Vector2(80, 54)
@@ -866,12 +900,6 @@ frame_progress = 0.649589
 speed_scale = 1.7
 metadata/_edit_lock_ = true
 
-[node name="TopPlayerSprite" type="AnimatedSprite2D" parent="."]
-rotation = -1.5708
-sprite_frames = SubResource("SpriteFrames_k6w1e")
-animation = &"Handgun"
-frame_progress = 0.849648
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 visibility_layer = 1029
 position = Vector2(2, 0)
@@ -902,6 +930,13 @@ script = ExtResource("16_2swrc")
 
 [node name="Gun" parent="." instance=ExtResource("12_pt774")]
 position = Vector2(39, 5)
+
+[node name="TopPlayerSprite" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_k6w1e")
+animation = &"Knife_throw"
+frame = 3
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 visibility_layer = 1025

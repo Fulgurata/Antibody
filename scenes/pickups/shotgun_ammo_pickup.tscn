@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0gjul4q40b6x"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup_gun.gd" id="1_dik0v"]
+[ext_resource type="Script" path="res://scripts/pickups/shotgun_ammo_pickup.gd" id="1_nykgi"]
 [ext_resource type="Texture2D" uid="uid://djp7txuhkpsg7" path="res://scenes/pickups/shotgun_ammo_pickup.png" id="2_meg70"]
 [ext_resource type="AudioStream" uid="uid://daud5nyr6oqgg" path="res://scenes/pickups/ammo_pick_sound.ogg" id="3_tmatj"]
 
@@ -9,8 +9,7 @@ radius = 21.1896
 
 [node name="shotgun_ammo" type="Area2D"]
 visibility_layer = 5
-script = ExtResource("1_dik0v")
-ammo_type = "shotgun"
+script = ExtResource("1_nykgi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.38419e-07, 2)

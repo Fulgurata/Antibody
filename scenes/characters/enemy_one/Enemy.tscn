@@ -737,6 +737,7 @@ volume_db = -6.934
 bus = &"SFX"
 
 [node name="interaction_area" parent="." instance=ExtResource("22_ago3p")]
+collision_mask = 0
 action_name = "kill"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
