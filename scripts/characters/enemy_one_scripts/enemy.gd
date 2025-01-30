@@ -62,8 +62,14 @@ func _ready():
 	# Create an array to hold all the RIDs
 	enemy_rids.resize(num_enemies)
 	# Populate the array with each enemy's RID
-	for i in range(num_enemies):
-		enemy_rids[i] = enemies[i].get_rid()
+	var index = 0
+	for e in enemies:
+		if not e is CollisionShape2D: 
+			enemy_rids[index] = e.get_rid()
+			index += 1
+	enemy_rids.resize(index)
+	#for i in range(num_enemies):
+		#enemy_rids[i] = enemies[i].get_rid()
 
 #Don't delete this stuff, I needz it
 #draw the rays for debugging purposes. (draw must be localized, rays must be global, dammmmnnniiiiittttttttt)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnargbbgv5o0u"]
+[gd_scene load_steps=5 format=3 uid="uid://dnargbbgv5o0u"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss_bullet.gd" id="1_7s88r"]
 [ext_resource type="Texture2D" uid="uid://clmh6w3jal0uo" path="res://scenes/boss/Boss Bullet.png" id="2_xn7sr"]
@@ -6,7 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2h8f"]
 radius = 14.0
 
-[node name="Boss_Bullet" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pukk"]
+radius = 19.0263
+
+[node name="Boss_Bullet" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_7s88r")
@@ -21,5 +24,11 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 13
 shape = SubResource("CircleShape2D_c2h8f")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_2pukk")
+debug_color = Color(0.950941, 0.0757734, 0.521909, 0.42)
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

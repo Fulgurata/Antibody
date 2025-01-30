@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://7h5hl4kamk5p"]
+[gd_scene load_steps=22 format=4 uid="uid://7h5hl4kamk5p"]
 
 [ext_resource type="Texture2D" uid="uid://js82hj6u2pq4" path="res://scenes/levels/level_4/tileset/dancefloor-Sheet.png" id="1_yqkak"]
 [ext_resource type="TileSet" uid="uid://e0lmvpwsbdhd" path="res://scenes/levels/Level2/wall_tileset.tres" id="2_6k8jw"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="7_npvlc"]
 [ext_resource type="PackedScene" uid="uid://c0uw52enpbo11" path="res://scenes/levels/top_side_level/crate(red).tscn" id="8_3wda8"]
 [ext_resource type="Script" path="res://scripts/pickups/crab_tank_light.gd" id="8_kreek"]
+[ext_resource type="PackedScene" uid="uid://cv3en8ax6a8lw" path="res://scenes/boss/boss.tscn" id="13_hyj2o"]
+[ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="15_4gdak"]
+[ext_resource type="PackedScene" uid="uid://duabef7l8v60w" path="res://scripts/characters/enemy_two/enemy_2.tscn" id="16_qi752"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40xnu"]
 texture = ExtResource("1_yqkak")
@@ -408,18 +411,49 @@ shape = SubResource("RectangleShape2D_fxa6o")
 [node name="Crate(red)" parent="." instance=ExtResource("8_3wda8")]
 position = Vector2(1322, -98)
 rotation = 0.662984
-scale = Vector2(1, 1)
 
 [node name="Crate(red)2" parent="." instance=ExtResource("8_3wda8")]
 position = Vector2(1430, -177)
 rotation = -0.675219
 
-[node name="Player" parent="." instance=ExtResource("4_cs6hg")]
-position = Vector2(1368, 3066)
+[node name="Boss" parent="." instance=ExtResource("13_hyj2o")]
+position = Vector2(195, 130)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 1
+
+[node name="Enemy" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(879, 2267)
+
+[node name="Enemy2" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(1256, 2451)
+
+[node name="Enemy3" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(1488, 2094)
+
+[node name="Enemy4" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(1551, 2469)
+
+[node name="Enemy5" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(1728, 1685)
+
+[node name="Enemy6" parent="." instance=ExtResource("15_4gdak")]
+position = Vector2(1398, 889)
+
+[node name="Enemy7" parent="." instance=ExtResource("16_qi752")]
+position = Vector2(987, 1183)
+
+[node name="Enemy8" parent="." instance=ExtResource("16_qi752")]
+position = Vector2(992, 938)
+
+[node name="Enemy9" parent="." instance=ExtResource("16_qi752")]
+position = Vector2(1737, 945)
+
+[node name="Enemy10" parent="." instance=ExtResource("16_qi752")]
+position = Vector2(1732, 1194)
+
+[node name="Player" parent="." instance=ExtResource("4_cs6hg")]
+position = Vector2(1368, 3066)
 
 [editable path="Lights/PartyLightRed"]
 [editable path="Lights/PartyLightBlue"]
