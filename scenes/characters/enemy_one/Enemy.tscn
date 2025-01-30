@@ -718,7 +718,7 @@ scale = Vector2(2.45, 1.8)
 shape = SubResource("CapsuleShape2D_mua6l")
 
 [node name="Jump_Timer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 600.0
 autostart = true
 
 [node name="Scream1" type="AudioStreamPlayer2D" parent="."]

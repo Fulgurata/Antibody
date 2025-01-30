@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://b8kirn5rew743"]
+[gd_scene load_steps=117 format=3 uid="uid://b8kirn5rew743"]
 
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/player.gd" id="1_3cblq"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_2cr71"]
@@ -25,9 +25,11 @@
 [ext_resource type="AudioStream" uid="uid://c0m6o7g4jo42l" path="res://scenes/characters/player/player_audio/player_walkogg.ogg" id="22_gijml"]
 [ext_resource type="Script" path="res://scripts/characters/player_scripts/pause_menu.gd" id="22_hleqg"]
 [ext_resource type="AudioStream" uid="uid://cmyrj7ca8wbyb" path="res://scenes/characters/player/player_audio/swap_sounds/pistolswap.ogg" id="23_m6pik"]
+[ext_resource type="Texture2D" uid="uid://bvho4tus5xrco" path="res://scenes/characters/player/hourglass_resized.png" id="23_r6mfm"]
 [ext_resource type="PackedScene" uid="uid://bye3384rwtun2" path="res://scenes/menus/main_menu/pause_options_menu.tscn" id="23_xmde4"]
 [ext_resource type="AudioStream" uid="uid://d0qte8yvqsyhh" path="res://scenes/characters/player/player_audio/swap_sounds/shotgunswapogg.ogg" id="24_iuviu"]
 [ext_resource type="Script" path="res://scripts/menus/pause_options_menu.gd" id="24_pajfu"]
+[ext_resource type="Texture2D" uid="uid://cp1l12a5be0hh" path="res://scenes/characters/player/Crab_Icon.png" id="24_sdgqg"]
 [ext_resource type="AudioStream" uid="uid://b6hkgepxaymsu" path="res://scenes/characters/player/player_audio/swap_sounds/rilfeswap.ogg" id="25_1cx7t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3ty1"]
@@ -838,7 +840,7 @@ VSlider/styles/slider = SubResource("20")
 font_color = Color(0.027451, 0.729412, 0.207843, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(2, 4)
+position = Vector2(1, -25)
 collision_layer = 516
 collision_mask = 1825
 motion_mode = 1
@@ -947,6 +949,42 @@ theme_override_fonts/font = ExtResource("16_t5hpi")
 text = "/ total ammo"
 label_settings = SubResource("LabelSettings_qyimx")
 
+[node name="scoreUI" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 771.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = -477.0
+grow_vertical = 0
+
+[node name="time" type="Sprite2D" parent="CanvasLayer/scoreUI"]
+modulate = Color(0.129006, 0.338104, 0.697802, 1)
+position = Vector2(36, 30)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("23_r6mfm")
+
+[node name="kills" type="Sprite2D" parent="CanvasLayer/scoreUI"]
+position = Vector2(133, 30)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("24_sdgqg")
+
+[node name="current_time" type="Label" parent="CanvasLayer/scoreUI"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("15_4r2vn")
+theme_override_colors/font_color = Color(0.743961, 0, 0.129792, 1)
+theme_override_fonts/font = ExtResource("16_t5hpi")
+text = "time"
+
+[node name="current_kills" type="Label" parent="CanvasLayer/scoreUI"]
+layout_mode = 2
+theme = SubResource("Theme_2y6hn")
+theme_override_fonts/font = ExtResource("16_t5hpi")
+text = "kills"
+label_settings = SubResource("LabelSettings_qyimx")
+
 [node name="PauseMenu" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 400.0
 offset_top = 300.0
@@ -1007,6 +1045,8 @@ bus = &"SFX"
 stream = ExtResource("25_1cx7t")
 volume_db = -16.0
 bus = &"SFX"
+
+[node name="ScoreTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

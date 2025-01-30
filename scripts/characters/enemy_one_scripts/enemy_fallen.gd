@@ -14,6 +14,13 @@ func enter_state(enemy_node) -> void:
 	for shape in enemy.get_children():
 		if shape is CollisionShape2D and shape != interaction_area:
 			shape.queue_free()
+	
+	if enemy.current_path == "res://scenes/levels/top_side_level/top_side_level.tscn":
+		GameState.KillCount += 1
+	elif enemy.current_path == "res://scenes/levels/Level2/level_2.tscn":
+		GameState.Level2KillCount += 1
+	elif enemy.current_path == "res://scenes/levels/level_4/level_4.tscn":
+		GameState.Level3KillCount += 1
 
 func _ready():
 	interaction_area.interact = Callable(self, "_on_interact")
