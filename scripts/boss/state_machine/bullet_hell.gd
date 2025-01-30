@@ -51,11 +51,13 @@ func _on_timer_timeout():
 	shoot()
  
 func shoot():
-	for s in rotater.get_children():
-		var bullet = boss_bullet.instantiate()
-		get_tree().root.add_child(bullet)
-		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation
+	if owner.death == false:
+		$"../../AnimatedSprite2D".play("Boss_spin")
+		for s in rotater.get_children():
+			var bullet = boss_bullet.instantiate()
+			get_tree().root.add_child(bullet)
+			bullet.position = s.global_position
+			bullet.rotation = s.global_rotation
 
 
 func _on_cool_down_timeout() -> void:

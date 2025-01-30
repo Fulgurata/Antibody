@@ -24,8 +24,10 @@ func _on_timer_timeout():
 	shoot()
  
 func shoot():
-	var bullet = boss_slime.instantiate()
-	get_tree().root.add_child(bullet)
-	bullet.position = global_position
-	bullet.rotation = global_rotation
+	if owner.death == false:
+		$"../../AnimatedSprite2D".play("Boss_spin")
+		var bullet = boss_slime.instantiate()
+		get_tree().root.add_child(bullet)
+		bullet.position = global_position
+		bullet.rotation = global_rotation
  

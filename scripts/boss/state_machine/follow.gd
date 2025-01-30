@@ -9,6 +9,7 @@ func transition():
 		get_parent().change_state("Dead")
  
 func enter():
+	$"../../AnimatedSprite2D".play("Boss_walk")
 	super.enter()
 	owner.set_physics_process(true)
  

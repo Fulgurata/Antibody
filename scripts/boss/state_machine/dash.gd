@@ -12,6 +12,7 @@ func transition():
 		get_parent().change_state("Dead")
  
 func dash():
+	$"../../AnimatedSprite2D".play("Boss_dash")
 	var tween = get_tree().create_tween()
 	tween.tween_property(owner, "position", player.position, 0.75)
 	times_up = true
