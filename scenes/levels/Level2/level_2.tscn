@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://142qan8vvj0v"]
+[gd_scene load_steps=28 format=4 uid="uid://142qan8vvj0v"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_2.gd" id="1_kwtji"]
 [ext_resource type="TileSet" uid="uid://e0lmvpwsbdhd" path="res://scenes/levels/Level2/wall_tileset.tres" id="2_bagxk"]
@@ -10,10 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://ew2b3n20hnyu" path="res://scenes/levels/Level2/wall_light_flicker.tscn" id="7_5wnsr"]
 [ext_resource type="Script" path="res://scripts/pickups/crab_tank_light.gd" id="8_pps17"]
 [ext_resource type="PackedScene" uid="uid://css2xxwtnf1ga" path="res://scenes/levels/tileset/glass_plane.tscn" id="9_ab8ua"]
+[ext_resource type="PackedScene" uid="uid://dstfy4av14cm6" path="res://scenes/pickups/assualt_rifle_pickup.tscn" id="10_w8ett"]
 [ext_resource type="AudioStream" uid="uid://d3a0wsnope5c5" path="res://scenes/levels/Level2/underwaterbaseambienceogg.ogg" id="10_y484k"]
+[ext_resource type="PackedScene" uid="uid://c6mtvg7bxahma" path="res://scenes/pickups/rifle_ammo_pickup.tscn" id="11_bgpds"]
 [ext_resource type="PackedScene" uid="uid://dif6f7qoy78ck" path="res://scenes/levels/doors/door.tscn" id="11_pitbt"]
+[ext_resource type="PackedScene" uid="uid://8bdqdmvwfiu4" path="res://scenes/pickups/shotgun_pickup.tscn" id="12_dj6wm"]
 [ext_resource type="PackedScene" uid="uid://dg1e0kf1rmqgd" path="res://scenes/levels/traps/lightning_trap.tscn" id="12_udrg2"]
+[ext_resource type="PackedScene" uid="uid://d0gjul4q40b6x" path="res://scenes/pickups/shotgun_ammo_pickup.tscn" id="13_2jwoy"]
 [ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="13_6k24h"]
+[ext_resource type="PackedScene" uid="uid://jghdy6j7wkn3" path="res://scenes/pickups/pistol_ammo_pickup.tscn" id="14_1blqr"]
 [ext_resource type="PackedScene" uid="uid://ca4w3fwgrfghh" path="res://globals/EndLevel.tscn" id="15_7y6ww"]
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="16_uo4rp"]
 [ext_resource type="PackedScene" uid="uid://duabef7l8v60w" path="res://scripts/characters/enemy_two/enemy_2.tscn" id="17_dj0rg"]
@@ -104,6 +109,7 @@ position = Vector2(1710, 1851)
 rotation = 0.648784
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 blend_mode = 1
 
 [node name="lights" type="Node2D" parent="."]
@@ -151,6 +157,21 @@ texture_scale = 6.24
 stream = ExtResource("10_y484k")
 autoplay = true
 parameters/looping = true
+
+[node name="AssualtRiflePickup" parent="CanvasLayer" instance=ExtResource("10_w8ett")]
+position = Vector2(1262, 330)
+
+[node name="rilfe_ammo" parent="CanvasLayer" instance=ExtResource("11_bgpds")]
+position = Vector2(1157, 393)
+
+[node name="Shotgun_pickup" parent="CanvasLayer" instance=ExtResource("12_dj6wm")]
+position = Vector2(1230, 925)
+
+[node name="shotgun_ammo" parent="CanvasLayer" instance=ExtResource("13_2jwoy")]
+position = Vector2(1292, 862)
+
+[node name="pistol_ammo" parent="CanvasLayer" instance=ExtResource("14_1blqr")]
+position = Vector2(930, 592)
 
 [node name="doors" type="Node" parent="."]
 

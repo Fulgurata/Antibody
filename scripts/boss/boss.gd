@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var player = get_parent().find_child("Player")
 @onready var progress_bar = $ProgressBar
 @export var MIN_DISTANCE: float = 500.0
-@export var max_health: int = 10
+@export var max_health: int = 50
 
 var death = false
 var current_state: Boss_State
