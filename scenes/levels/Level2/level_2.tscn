@@ -110,7 +110,6 @@ position = Vector2(1710, 1851)
 rotation = 0.648784
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 1
 
 [node name="lights" type="Node2D" parent="."]
@@ -405,6 +404,7 @@ position = Vector2(922, 260)
 [node name="Music_1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_obfk2")
 volume_db = -16.0
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]

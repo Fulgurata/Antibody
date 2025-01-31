@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://7h5hl4kamk5p"]
+[gd_scene load_steps=37 format=4 uid="uid://7h5hl4kamk5p"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_4.gd" id="1_nwusg"]
 [ext_resource type="Texture2D" uid="uid://js82hj6u2pq4" path="res://scenes/levels/level_4/tileset/dancefloor-Sheet.png" id="1_yqkak"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="24_2lgc8"]
 [ext_resource type="AudioStream" uid="uid://buj4cb322puha" path="res://scenes/levels/music_1ogg.ogg" id="26_rcvpl"]
 [ext_resource type="AudioStream" uid="uid://dqgbqtbeac5y3" path="res://scenes/levels/music_2ogg.ogg" id="27_ewsed"]
+[ext_resource type="PackedScene" uid="uid://c2itqlh42qfb8" path="res://scenes/menus/main_menu/fade_transition.tscn" id="28_gk4iy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40xnu"]
 texture = ExtResource("1_yqkak")
@@ -467,7 +468,6 @@ rotation = -0.675219
 position = Vector2(195, 130)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 1
 
 [node name="Enemy" parent="." instance=ExtResource("15_4gdak")]
@@ -542,11 +542,13 @@ position = Vector2(1124, 2389)
 stream = ExtResource("26_rcvpl")
 volume_db = -16.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="music_2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_ewsed")
 volume_db = -16.0
+bus = &"Music"
 parameters/looping = true
 
 [node name="music_trigger" type="Area2D" parent="."]
@@ -556,7 +558,13 @@ position = Vector2(1215, 128.5)
 shape = SubResource("RectangleShape2D_f1ate")
 debug_color = Color(0.65945, 0.514962, 0, 0.42)
 
+[node name="Fade_Transition" parent="." instance=ExtResource("28_gk4iy")]
+visible = false
+
+[node name="Fade_Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="music_trigger" to="." method="_on_music_trigger_area_entered"]
+[connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]
 
 [editable path="Lights/PartyLightRed"]
 [editable path="Lights/PartyLightBlue"]
@@ -580,3 +588,4 @@ debug_color = Color(0.65945, 0.514962, 0, 0.42)
 [editable path="Doors/Door6"]
 [editable path="Doors/Door7"]
 [editable path="Doors/Door8"]
+[editable path="Fade_Transition"]

@@ -119,3 +119,8 @@ func update_score_display() -> void:
 
 func has_knife_fo_real() -> void:
 	has_knife = true
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED

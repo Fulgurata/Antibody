@@ -18,3 +18,8 @@ func _on_music_trigger_area_entered(area: Area2D) -> void:
 		var time_until_next_measure = measure_length - fposmod(current_pos, measure_length)
 		await get_tree().create_timer(time_until_next_measure).timeout
 		layer_track.play()
+
+
+func _on_fade_timer_timeout() -> void:
+	print("you died menu incoming")
+	get_tree().change_scene_to_file("res://scenes/menus/you_died/you_died.tscn")
