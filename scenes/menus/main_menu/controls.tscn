@@ -53,11 +53,9 @@ theme = ExtResource("1_kn2p2")
 theme_override_fonts/font = ExtResource("3_v6muc")
 theme_override_font_sizes/font_size = 41
 text = "WASD - move
-
 Left Click - Shoot
-
+R - Reload
 Space Bar - throw knife
-
 Q - drop flare"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -69,9 +67,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 147.5
+offset_left = -300.5
 offset_top = 78.0
-offset_right = 246.5
+offset_right = -201.5
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 0
