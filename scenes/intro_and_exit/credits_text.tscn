@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://76nm57hvb28m"]
+
+[ext_resource type="Theme" uid="uid://r0arfda4w37d" path="res://scenes/menus/main_menu/MinimalUI.tres" id="2_oq46p"]
+[ext_resource type="FontFile" uid="uid://nrp40rj57pir" path="res://scenes/menus/main_menu/RubikDistressed-Regular.ttf" id="3_43k8x"]
+
+[node name="CreditsText" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_right = 960.0
+offset_bottom = 540.0
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.792157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_oq46p")
+
+[node name="thanks" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_oq46p")
+theme_override_fonts/font = ExtResource("3_43k8x")
+theme_override_font_sizes/font_size = 56
+text = "Dev Team"
+vertical_alignment = 1
+
+[node name="credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_oq46p")
+theme_override_fonts/font = ExtResource("3_43k8x")
+theme_override_font_sizes/font_size = 38
+text = "ManaMoot - Code, Art, Sound, Design
+giogsgs12 - Art, Code, Design
+Fulgurata - Code, Design
+Macbeth - Code
+ArloArlington - Music
+"
+vertical_alignment = 1
+
+[node name="asset credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_oq46p")
+theme_override_fonts/font = ExtResource("3_43k8x")
+theme_override_font_sizes/font_size = 25
+text = "
+Special Thanks To
+AlesiaDavina - Monster roar
+freesound_community - Metal Banging
+GIKMultimedia - ocean wave sounds"
+vertical_alignment = 1

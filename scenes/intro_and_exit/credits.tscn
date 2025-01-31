@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4471cecwe3s8"]
+
+[ext_resource type="Script" path="res://scenes/intro_and_exit/credits.gd" id="1_dv7b4"]
+[ext_resource type="PackedScene" uid="uid://76nm57hvb28m" path="res://scenes/intro_and_exit/credits_text.tscn" id="3_motft"]
+[ext_resource type="AudioStream" uid="uid://dxvea4uwscgqh" path="res://scenes/levels/Audio/Lvl!ogg.ogg" id="3_uu5fj"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_dv7b4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uu5fj")
+volume_db = 18.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CreditsText" parent="." instance=ExtResource("3_motft")]
+
+[node name="VBoxContainer" parent="CreditsText" index="1"]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="CreditsText"]

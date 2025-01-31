@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var NextLevel: String = "res://scenes/intro_and_exit/credits.tscn"
+@onready var NextLevel: String = "res://scenes/menus/main_menu/main_menu.tscn"
 var waitflag: bool = false
 
 func _input(event: InputEvent) -> void:
