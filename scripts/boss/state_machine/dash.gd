@@ -1,7 +1,9 @@
 extends Boss_State
 
 class_name DashState
- 
+
+@onready var boss_laugh: AudioStreamPlayer2D = $"../../Boss_laugh"
+
 @onready var timer = $Timer
 var times_up = false
 
@@ -13,6 +15,7 @@ func transition():
  
 func dash():
 	$"../../AnimatedSprite2D".play("Boss_dash")
+	boss_laugh.play()
 	var tween = get_tree().create_tween()
 	tween.tween_property(owner, "position", player.position, 0.75)
 	times_up = true

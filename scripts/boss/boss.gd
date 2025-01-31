@@ -44,6 +44,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("bullet"):
 			health -= 1
 			if health <= 0:
+				$Boss_die.play()
 				$AnimatedSprite2D.play("Boss_downed")
 				die()
 	else:

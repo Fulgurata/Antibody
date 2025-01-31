@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://bc2uunwunerp"]
+[gd_scene load_steps=110 format=3 uid="uid://bc2uunwunerp"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy.gd" id="1_jbthf"]
 [ext_resource type="PackedScene" uid="uid://dccdpedsu3ht" path="res://scenes/characters/player/flashlight_point_light_2d.tscn" id="2_yql7k"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://cyex6adivncux" path="res://scenes/characters/enemy_one/audio/monster_scream3.ogg" id="19_2q8lt"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_one_scripts/enemy_fallen.gd" id="19_8d8ml"]
 [ext_resource type="PackedScene" uid="uid://fovowdcuit5b" path="res://scenes/interaction/interaction_area/interaction_area.tscn" id="22_ago3p"]
+[ext_resource type="AudioStream" uid="uid://cob6mnen7j1pj" path="res://scenes/characters/enemy_one/Impact.wav" id="24_iemok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkpr7"]
 atlas = ExtResource("4_6qg2w")
@@ -744,6 +745,10 @@ action_name = "kill"
 rotation = -1.56683
 shape = SubResource("CapsuleShape2D_tjv2b")
 debug_color = Color(0.89776, 0.258145, 0.468102, 0.42)
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_iemok")
+bus = &"Music"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

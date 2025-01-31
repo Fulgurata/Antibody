@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var light: PointLight2D = $PointLight2D
 @onready var ambience: AudioStreamPlayer = $Ambience
-
 @export var flash_energy: float = 5.0
 @export var flash_duration: float = 0.7
 @export var base_energy: float = 0.1
@@ -48,3 +47,7 @@ func reset_flash_timer() -> void:
 func _on_fade_timer_timeout() -> void:
 	print("you died menu incoming")
 	get_tree().change_scene_to_file("res://scenes/menus/you_died/you_died.tscn")
+
+
+
+		

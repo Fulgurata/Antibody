@@ -6,6 +6,7 @@ var steering_factor := .2 #must be between 0 and 1.0
 var normal_speed := 400.0
 var health = 2
 var current_state
+var first_sighted = false
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player = get_tree().get_current_scene().find_child("Player")
 @export var MIN_DISTANCE: float = 50.0 #how close the enemy will get before stopping and melee attacking
@@ -96,6 +97,11 @@ func change_state(new_state_name: String):
 
 
 func _process(delta: float) -> void:
+	if player_sighted_ray_flag == true and not first_sighted == true:
+		first_sighted = true
+		$Impact.play()
+	
+	
 	if current_state:
 		current_state.process(delta)
 

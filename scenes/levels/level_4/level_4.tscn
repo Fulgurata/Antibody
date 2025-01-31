@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=4 uid="uid://7h5hl4kamk5p"]
+[gd_scene load_steps=36 format=4 uid="uid://7h5hl4kamk5p"]
 
+[ext_resource type="Script" path="res://scripts/levels/level_4.gd" id="1_nwusg"]
 [ext_resource type="Texture2D" uid="uid://js82hj6u2pq4" path="res://scenes/levels/level_4/tileset/dancefloor-Sheet.png" id="1_yqkak"]
 [ext_resource type="TileSet" uid="uid://e0lmvpwsbdhd" path="res://scenes/levels/Level2/wall_tileset.tres" id="2_6k8jw"]
 [ext_resource type="Texture2D" uid="uid://duvepe6cv2nxl" path="res://scenes/levels/level_4/tileset/party room tileset.png" id="3_2drkl"]
@@ -24,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://8bdqdmvwfiu4" path="res://scenes/pickups/shotgun_pickup.tscn" id="22_tddlk"]
 [ext_resource type="PackedScene" uid="uid://d0gjul4q40b6x" path="res://scenes/pickups/shotgun_ammo_pickup.tscn" id="23_1n8qn"]
 [ext_resource type="PackedScene" uid="uid://3icltdq3xtfe" path="res://scenes/characters/drone/drone.tscn" id="24_2lgc8"]
+[ext_resource type="AudioStream" uid="uid://buj4cb322puha" path="res://scenes/levels/music_1ogg.ogg" id="26_rcvpl"]
+[ext_resource type="AudioStream" uid="uid://dqgbqtbeac5y3" path="res://scenes/levels/music_2ogg.ogg" id="27_ewsed"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40xnu"]
 texture = ExtResource("1_yqkak")
@@ -137,7 +140,11 @@ sources/1 = SubResource("TileSetAtlasSource_l7y8s")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxa6o"]
 size = Vector2(14, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ate"]
+size = Vector2(103, 125)
+
 [node name="level_4" type="Node2D"]
+script = ExtResource("1_nwusg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1731.0
@@ -499,7 +506,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="AssualtRiflePickup" parent="." instance=ExtResource("19_d8fvp")]
-position = Vector2(1082, 2430)
+position = Vector2(1372, 3035)
 
 [node name="pistol_ammo" parent="." instance=ExtResource("20_vuela")]
 position = Vector2(1384, 2665)
@@ -508,7 +515,7 @@ position = Vector2(1384, 2665)
 position = Vector2(1126, 1939)
 
 [node name="Shotgun_pickup" parent="." instance=ExtResource("22_tddlk")]
-position = Vector2(1385, -33)
+position = Vector2(1410, 3086)
 
 [node name="shotgun_ammo" parent="." instance=ExtResource("23_1n8qn")]
 position = Vector2(1301, 67)
@@ -527,6 +534,29 @@ position = Vector2(1368, 3066)
 
 [node name="Drone" parent="." instance=ExtResource("24_2lgc8")]
 position = Vector2(1323, 3168)
+
+[node name="pistol_ammo2" parent="." instance=ExtResource("20_vuela")]
+position = Vector2(1124, 2389)
+
+[node name="music_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_rcvpl")
+volume_db = -16.0
+autoplay = true
+parameters/looping = true
+
+[node name="music_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_ewsed")
+volume_db = -16.0
+parameters/looping = true
+
+[node name="music_trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="music_trigger"]
+position = Vector2(1215, 128.5)
+shape = SubResource("RectangleShape2D_f1ate")
+debug_color = Color(0.65945, 0.514962, 0, 0.42)
+
+[connection signal="area_entered" from="music_trigger" to="." method="_on_music_trigger_area_entered"]
 
 [editable path="Lights/PartyLightRed"]
 [editable path="Lights/PartyLightBlue"]

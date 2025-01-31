@@ -19,6 +19,7 @@ var direction = Vector2.ZERO
 var speed  = 150.0
  
 func _ready():
+	$AudioStreamPlayer2D.play()
 	set_physics_process(false)
  
 func _process(_delta):
@@ -60,3 +61,4 @@ func die():
 	for shape in self.get_children():
 		if shape is CollisionShape2D:
 			shape.queue_free()
+	$AudioStreamPlayer2D.stop()

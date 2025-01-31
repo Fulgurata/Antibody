@@ -27,3 +27,4 @@ func _on_interact():
 	for shape in boss.get_children():
 		if shape is CollisionShape2D:
 			shape.queue_free()
+			

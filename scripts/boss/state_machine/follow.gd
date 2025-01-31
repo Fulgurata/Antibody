@@ -10,6 +10,7 @@ func transition():
  
 func enter():
 	$"../../AnimatedSprite2D".play("Boss_walk")
+	$"../../Boss_laugh".play()
 	super.enter()
 	owner.set_physics_process(true)
  

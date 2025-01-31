@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://duabef7l8v60w"]
+[gd_scene load_steps=75 format=3 uid="uid://duabef7l8v60w"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy_two/enemy_2.gd" id="1_tlfst"]
 [ext_resource type="Texture2D" uid="uid://c8pa67smwlifg" path="res://scenes/characters/enemy_two/sprites/Enemy2-death.png" id="1_wi3qr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/characters/enemy_two/enemyshoot.gd" id="9_x0w1u"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_two/follow.gd" id="10_aktrj"]
 [ext_resource type="Script" path="res://scripts/characters/enemy_two/death.gd" id="11_b38hs"]
+[ext_resource type="AudioStream" uid="uid://u8pja7d4u3l1" path="res://scenes/characters/enemy_two/fismansounds.ogg" id="12_trgrr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8ct8"]
 atlas = ExtResource("1_wi3qr")
@@ -508,6 +509,12 @@ collision_mask = 257
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(32, 1)
 shape = SubResource("CircleShape2D_hn13j")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_trgrr")
+max_distance = 600.0
+bus = &"SFX"
+parameters/looping = true
 
 [connection signal="timeout" from="FiniteStateMachine/Shoot/Timer" to="FiniteStateMachine/Shoot" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

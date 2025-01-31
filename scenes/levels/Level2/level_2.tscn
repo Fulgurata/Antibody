@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://142qan8vvj0v"]
+[gd_scene load_steps=29 format=4 uid="uid://142qan8vvj0v"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_2.gd" id="1_kwtji"]
 [ext_resource type="TileSet" uid="uid://e0lmvpwsbdhd" path="res://scenes/levels/Level2/wall_tileset.tres" id="2_bagxk"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ca4w3fwgrfghh" path="res://globals/EndLevel.tscn" id="15_7y6ww"]
 [ext_resource type="PackedScene" uid="uid://bc2uunwunerp" path="res://scenes/characters/enemy_one/Enemy.tscn" id="16_uo4rp"]
 [ext_resource type="PackedScene" uid="uid://duabef7l8v60w" path="res://scripts/characters/enemy_two/enemy_2.tscn" id="17_dj0rg"]
+[ext_resource type="AudioStream" uid="uid://buj4cb322puha" path="res://scenes/levels/music_1ogg.ogg" id="23_obfk2"]
 
 [sub_resource type="Gradient" id="Gradient_nk1c4"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -400,6 +401,11 @@ position = Vector2(884, 326)
 
 [node name="Player" parent="." instance=ExtResource("2_vqmrr")]
 position = Vector2(922, 260)
+
+[node name="Music_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_obfk2")
+volume_db = -16.0
+parameters/looping = true
 
 [connection signal="timeout" from="Fade_Timer" to="." method="_on_fade_timer_timeout"]
 

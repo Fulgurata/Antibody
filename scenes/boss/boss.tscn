@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cv3en8ax6a8lw"]
+[gd_scene load_steps=75 format=3 uid="uid://cv3en8ax6a8lw"]
 
 [ext_resource type="Script" path="res://scripts/boss/boss.gd" id="1_kxtdx"]
 [ext_resource type="Texture2D" uid="uid://dq2m6rxgqh3ia" path="res://scenes/boss/Boss-dash.png" id="2_xxbag"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://scripts/boss/state_machine/boss_laser.gd" id="9_melrt"]
 [ext_resource type="Script" path="res://scripts/boss/state_machine/dead.gd" id="11_5gwcj"]
 [ext_resource type="PackedScene" uid="uid://fovowdcuit5b" path="res://scenes/interaction/interaction_area/interaction_area.tscn" id="17_q2vi6"]
+[ext_resource type="AudioStream" uid="uid://detqk2kig5nyb" path="res://scenes/boss/boosdiesounds.ogg" id="18_a2pgj"]
+[ext_resource type="AudioStream" uid="uid://bbpgym858jono" path="res://scenes/boss/boosmovesounds.ogg" id="18_mplrl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yy0v6"]
 atlas = ExtResource("2_xxbag")
@@ -510,6 +512,15 @@ action_name = "kill"
 position = Vector2(-1.33333, -0.666667)
 shape = SubResource("CircleShape2D_cauo3")
 debug_color = Color(0.946593, 0.136296, 0.473263, 0.42)
+
+[node name="Boss_laugh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_mplrl")
+volume_db = 10.0
+
+[node name="Boss_die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_a2pgj")
+volume_db = 10.0
+bus = &"SFX"
 
 [connection signal="timeout" from="FiniteStateMachine/Shoot/Timer" to="FiniteStateMachine/Shoot" method="_on_timer_timeout"]
 [connection signal="timeout" from="FiniteStateMachine/Dash/Timer" to="FiniteStateMachine/Dash" method="_on_timer_timeout"]
