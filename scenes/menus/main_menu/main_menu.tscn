@@ -29,6 +29,7 @@ offset_right = 557.0
 offset_bottom = 534.0
 grow_vertical = 2
 theme = ExtResource("3_4b2a0")
+metadata/_edit_use_anchors_ = true
 
 [node name="Start" type="Button" parent="Main_Button_Container"]
 layout_mode = 2
@@ -36,6 +37,11 @@ size_flags_vertical = 3
 text = "Start"
 
 [node name="Options" type="Button" parent="Main_Button_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+
+[node name="Controls" type="Button" parent="Main_Button_Container"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
@@ -64,6 +70,7 @@ visible = false
 
 [connection signal="pressed" from="Main_Button_Container/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Main_Button_Container/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main_Button_Container/Controls" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Main_Button_Container/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Fade_Transition/Fade_Timer" to="." method="_on_fade_timer_timeout"]
 
