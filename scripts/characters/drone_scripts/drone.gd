@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var player = null
-@export var MIN_DISTANCE: float = 200.0
+@export var MIN_DISTANCE: float = 100.0
 @export var flare_scene = preload("res://scenes/characters/drone/flare.tscn")
 @export var flare_cooldown: float = 60.0
 
