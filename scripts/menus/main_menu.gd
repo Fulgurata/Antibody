@@ -3,6 +3,7 @@ extends Node2D
 var button_type = null
 
 func _ready():
+	$Controls.visible = false
 	$OptionsMenu.visible = false
 	$Main_Menu_Theme.play()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -40,3 +41,9 @@ func _on_fade_timer_timeout() -> void:
 
 	if button_type == "options" :
 		pass
+
+
+func _on_controls_pressed() -> void:
+	button_type = "Controls"
+	$Main_Button_Container.visible = false
+	$Controls.visible = true
