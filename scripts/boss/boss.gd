@@ -38,6 +38,7 @@ func _physics_process(_delta):
 func die():
 	print("Boss has been defeated.")
 	death = true
+	get_tree().change_scene_to_file("res://scenes/intro_and_exit/exit.tscn")
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
