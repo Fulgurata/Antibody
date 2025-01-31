@@ -31,7 +31,8 @@ func _on_options_pressed() -> void:
 
 func _on_fade_timer_timeout() -> void:
 	if button_type == "start" :
-		get_tree().change_scene_to_file("res://scenes/levels/top_side_level/top_side_level.tscn")
+		#get_tree().change_scene_to_file("res://scenes/levels/top_side_level/top_side_level.tscn")
+		get_tree().change_scene_to_file("res://scenes/intro_and_exit/intro.tscn")
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 	if button_type == "quit" :
