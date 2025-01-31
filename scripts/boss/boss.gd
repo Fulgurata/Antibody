@@ -4,8 +4,7 @@ extends CharacterBody2D
 @onready var player = get_parent().find_child("Player")
 @onready var progress_bar = $ProgressBar
 @export var MIN_DISTANCE: float = 500.0
-@export var max_health: int = 50
-@onready var NextLevel: String = "res://scenes/intro_and_exit/exit.tscn"
+@export var max_health: int = 40
 
 var death = false
 var current_state: Boss_State
@@ -39,7 +38,6 @@ func _physics_process(_delta):
 func die():
 	print("Boss has been defeated.")
 	death = true
-	get_tree().change_scene_to_file(NextLevel)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

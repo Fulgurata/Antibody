@@ -3,6 +3,7 @@ extends Boss_State
 class_name DeadState
 @onready var boss: CharacterBody2D = $"../.."
 @onready var interaction_area: InteractionArea = $"../../interaction_area"
+@onready var NextLevel: String = "res://scenes/intro_and_exit/exit.tscn"
 
 func enter():
 	$"../../AnimatedSprite2D".play("Boss_dying")
@@ -27,4 +28,4 @@ func _on_interact():
 	for shape in boss.get_children():
 		if shape is CollisionShape2D:
 			shape.queue_free()
-			
+	get_tree().change_scene_to_file(NextLevel)

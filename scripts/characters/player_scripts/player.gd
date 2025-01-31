@@ -10,7 +10,7 @@ var friction := 0.5
 var current_state
 var rotation_direction = 0
 var rotation_speed = 1.5
-var health = 10000
+var health = 3
 var has_knife = true
 const KNIFE = preload("res://scenes/knife/knife.tscn")
 @onready var current_path: String = ""

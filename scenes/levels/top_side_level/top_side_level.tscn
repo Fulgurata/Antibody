@@ -310,8 +310,10 @@ position = Vector2(430, 348)
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_j6apj")
+volume_db = 14.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="Radio" parent="." instance=ExtResource("16_4hur3")]
 position = Vector2(2573, 698)

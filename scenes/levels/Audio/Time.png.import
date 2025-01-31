@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvho4tus5xrco"
-path="res://.godot/imported/hourglass_resized.png-2d5380df9ce539a0a80bbddea855a1d0.ctex"
+uid="uid://cgl6rvvqltno2"
+path="res://.godot/imported/Time.png-c36a81e3aaae4c75cf92f9920d5115a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/characters/player/hourglass_resized.png"
-dest_files=["res://.godot/imported/hourglass_resized.png-2d5380df9ce539a0a80bbddea855a1d0.ctex"]
+source_file="res://scenes/levels/Audio/Time.png"
+dest_files=["res://.godot/imported/Time.png-c36a81e3aaae4c75cf92f9920d5115a2.ctex"]
 
 [params]
 
